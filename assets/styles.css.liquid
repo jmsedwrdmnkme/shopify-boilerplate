@@ -68,14 +68,10 @@ p, h1, h2, h3, h4, h5, h6 {
   Nav
 */
 
-.nav {
-  &__toggle {
-    &--input {
-      &:checked {
-        ~ * {
-          display: none;
-        }
-      }
+.nav__toggle--input {
+  &:checked {
+    ~ * {
+      display: none;
     }
   }
 }
