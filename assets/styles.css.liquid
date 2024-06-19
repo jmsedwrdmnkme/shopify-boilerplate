@@ -70,14 +70,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .nav__toggle--input {
   &:not(:checked) {
-    ~ {
-      & div {
+    ~  div {
       display: none;
-      }
+    }
 
-      & label {
-        transform: rotate(90deg);
-      }
+    ~ label {
+      transform: rotate(90deg);
     }
   }
 }
