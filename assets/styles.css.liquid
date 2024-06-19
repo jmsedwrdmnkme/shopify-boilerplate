@@ -40,7 +40,7 @@ p, h1, h2, h3, h4, h5, h6 {
 */
 :root {
   --base__size: 1rem;
-  --font__size: 1rem;
+  --font__size: var(--base__size);
 }
 
 
@@ -49,14 +49,10 @@ p, h1, h2, h3, h4, h5, h6 {
 */
 
 [class*=container] {
-  --container__width--max: 60rem;
-  --container__padding--x: var(--base__size);
-
   margin-left: auto;
   margin-right: auto;
-  max-width: var(--container__width--max);
-  padding-left: var(--container__padding--x);
-  padding-right: var(--container__padding--x);
+  max-width: 960px;
+  padding: 0 var(--base__size);
 }
 
 
@@ -144,6 +140,11 @@ p, h1, h2, h3, h4, h5, h6 {
   display: block;
   padding: calc(var(--base__size) / 2);
   text-align: center;
+  text-decoration: none;
+
+  &.active {
+    font-weight: 800;
+  }
 }
 
 
