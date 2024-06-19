@@ -62,3 +62,29 @@ p, h1, h2, h3, h4, h5, h6 {
     width: 1px;
   }
 }
+
+
+/*
+  Nav
+*/
+
+.nav {
+  &__toggle {
+    &--input {
+      &:checked {
+        ~ * {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+/*
+  Helpers
+*/
+
+.hidden {
+  display: none;
+}
