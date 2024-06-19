@@ -82,8 +82,28 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: var(--base__size) 0;
 }
 
+.nav__container {
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
 .nav__logo {
   font-size: calc(var(--font__size) * 1.375);
+}
+
+.nav__toggle {
+  @media (max-width: 991.98px) {
+    &:not(:checked) {
+      ~ .nav__menu {
+        display: none;
+      }
+
+      ~ .nav__label {
+        transform: rotate(90deg);
+      }
+    }
+  }
 }
 
 .nav__label {
@@ -100,20 +120,6 @@ p, h1, h2, h3, h4, h5, h6 {
     top: 0;
     vertical-align: middle;
     width: calc(2 * var(--base__size));
-  }
-}
-
-.nav__toggle {
-  @media (max-width: 991.98px) {
-    &:not(:checked) {
-      ~ .nav__menu {
-        display: none;
-      }
-
-      ~ .nav__label {
-        transform: rotate(90deg);
-      }
-    }
   }
 }
 
