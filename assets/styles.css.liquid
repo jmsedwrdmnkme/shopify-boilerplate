@@ -36,12 +36,21 @@ p, h1, h2, h3, h4, h5, h6 {
 
 
 /*
+  Variables
+*/
+:root {
+  --base__size: 1rem;
+  --font__size: 1rem;
+}
+
+
+/*
   Containers
 */
 
 [class*=container] {
   --container__width--max: 60rem;
-  --container__padding--x: 1rem;
+  --container__padding--x: var(--base__size);
 
   margin-left: auto;
   margin-right: auto;
@@ -70,7 +79,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .nav {
   background: rgba(0,0,0,0.03);
-  padding: 1rem 0;
+  padding: var(--base__size) 0;
+}
+
+.nav__logo {
+  font-size: calc(var(--font__size) * 1.375);
 }
 
 .nav__label {
@@ -80,13 +93,13 @@ p, h1, h2, h3, h4, h5, h6 {
     background-repeat: no-repeat;
     background-size: 100%;
     display: inline-block;
-    height: 2em;
-    margin: 1rem;
+    height: calc(2 * var(--base__size));
+    margin: var(--base__size);
     position: fixed;
     right: 0;
     top: 0;
     vertical-align: middle;
-    width: 2em;
+    width: calc(2 * var(--base__size));
   }
 }
 
@@ -112,13 +125,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .nav__link {
   @media (min-width: 992px) {
-    margin: 0 0.5rem;
+    margin: 0 calc(var(--base__size) / 2);
   }
 }
 
 .nav__link--item {
   display: block;
-  padding: 0.5rem;
+  padding: calc(var(--base__size) / 2);
   text-align: center;
 }
 
