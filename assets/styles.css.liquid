@@ -76,7 +76,7 @@ p, h1, h2, h3, h4, h5, h6 {
     background-size: 100%;
     display: inline-block;
     height: 2em;
-    margin: 0.5rem;
+    margin: 1rem;
     position: fixed;
     right: 0;
     top: 0;
@@ -96,6 +96,20 @@ p, h1, h2, h3, h4, h5, h6 {
         transform: rotate(90deg);
       }
     }
+  }
+}
+
+.nav__menu {
+  @media (min: 992px) {
+    display: flex;
+  }
+}
+
+.nav__link {
+  padding: 1rem;
+
+  @media (max-width: 991.98px) {
+    display: block;
   }
 }
 
