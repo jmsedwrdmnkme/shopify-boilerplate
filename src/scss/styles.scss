@@ -75,6 +75,10 @@ p, h1, h2, h3, h4, h5, h6 {
       --flex: 0;
     }
 
+    &[class*=--grow] {
+      --flex: 1;
+    }
+
     &[class*=--25] {
       --flex__width: calc(calc(100% - calc(var(--base__size) * 3)) / 4);
     }
