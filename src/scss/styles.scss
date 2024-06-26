@@ -60,39 +60,39 @@ p, h1, h2, h3, h4, h5, h6 {
   Flex grid
 */
 .flex {
-  column-gap: var(--base__size);
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--base__size);
+  margin: calc(var(--base__size) * -1);
 
   > [class*=col] {
-    --flex__width: auto;
+    --flex__basis: auto;
     --flex: 1;
     background-color: rgba(0, 0, 0, 0.1);
-    flex: var(--flex) 0 var(--flex__width);
+    flex: var(--flex) 0 var(--flex__basis);
+    padding: var(--base__size);
 
     &[class*=--] {
       --flex: 0;
     }
 
-    &[class*=--grow] {
-      --flex: 1;
-    }
-
     &[class*=--25] {
-      --flex__width: calc(calc(100% - calc(var(--base__size) * 3)) / 4);
+      --flex__basis: calc(100% / 4);
     }
 
     &[class*=--33] {
-      --flex__width: calc(calc(100% - calc(var(--base__size) * 2)) / 3);
+      --flex__basis: calc(100% / 3);
     }
 
     &[class*=--50] {
-      --flex__width: calc(calc(100% - calc(var(--base__size) * 1)) / 2);
+      --flex__basis: calc(100% / 2);
     }
 
     &[class*=--66] {
-      --flex__width: calc(calc(100% - calc(var(--base__size) * 2)) / 3);
+      --flex__basis: calc(calc(100% / 3) * 2);
+    }
+
+    &[class*=--75] {
+      --flex__basis: calc(calc(100% / 4) * 3);
     }
   }
 }
