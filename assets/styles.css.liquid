@@ -68,6 +68,7 @@ p, h1, h2, h3, h4, h5, h6 {
   > [class*=col] {
     --flex__width: auto;
     --flex: 1;
+    background-color: rgba(0, 0, 0, 0.1);
     flex: var(--flex) 0 var(--flex__width);
 
     &[class*=--] {
@@ -87,7 +88,11 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 
     &[class*=--66] {
-      --flex__width: calc(calc(calc(100% - calc(var(--base__size) * 2)) / 3) * 2);
+      --flex__width: calc(calc(calc(100% - calc(var(--base__size) * 0.5)) / 3) * 2);
+    }
+
+    &[class*=--66] {
+      --flex__width: calc(calc(calc(100% - calc(var(--base__size) * 0.5)) / 4) * 2);
     }
   }
 }
