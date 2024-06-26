@@ -66,38 +66,34 @@ p, h1, h2, h3, h4, h5, h6 {
   margin: calc(var(--base__size) * -1);
 
   > [class*=col] {
+    --flex: 1;
     --flex__basis: auto;
-    --flex__col--min-width: inherit;
 
-    flex: 1 0 var(--flex__basis);
-    min-width: var(--flex__col--min-width);
+    flex: var(--flex) 0 var(--flex__basis);
     padding: var(--base__size);
+
+    &[class*=--] {
+      --flex: 0;
+    }
 
     &[class*=--25] {
       --flex__basis: calc(100% / 4);
-      --flex__col--min-width: calc(var(--max__width) / 4);
     }
 
     &[class*=--33] {
       --flex__basis: calc(100% / 3);
-      --flex__col--min-width: calc(var(--max__width) / 3);
     }
 
     &[class*=--50] {
       --flex__basis: calc(100% / 2);
-      --flex__col--min-width: calc(var(--max__width) / 2);
     }
 
     &[class*=--66] {
       --flex__basis: calc(calc(100% / 3) * 2);
-      --flex__col--min-width: inherit;
-      --flex__col--min-width: calc(var(--max__width) / 2);
     }
 
     &[class*=--75] {
       --flex__basis: calc(calc(100% / 4) * 3);
-      --flex__col--min-width: inherit;
-      --flex__col--min-width: calc(var(--max__width) / 2);
     }
   }
 }
