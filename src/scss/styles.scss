@@ -72,10 +72,6 @@ p, h1, h2, h3, h4, h5, h6 {
     flex: var(--flex) 0 var(--flex__basis);
     padding: var(--base__size);
 
-    &[class*=--] {
-      --flex: 0;
-    }
-
     &[class*=--25] {
       --flex__basis: calc(100% / 4);
     }
@@ -94,6 +90,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
     &[class*=--75] {
       --flex__basis: calc(calc(100% / 4) * 3);
+    }
+
+    &[class*=--] {
+      --flex: 0;
     }
   }
 }
