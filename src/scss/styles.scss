@@ -41,6 +41,7 @@ p, h1, h2, h3, h4, h5, h6 {
 :root {
   --base__size: 1rem;
   --font__size: var(--base__size);
+  --max__width: 960px;
 }
 
 
@@ -51,7 +52,7 @@ p, h1, h2, h3, h4, h5, h6 {
 [class*=container] {
   margin-left: auto;
   margin-right: auto;
-  max-width: 960px;
+  max-width: var(--max__width);
   padding: 0 var(--base__size);
 }
 
@@ -67,6 +68,7 @@ p, h1, h2, h3, h4, h5, h6 {
   > [class*=col] {
     --flex__basis: auto;
     flex: 1 0 var(--flex__basis);
+    min-width: calc(var(--max__width) / 2);
     padding: var(--base__size);
 
     &[class*=--25] {
