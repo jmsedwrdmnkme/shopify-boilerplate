@@ -62,14 +62,14 @@ p, h1, h2, h3, h4, h5, h6 {
 .flex {
   display: flex;
   flex-wrap: wrap;
-  column-gap: var(--base__size);
 
   > [class*=col] {
     --flex: 1 0 auto;
     flex: var(--flex);
+    padding: var(--base__size);
 
     &[class*=--25] {
-      --flex: 0 0 calc(100% / 4);
+      --flex: 0 0 calc(calc(100% / 4);
     }
 
     &[class*=--33] {
