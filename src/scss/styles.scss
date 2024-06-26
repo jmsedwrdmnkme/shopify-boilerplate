@@ -92,7 +92,7 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 
     &[class*=--75] {
-      --flex__width: calc(calc(calc(100% - calc(var(--base__size) * 0.333)) / 4) * 2);
+      --flex__width: calc(calc(calc(100% - var(--base__size)) / 4) * 3);
     }
   }
 }
