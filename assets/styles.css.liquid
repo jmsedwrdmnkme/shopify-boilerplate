@@ -63,8 +63,6 @@ p, h1, h2, h3, h4, h5, h6 {
   column-gap: var(--base__size);
   display: flex;
   flex-wrap: wrap;
-  margin-left: calc(var(--base__size) * -1);
-  margin-right: calc(var(--base__size) * -1);
 
   > [class*=col] {
     --flex__width: auto;
@@ -76,19 +74,19 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 
     &[class*=--25] {
-      --flex__width: calc(100% / 4);
+      --flex__width: calc(calc(100% - calc(var(--base__size) * 4)) / 4);
     }
 
     &[class*=--33] {
-      --flex__width: calc(100% / 3);
+      --flex__width: calc(calc(100% - calc(var(--base__size) * 3)) / 3);
     }
 
     &[class*=--50] {
-      --flex__width: calc(100% / 2);
+      --flex__width: calc(calc(100% - calc(var(--base__size) * 2)) / 2);
     }
 
     &[class*=--66] {
-      --flex__width: calc(calc(100% / 3) * 2);
+      --flex__width: calc(calc(calc(100% - calc(var(--base__size) * 3)) / 3) * 2);
     }
   }
 }
