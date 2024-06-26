@@ -61,6 +61,12 @@ p, h1, h2, h3, h4, h5, h6 {
 */
 .flex {
   display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--base-size);
+
+  > [class*=col] {
+    flex: 1;
+  }
 }
 
 
@@ -82,7 +88,6 @@ p, h1, h2, h3, h4, h5, h6 {
 */
 
 .nav {
-  background: rgba(0,0,0,0.03);
   padding: var(--base__size) 0;
 }
 
@@ -94,7 +99,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .nav__logo {
-  font-size: calc(var(--font__size) * 1.375);
+  font-size: calc(var(--font__size) * 1.7);
 
   @media (min-width: 992px) {
     margin-right: auto;
