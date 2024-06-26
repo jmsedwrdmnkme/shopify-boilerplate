@@ -1,0 +1,32 @@
+{
+  "name": "Shopify Boilerplate",
+  "version": "1.0.0",
+  "description": "Starting point for Shopify theme builds from scratch",
+  "main": "gulpfile.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmsedwrdmnkme/shopify-boilerplate"
+  },
+  "author": "James Monk",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "del": "^7.1.0",
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-svg-sprite": "^2.0.3",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.42.1",
+    "webpack": "^5.84.1",
+    "webpack-stream": "^7.0.0"
+  }
+}
