@@ -69,15 +69,19 @@ p, h1, h2, h3, h4, h5, h6 {
     flex: var(--flex);
 
     &[class*=--25] {
-      --flex: 0 0 calc(25% - var(--base__size));
+      --flex: 0 0 calc(100% / 4);
     }
 
     &[class*=--33] {
-      --flex: 0 0 calc(calc(100% / 3) - var(--base__size));
+      --flex: 0 0 calc(100% / 3);
     }
 
     &[class*=--50] {
-      --flex: 0 0 calc(50% - var(--base__size));
+      --flex: 0 0 calc(100% / 2);
+    }
+
+    &[class*=--66] {
+      --flex: 0 0 calc(calc(100% / 3) * 2);
     }
   }
 }
