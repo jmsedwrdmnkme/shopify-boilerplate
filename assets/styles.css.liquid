@@ -57,6 +57,14 @@ p, h1, h2, h3, h4, h5, h6 {
 
 
 /*
+  Flex grid
+*/
+.flex {
+  display: flex;
+}
+
+
+/*
   Skip to content
 */
 
@@ -85,11 +93,13 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.nav__logo {
-  font-size: calc(var(--font__size) * 1.375);
+[class*=nav] {
+  &[class*=__logo] {
+    font-size: calc(var(--font__size) * 1.375);
 
-  @media (min-width: 992px) {
-    margin-right: auto;
+    @media (min-width: 992px) {
+      margin-right: auto;
+    }
   }
 }
 
