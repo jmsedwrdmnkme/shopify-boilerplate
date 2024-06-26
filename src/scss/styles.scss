@@ -68,7 +68,6 @@ p, h1, h2, h3, h4, h5, h6 {
   > [class*=col] {
     --flex__basis: auto;
     flex: 1 0 var(--flex__basis);
-    min-width: calc(var(--max__width) / 3.375);
     padding: var(--base__size);
 
     &[class*=--25] {
