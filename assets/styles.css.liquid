@@ -67,23 +67,28 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-right: calc(var(--base__size) * -1);
 
   > [class*=col] {
-    --flex: 1 0 auto;
-    flex: var(--flex);
+    --flex__width: auto;
+    --flex: 1;
+    flex: var(--flex) 0 var(--flex__width);
+
+    &[class*=--] {
+      --flex: 0;
+    }
 
     &[class*=--25] {
-      --flex: 0 0 calc(100% / 4);
+      --flex__width: calc(100% / 4);
     }
 
     &[class*=--33] {
-      --flex: 0 0 calc(100% / 3);
+      --flex__width: calc(100% / 3);
     }
 
     &[class*=--50] {
-      --flex: 0 0 calc(100% / 2);
+      --flex__width: calc(100% / 2);
     }
 
     &[class*=--66] {
-      --flex: 0 0 calc(calc(100% / 3) * 2);
+      --flex__width: calc(calc(100% / 3) * 2);
     }
   }
 }
