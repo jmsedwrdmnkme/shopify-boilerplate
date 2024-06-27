@@ -1,6 +1,8 @@
 # shopify-boilerplate
 Built from the ground up v2.0 skeleton theme for use on the Shopify platform.
 
-Currently, totally vanilla theme development with no task runners etc.
+Framework-less vanilla, with gulp task runner using pnpm for dependencies/packages, proving optimised output of JS, CSS and images.
+
+Opinionated defaults (components, json, snippets, styling etc) incoming...
 
 BE AWARE - this is VERY MUCH still in progress.
