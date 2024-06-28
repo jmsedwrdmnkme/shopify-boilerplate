@@ -17,6 +17,6 @@
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
-    {{ 'scripts.js' | asset_url | script_tag }}
+    <script defer src="{{ 'scripts.js' | asset_url }}"></script>
   </body>
 </html>
