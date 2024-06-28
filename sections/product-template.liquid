@@ -1,5 +1,15 @@
 <h2>{{ product.title }}</h2>
 
+{% if available %}
+  {% if product.price_varies and template == 'collection' %}
+    <p>From {{ product.price_min | money }} to {{ product.price_max | money }}</p>
+  {% else %}
+    <p>{{ product.price | money }}</p>
+  {% endif %}
+{% else %}
+  <p>Sold out</p>
+{% endif %}
+
 <dl>
   <dt><span class="visuallyhidden">Regular price</span></dt>
   <dd>{{ product.price | money }}</dd>
