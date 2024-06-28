@@ -16,7 +16,7 @@ export const clean = () => deleteAsync([ 'assets/*[.css|.js|.png|.svg|.jpg]' ]);
 
 // Styles
 export function styles() {
-  return src('src/scss/styles.scss', {encoding: false})
+  return src('src/css/styles.scss', {encoding: false})
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(cleanCSS())
     .pipe(concat('styles.css.liquid'))
