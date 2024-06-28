@@ -17,6 +17,9 @@
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
-    <script defer src="{{ 'scripts.js' | asset_url }}"></script>
+    {% capture scripts %}
+      {{ 'scripts.js' | asset_url | script_tag }}
+    {% endcapture %}
+    {{ scripts | replace: '<script', '<script defer' }}
   </body>
 </html>
