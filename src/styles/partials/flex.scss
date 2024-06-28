@@ -14,28 +14,30 @@
     flex: var(--flex) 0 var(--flex__basis);
     padding: var(--base__size);
 
-    &[class*=--25] {
-      --flex__basis: calc(100% / 4);
-    }
+    @media (min-width: 575px) {
+      &[class*=--25] {
+        --flex__basis: calc(100% / 4);
+      }
 
-    &[class*=--33] {
-      --flex__basis: calc(100% / 3);
-    }
+      &[class*=--33] {
+        --flex__basis: calc(100% / 3);
+      }
 
-    &[class*=--50] {
-      --flex__basis: calc(100% / 2);
-    }
+      &[class*=--50] {
+        --flex__basis: calc(100% / 2);
+      }
 
-    &[class*=--66] {
-      --flex__basis: calc(calc(100% / 3) * 2);
-    }
+      &[class*=--66] {
+        --flex__basis: calc(calc(100% / 3) * 2);
+      }
 
-    &[class*=--75] {
-      --flex__basis: calc(calc(100% / 4) * 3);
-    }
+      &[class*=--75] {
+        --flex__basis: calc(calc(100% / 4) * 3);
+      }
 
-    &[class*=--] {
-      --flex: 0;
+      &[class*=--] {
+        --flex: 0;
+      }
     }
   }
 }
