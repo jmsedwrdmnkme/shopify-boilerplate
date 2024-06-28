@@ -31,18 +31,18 @@
       {%- endfor -%}
       </ul>
     <footer>
-  {%- endif -%}
 
-  {%- if section.settings.blog_show_tags -%}
-    <aside>
-      <ul>
-        <li>
-          {%- for tag in blog.all_tags -%}
-            <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-          {%- endfor -%}
-        </li>
-      </ul>
-    </aside>
+    {%- if section.settings.blog_show_tags -%}
+      <aside>
+        <ul>
+          <li>
+            {%- for tag in blog.all_tags -%}
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+            {%- endfor -%}
+          </li>
+        </ul>
+      </aside>
+    {%- endif -%}
   {%- endif -%}
 
 </article>
