@@ -2,7 +2,19 @@
   <nav class="nav">
     <div class="nav__container">
       <div class="nav__logo">
-        {{ shop.name }}
+        {%- if template.name == 'index' -%}
+          <h1 itemscope itemtype="http://schema.org/Organization">
+        {%- else -%}
+          <div itemscope itemtype="http://schema.org/Organization">
+        {%- endif -%}
+          <a href="/" itemprop="url">
+            <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" height="40" width="150" itemprop="logo">
+          </a>
+        {%- if template.name == 'index' -%}
+          </h1>
+        {%- else -%}
+          </div>
+        {%- endif -%}
       </div>
       <input type="checkbox" class="nav__toggle hidden" id="navToggle">
       <label for="navToggle" class="nav__label"></label>
