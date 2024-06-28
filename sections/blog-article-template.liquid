@@ -33,6 +33,18 @@
     <footer>
   {%- endif -%}
 
+  {%- if section.settings.blog_show_tags -%}
+    <aside>
+      <ul>
+        <li>
+          {%- for tag in blog.all_tags -%}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {%- endfor -%}
+        </li>
+      </ul>
+    </aside>
+  {%- endif -%}
+
 </article>
 
 {% schema %}
@@ -52,6 +64,12 @@
       "type": "checkbox",
       "id": "blog_show_date",
       "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_tags",
+      "label": "Show tags",
       "default": true
     }
   ],
