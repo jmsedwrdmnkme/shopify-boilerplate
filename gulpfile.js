@@ -60,8 +60,8 @@ export function images() {
 }
 
 function watchFiles() {
-  watch('src/scss/**/*.scss', styles);
-  watch('src/js/**/*.js', scripts);
+  watch('src/css/**/*', styles);
+  watch('src/js/**/*', scripts);
   watch('src/sprite/**/*.svg', sprite);
   watch('src/img/**/*', images);
 }
