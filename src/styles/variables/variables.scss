@@ -5,10 +5,7 @@
 :root {
   --base__size: 1rem;
   --font__size: var(--base__size);
-
-  @media (max-width: 1365.98px) {
-    --max__width: 960px;
-  }
+  --max__width: 960px;
 
   @media (min-width: 1366px) {
     --max__width: 1200px;
