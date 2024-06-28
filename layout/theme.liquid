@@ -16,6 +16,7 @@
     {% section 'announcement-bar' %}
     {% section 'header' %}
     <main id="main" class="main__container" role="main" tabindex="-1">
+      {% render 'breadcrumbs' %}
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
