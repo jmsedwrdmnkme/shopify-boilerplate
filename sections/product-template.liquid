@@ -78,3 +78,22 @@
 
   {%- endfor -%}
 {%- endunless -%}
+
+{% schema %}
+{
+  "name": "Product template",
+  "tag": "section",
+  "class": "product-template",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Slideshow"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}
