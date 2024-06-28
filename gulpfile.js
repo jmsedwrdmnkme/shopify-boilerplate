@@ -12,11 +12,11 @@ import svgsprite from 'gulp-svg-sprite';
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 
 // Clean
-export const clean = () => deleteAsync([ 'assets/*[.css|.js|.png|.svg|.jpg]' ]);
+export const clean = () => deleteAsync([ 'assets' ]);
 
 // Styles
 export function styles() {
-  return src('src/css/styles.scss', {encoding: false})
+  return src('src/css/*', {encoding: false})
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(cleanCSS())
     .pipe(concat('styles.css.liquid'))
@@ -25,7 +25,7 @@ export function styles() {
 
 // Scripts
 export function scripts() {
-  return src('src/js/scripts.js', { encoding: false, sourcemaps: true })
+  return src('src/js/*', { encoding: false, sourcemaps: true })
     .pipe(webpack({}, compiler, function(err, stats) {}))
     .pipe(uglify())
     .pipe(concat('scripts.js.liquid'))
