@@ -26,6 +26,32 @@
              </a>
            </div>
         {%- endfor -%}
+        {%- if shop.customer_accounts_enabled -%}
+          {%- if customer -%}
+            <div class="nav__link">
+              <a href="/account" class="nav__link--item">Account</a>
+            </div>
+            <div class="nav__link">
+              {% capture log-out %}
+                {{ 'Log out' | customer_logout_link }}
+              {% endcapture %}
+              {{ log-out | replace: '<a', '<a class="nav__link--item"' }}
+            </div>
+          {%- else -%}
+            <div class="nav__link">
+              {% capture log-in %}
+                {{ 'Log in' | customer_login_link }}
+              {% endcapture %}
+              {{ log-in | replace: '<a', '<a class="nav__link--item"' }}
+            </div>
+            <div class="nav__link">
+              {% capture create %}
+                {{ 'Create account' | customer_register_link }}
+              {% endcapture %}
+              {{ create | replace: '<a', '<a class="nav__link--item"' }}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
       </nav>
     </div>
   </nav>
