@@ -22,7 +22,7 @@
 
         {%- if section.settings.blog_show_date -%}
           <span>
-            {{ article.published_at | time_tag: format: 'month_day_year' }}
+            {{ article.published_at | date: '%d %b %y' }}
           </span>
         {%- endif -%}
 
@@ -67,8 +67,8 @@
 {%- if section.settings.show_view_all -%}
   <a href="{{ blog.url }}"
     class="btn"
-    aria-label="{{ 'blogs.article.view_all_blogs' }}">
-    {{ 'blogs.article.view_all' }}
+    aria-label="View all blogs' }}">
+    View all blogs
   </a>
 {%- endif -%}
 
