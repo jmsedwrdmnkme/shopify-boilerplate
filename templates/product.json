@@ -1,10 +1,10 @@
 {
   "sections": {
     "main": {
-      "type": "main"
+      "type": "product-template"
     }
   },
   "order": [
-    "main"
+    "product-template"
   ]
 }
