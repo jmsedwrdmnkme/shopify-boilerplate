@@ -14,6 +14,10 @@
     flex: var(--flex) 0 var(--flex__basis);
     padding: var(--base__size);
 
+    &[class*=--] {
+      --flex__basis: 100%;
+    }
+
     @media (min-width: 575px) {
       &[class*=--25] {
         --flex__basis: calc(100% / 4);
