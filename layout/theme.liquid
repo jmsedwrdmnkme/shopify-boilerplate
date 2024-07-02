@@ -7,6 +7,7 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
     <title>{{ page_title }}</title>
+    <link rel="icon" href="{{ 'favicon.svg' | asset_url }}">
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
     {% render 'social-meta-tags' %}
