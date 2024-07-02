@@ -16,7 +16,6 @@
 <img src="{{ featured_image | img_url: '1024x'}}" alt="{{ featured_image.alt | escape }}">
 
 {% form 'product', product %}
-
   <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
@@ -26,10 +25,8 @@
       {% endif %}
     {% endfor %}
   </select>
-
-
   <input type="text" name="quantity" min="1" value="1">
-  <input type="submit" value="Add to cart">
+  <input type="button" value="Add to cart">
 {% endform %}
 
 {% schema %}
