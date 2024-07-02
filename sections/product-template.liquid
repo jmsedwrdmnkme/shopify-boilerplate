@@ -119,13 +119,7 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      if (!picture.classList.contains('hidden') && direction === 'next' && picture.nextElementSibling != null) {
-        picture.nextElementSibling.classList.remove('hidden')
-        console.log(picture.nextElementSibling);
-      } else if (!picture.classList.contains('hidden') && direction === 'previous' && picture.nextPreviousSibling != null) {
-        picture.previousElementSibling.classList.remove('hidden');
-        console.log(picture.nextPreviousSibling);
-      }
+      console.log(picture);
     });
   }
 
