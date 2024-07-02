@@ -61,6 +61,7 @@
 
 {% javascript %}
   const addToCartForm = document.querySelector('form[action$="/cart/add"]');
+  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
   addToCartAjax = () => {
     const formData = new FormData(addToCartForm);
@@ -82,10 +83,12 @@
   const productPrice = document.querySelector('.product--price');
 
   addToCartSelect.addEventListener('change', (event) => {
+    const price = addToCartSelect.value;
+    addToCartBtn.value = `Add to cart ${price}`
+    productPrice.text = price;
   });
 
 
-  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
   const addToCartDialog = addToCartForm.querySelector('dialog');
 
   addToCartBtn.addEventListener('click', (event) => {
