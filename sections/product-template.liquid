@@ -51,7 +51,7 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    <picture class="product--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col--25">
+    <picture class="product--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col">
       <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
       <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
       <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
