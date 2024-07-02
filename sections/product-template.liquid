@@ -52,8 +52,8 @@
   {%- endcapture -%}
 
   <img
-      src="{{ image.src | img_url: '150x150' }}"
-      height="150" width="150"
+      src="{{ image.src | img_url: '100x100' }}"
+      height="100" width="100"
       alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
       loading="lazy"
       class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col"
