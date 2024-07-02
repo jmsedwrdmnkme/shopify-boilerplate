@@ -27,7 +27,7 @@
     {%- endfor -%}
   {%- endcapture -%}
 
-  <img src="{{ image.src | img_url: '928x' }}" height="928" width="928" alt="{{ image.alt | escape }}{% if variantTitle.length > 1 %} {{ variantTitle }}{% endif %}">
+  <img src="{{ image.src | img_url: '928x' }}" height="928" width="928" alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle }}{% endif %}">
 {%- endfor -%}
 
 <p>{{ product.description }}</p>
