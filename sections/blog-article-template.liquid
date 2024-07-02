@@ -47,17 +47,6 @@
 
 </article>
 
-{%- if section.settings.blog_show_previous_and_next_buttons -%}
-  <ul>
-    <li>
-      <a href="{{ blog.previous_article }}">Previous post</a>
-    </li>
-    <li>
-      <a href="{{ blog.next_article }}">Next post</a>
-    </li>
-  </ul>
-{%- endif -%}
-
 {% schema %}
 {
   "name": "Post",
@@ -81,12 +70,6 @@
       "type": "checkbox",
       "id": "blog_show_tags",
       "label": "Show tags",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "blog_show_previous_and_next_buttons",
-      "label": "Show next/ previous buttons",
       "default": true
     }
   ],
