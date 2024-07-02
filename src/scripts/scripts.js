@@ -28,5 +28,5 @@ addToCartBtn.addEventListener('click', (event) => {
   dialog.showModal();
   setTimeout(() =>  {
     dialog.close()
-  }, 3000);
+  }, 2000);
 });
