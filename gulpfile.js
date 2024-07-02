@@ -4,11 +4,8 @@ import * as dartSass from 'sass'
 import gulpSass from 'gulp-sass';
 const sass = gulpSass( dartSass );
 import cleanCSS from 'gulp-clean-css';
-import compiler from 'webpack';
-import webpack from 'webpack-stream';
 import concat from 'gulp-concat';
-import uglify from 'gulp-uglify';
-import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import imagemin, {mozjpeg, optipng, svgo} from 'gulp-imagemin';
 
 // Clean
 export const clean = () => deleteAsync([ 'assets' ]);
@@ -19,15 +16,6 @@ export function styles() {
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(cleanCSS())
     .pipe(concat('styles.css.liquid'))
-    .pipe(dest('assets/'));
-}
-
-// Scripts
-export function scripts() {
-  return src('src/scripts/*', { encoding: false, sourcemaps: true })
-    .pipe(webpack({}, compiler, function(err, stats) {}))
-    .pipe(uglify())
-    .pipe(concat('scripts.js.liquid'))
     .pipe(dest('assets/'));
 }
 
@@ -49,10 +37,9 @@ export function images() {
 
 function watchFiles() {
   watch('src/styles/**/*', styles);
-  watch('src/scripts/**/*', scripts);
   watch('src/images/*', images);
 }
 
-const build = series(clean, parallel(images, styles, scripts), watchFiles);
+const build = series(clean, parallel(images, styles), watchFiles);
 
 export default build;
