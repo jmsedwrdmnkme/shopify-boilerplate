@@ -5,12 +5,15 @@
 addToCartAjax = () => {
   let addToCartForm = document.querySelector('form[action$="/cart/add"]');
   let formData = new FormData(addToCartForm);
+  const dialog = addToCartForm.querySelector('dialog');
 
   fetch(window.Shopify.routes.root + 'cart/add.js', {
     method: 'POST',
     body: formData
   })
   .then(response => {
+    dialog.open();
+    setTimeout(dialog.close(), 3000);
     return response.json();
   })
   .catch((error) => {
@@ -24,18 +27,4 @@ addToCartBtn.addEventListener('click', (event) => {
   event.preventDefault();
   addToCartAjax();
   console.log('Item(s) added');
-});
-
-
-/*
-  Dialog boxes
- */
-
-const dialogBoxes = document.querySelectorAll('dialog');
-forEach.dialogBoxes((box) => {
-  const button = box.querySelector('button');
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-    dialog.close()
-  });
 });

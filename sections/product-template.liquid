@@ -27,14 +27,10 @@
   </select>
   <input type="text" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
+  <dialog>
+    <p>Added to cart</p>
+  </dialog>
 {% endform %}
-
-<dialog open>
-  <p>Added to cart!</p>
-  <form method="dialog">
-    <button>OK</button>
-  </form>
-</dialog>
 
 {% schema %}
   {
