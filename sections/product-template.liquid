@@ -96,7 +96,7 @@
     event.preventDefault();
     addToCartAjax();
 
-    const title = `${productTitle} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
+    const title = `${productTitle.innerHTML} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
     const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
