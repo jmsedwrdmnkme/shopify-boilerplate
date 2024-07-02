@@ -19,8 +19,10 @@ addToCartAjax = () => {
 };
 
 const addToCartBtn = document.querySelector('form.shopify-product-form input[type="submit"]');
+console.log(addToCartBtn);
 
 addToCartBtn.addEventListener('click', (button) => {
   button.preventDefault();
-  addToCartBtn();
+  addToCartAjax();
+  console.log('Item(s) added');
 });
