@@ -27,7 +27,7 @@
     {%- endfor -%}
   {%- endcapture -%}
 
-  <picture class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% if forloop.first %} active{% endif %}">
+  <picture class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
     <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
     <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
     <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
@@ -61,29 +61,6 @@
   }
 {% endschema %}
 
-{% stylesheet %}
-  .product--image {
-    &:not(.active) {
-      display: none;
-    }
-  }
-
-  form[action$="/cart/add"] {
-    & dialog {
-      border: unset;
-      left: 50%;
-      padding: var(--base__size);
-      position: fixed;
-      transform: translate(-50%, -50%);
-      top: 50%;
-
-      &::backdrop {
-        background-color: rgba(0, 0, 0, 0.33);
-      }
-    }
-  }
-{% endstylesheet %}
-
 {% javascript %}
   const addToCartForm = document.querySelector('form[action$="/cart/add"]');
   const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
@@ -113,7 +90,7 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.add('active') : picture.classList.remove('active');
+      (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.remove('hidden') : picture.classList.add('hidden');
     });
   }
 
