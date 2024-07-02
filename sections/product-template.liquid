@@ -86,10 +86,13 @@
   const addToCartSelect = addToCartForm.querySelector('select');
   const productPrice = document.querySelector('.product--price');
 
-  addToCartSelect.addEventListener('change', (event) => {
+  productPriceUpdate = () => {
     const price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
     productPrice.innerHTML = price;
-  });
+  }
+
+  document.addEventListener('load', () => productPriceUpdate());
+  addToCartSelect.addEventListener('change', () => productPriceUpdate());
 
 
   const addToCartDialog = addToCartForm.querySelector('dialog');
