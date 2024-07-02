@@ -110,6 +110,23 @@
   });
 
 
+  const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
+  const productPictureBtnNext = document.querySelector('[class*=btn-next]');
+
+  productPictureBrowse = (direction) => {
+    productPictures.forEach((picture) => {
+      (picture.classList.contains(productVariantTitle.toLowerCase())) ?
+        picture.classList.add('hidden') :
+      (direction === 'next') ?
+        picture.nextElementSibling.classList.remove('hidden') :
+      picture.previousElementSibling.classList.remove('hidden');
+    });
+  }
+
+  productPictureBtnPrevious.addEventListener('click', () => productPictureBrowse('previous'));
+  productPictureBtnNext.addEventListener('click', () => productPictureBrowse('next'));
+
+
   const addToCartDialog = addToCartForm.querySelector('dialog');
   const dialogTitle = document.querySelector('.dialog--title');
   const dialogQuantity = document.querySelector('.dialog--quantity');
