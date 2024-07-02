@@ -104,9 +104,10 @@
   const productTitle = document.querySelector('.product--title');
   const productPrice = document.querySelector('.product--price');
   const productPictures = document.querySelectorAll('.product--image');
-  const productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
   productImageUpdate = () => {
+    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
+
     productPictures.forEach((picture) => {
       (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.add('active') : picture.classList.remove('active');
     });
@@ -116,7 +117,7 @@
   }
 
   productPriceUpdate = () => {
-    const price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
+    let price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
 
     productPrice.innerHTML = price;
   }
@@ -136,8 +137,9 @@
     event.preventDefault();
     addToCartAjax();
 
-    const title = `${productTitle.innerHTML} ${productVariantTitle}`;
-    const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
+    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
+    let title = `${productTitle.innerHTML} ${productVariantTitle}`;
+    let quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
     dialogQuantity.innerHTML = quantity;
