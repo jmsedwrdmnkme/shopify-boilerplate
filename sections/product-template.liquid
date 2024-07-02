@@ -83,7 +83,7 @@
   const productPrice = document.querySelector('.product--price');
 
   addToCartSelect.addEventListener('change', (event) => {
-    const price = addToCartSelect.selected.getAttribute('data-price');
+    const price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
     productPrice.innerHTML = price;
   });
 
