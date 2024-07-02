@@ -117,7 +117,7 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      (!picture.classList.contains('hidden') ?
+      (!picture.classList.contains('hidden')) ?
         picture.classList.add('hidden') :
       (direction === 'next') ?
         picture.nextElementSibling.classList.remove('hidden') :
