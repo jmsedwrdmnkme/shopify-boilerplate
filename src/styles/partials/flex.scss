@@ -11,6 +11,10 @@
 
   &[class*=wrap] {
     flex-wrap: wrap;
+
+    > [class*=col] {
+      flex-shrink: 1;
+    }
   }
 
   > [class*=col] {
