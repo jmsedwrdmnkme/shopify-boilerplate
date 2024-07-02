@@ -91,7 +91,7 @@
     productPrice.innerHTML = price;
   }
 
-  document.addEventListener('load', () => productPriceUpdate());
+  document.addEventListener('DOMContentLoaded', () => productPriceUpdate());
   addToCartSelect.addEventListener('change', () => productPriceUpdate());
 
 
