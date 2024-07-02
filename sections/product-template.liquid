@@ -119,9 +119,9 @@
     let currentPicture = document.querySelector('.product__image:not(hidden)');
 
     if (direction === 'next' && currentPicture.nextElementSibling != null) {
-      currentPicture.nextElementSibling.classList.remove('hidden') && currentPicture.classList.add('hidden');
+      currentPicture.classList.add('hidden') && currentPicture.nextElementSibling.classList.remove('hidden');
     } else if (direction === 'previous' && currentPicture.previousElementSibling != null) {
-      currentPicture.previousElementSibling.classList.remove('hidden') && currentPicture.classList.add('hidden');
+      currentPicture.classList.add('hidden') && currentPicture.previousElementSibling.classList.remove('hidden');
     }
   }
 
