@@ -20,6 +20,7 @@
 
 {% for image in product.images %}
   {% if image.attached_to_variant? %}
+    {{ variant.title }}
     {% for variant in image.variants %}
       {{ variant.title }}
     {% endfor %}
