@@ -116,11 +116,7 @@
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
   productPictureBrowse = (direction) => {
-    let currentPicture = document.querySelector('.product__image:not(hidden)');
-
-    console.log(currentPicture);
-    console.log(currentPicture.nextElementSibling);
-    console.log(currentPicture.previousElementSibling);
+    let currentPicture = document.querySelector('.product__picture > *:not(hidden)');
 
     if (direction === 'next' && currentPicture.nextElementSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.nextElementSibling.classList.remove('hidden');
