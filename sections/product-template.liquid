@@ -1,4 +1,4 @@
-<h1>{{ product.title }}</h1>
+<h1 class="product--title">{{ product.title }}</h1>
 <p class="product--price">{{ product.price | money }}</p>
 
 {% form 'product', product %}
@@ -75,7 +75,7 @@
 
 
   const addToCartSelect = addToCartForm.querySelector('select');
-  const productTitle = {{ product.title }};
+  const productTitle = document.querySelector('.product--title');
   const productPrice = document.querySelector('.product--price');
 
   productPriceUpdate = () => {
