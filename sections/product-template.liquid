@@ -41,7 +41,6 @@
   </picture>
 {%- endfor -%}
 
-<div class="flex">
 {%- for image in product.images -%}
   {%- capture variantTitle -%}
     {%- for variant in image.variants -%}
@@ -56,10 +55,9 @@
       height="100" width="100"
       alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
       loading="lazy"
-      class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col--shrink"
+      class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
   >
 {%- endfor -%}
-</div>
 
 <p>{{ product.description }}</p>
 

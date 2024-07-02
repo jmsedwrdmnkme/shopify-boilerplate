@@ -4,26 +4,15 @@
 
 [class*=flex] {
   display: flex;
-
-  &[class*=gap] {
-    margin: calc(var(--base__size) * -1);
-  }
-
-  &[class*=wrap] {
-    flex-wrap: wrap;
-  }
-
-  &[class*=gaps] {
-    > [class*=col] {
-      padding: var(--base__size);
-    }
-  }
+  flex-wrap: wrap;
+  margin: calc(var(--base__size) * -1);
 
   > [class*=col] {
     --flex: 1;
     --flex__basis: auto;
 
     flex: var(--flex) 0 var(--flex__basis);
+    padding: var(--base__size);
 
     &[class*=--] {
       --flex__basis: 100%;
