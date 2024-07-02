@@ -28,10 +28,10 @@
   {%- endcapture -%}
 
   <picture>
-    <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '375x' }}" />
-    <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '575x' }}" />
-    <source media="(min-width: 576px) and (max-width: 992.98px)" srcset="{{ image.src | img_url: '992x' }}" />
-    <source media="(min-width: 993px) and (max-width: 1200.98px)" srcset="{{ image.src | img_url: '928x' }}" />
+    <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x' }}" />
+    <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x' }}" />
+    <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x' }}" />
+    <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '928x' }}" />
     <img
         src="{{ image.src | img_url: '928x' }}"
         height="928" width="928"
