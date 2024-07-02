@@ -85,7 +85,7 @@
   addToCartSelect.addEventListener('change', (event) => {
     const price = addToCartSelect.value;
     addToCartBtn.value = `Add to cart ${price}`
-    productPrice.text = price;
+    productPrice.innerHTML = price;
   });
 
 
