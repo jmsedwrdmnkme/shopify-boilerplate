@@ -27,13 +27,19 @@
     {%- endfor -%}
   {%- endcapture -%}
 
-  <img
-      src="{{ image.src | img_url: '928x' }}"
-      height="928" width="928"
-      alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
-      class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% if forloop.first %} active{% endif %}"
-      {% unless forloop.first %}loading="lazy"{% endunless %}
-  >
+  <picture>
+    <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '375x' }}" />
+    <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '575x' }}" />
+    <source media="(min-width: 576px) and (max-width: 992.98px)" srcset="{{ image.src | img_url: '992x' }}" />
+    <source media="(min-width: 993px) and (max-width: 1200.98px)" srcset="{{ image.src | img_url: '928x' }}" />
+    <img
+        src="{{ image.src | img_url: '928x' }}"
+        height="928" width="928"
+        alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
+        class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% if forloop.first %} active{% endif %}"
+        {% unless forloop.first %}loading="lazy"{% endunless %}
+    >
+  </picture>
 {%- endfor -%}
 
 <p>{{ product.description }}</p>
