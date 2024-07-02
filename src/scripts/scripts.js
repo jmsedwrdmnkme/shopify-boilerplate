@@ -25,6 +25,8 @@ addToCartBtn.addEventListener('click', (event) => {
   addToCartAjax();
 
   const dialog = document.querySelector('dialog');
-
-  dialog.showModal() && setTimeout(dialog.close(), 3000);
+  dialog.showModal();
+  setTimeout(() =>  {
+    dialog.close(), 3000
+  });
 });
