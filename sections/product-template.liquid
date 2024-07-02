@@ -114,6 +114,8 @@
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
   productPictureBrowse = (direction) => {
+    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
+
     productPictures.forEach((picture) => {
       (picture.classList.contains(productVariantTitle.toLowerCase())) ?
         picture.classList.add('hidden') :
