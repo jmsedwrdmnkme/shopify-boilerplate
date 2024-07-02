@@ -103,6 +103,14 @@
   const addToCartSelect = addToCartForm.querySelector('select');
   const productTitle = document.querySelector('.product--title');
   const productPrice = document.querySelector('.product--price');
+  const productPictures = document.querySelectorAll('.product--image');
+  const productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
+
+  productImageUpdate = () => {
+    forEach.productPictures((picture) => {
+      (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.add('active') : picture.classList.remove('active');
+    });
+  }
 
   productPriceUpdate = () => {
     const price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
@@ -122,7 +130,7 @@
     event.preventDefault();
     addToCartAjax();
 
-    const title = `${productTitle.innerHTML} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
+    const title = `${productTitle.innerHTML} ${productVariantTitle}`;
     const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
