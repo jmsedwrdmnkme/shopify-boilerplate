@@ -116,13 +116,13 @@
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
   productPictureBrowse = (direction) => {
-    productPictures.forEach((picture) => {
-      if (picture === 'next') {
-        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.nextSibling.classList.remove('hidden');
-      } else {
-        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.previousSibling.classList.remove('hidden');
-      }
-    });
+    let currentPicture = document.querySelector('.product__image:not(hidden)');
+
+    if (picture === 'next') {
+      (currentPicture.nextElementSibling != null) && currentPicture.nextElementSibling.classList.remove('hidden') && currentPicture.classList.add('hidden');
+    } else if (picture === 'previous') {
+      (currentPicture.previousElementSibling != null) && currentPicture.previousElementSibling.classList.remove('hidden') && currentPicture.classList.add('hidden');
+    }
   }
 
   productPictureBtnPrevious.addEventListener('click', () => productPictureBrowse('previous'));
