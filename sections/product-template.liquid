@@ -20,11 +20,11 @@
 
 {% for image in product.images %}
   {% capture variantTitle %}
-    {% if image.attached_to_variant? %}
-      {% for variant in image.variants %}
+    {% for variant in image.variants %}
+      {% if image.attached_to_variant? %}
         {{ variant.title | append: ' ' }}
-      {% endfor %}
-    {% endif %}
+      {% endif %}
+    {% endfor %}
   {% endcapture %}
 
   <img src="{{ image.src | img_url: '928x' }}" height="928" width="928" alt="{{ image.alt | escape }}{{ variantTitle }}">
