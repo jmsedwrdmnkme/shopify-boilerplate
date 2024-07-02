@@ -17,5 +17,3 @@ addToCartAjax = () => {
     console.error('Error:', error);
   });
 };
-
-addToCartAjax();
