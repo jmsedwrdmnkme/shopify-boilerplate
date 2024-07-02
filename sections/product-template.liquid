@@ -1,4 +1,4 @@
-<h2>{{ product.title }}</h2>
+<h1>{{ product.title }}</h1>
 
 {% if product.available %}
   {% if product.price_varies and template == 'collection' %}
@@ -10,29 +10,10 @@
   <p>Sold out</p>
 {% endif %}
 
-<dl>
-  <dt><span class="visuallyhidden">Regular price</span></dt>
-  <dd>{{ product.price | money }}</dd>
-
-  {%- if product.vendor -%}
-    <dt><span class="visuallyhidden">Vendor</span></dt>
-    <dd>{{ product.vendor }}</dd>
-  {%- endif -%}
-
-</dl>
-
 <p>{{ product.description }}</p>
 
 {%- assign featured_image = product.featured_image -%}
 <img src="{{ featured_image | img_url: '1024x'}}" alt="{{ featured_image.alt | escape }}">
-
-{%- if product.metafields.instructions != blank -%}
-  <ul>
-    {%- for field in product.metafields.instructions -%}
-      <li>{{ field | first }}: {{ field | last }}</li>
-    {%- endfor -%}
-  </ul>
-{%- endif -%}
 
 {% schema %}
   {
