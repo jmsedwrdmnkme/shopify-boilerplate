@@ -115,15 +115,15 @@
   const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
-  productPictureBrowse = (direction) => {
+  productPictureBrowse = () => {
     let currentPicture = document.querySelector('.product__image:not(.hidden)');
 
     console.log(currentPicture);
 
-    if (direction === 'next' && currentPicture.nextSibling != null) {
+    if (currentPicture.nextSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.nextSibling.classList.remove('hidden');
       console.log('Next');
-    } else if (direction === 'previous' && currentPicture.previousSibling != null) {
+    } else if (currentPicture.previousSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.previousSibling.classList.remove('hidden');
       console.log('Previous');
     }
