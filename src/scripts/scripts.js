@@ -25,3 +25,14 @@ addToCartBtn.addEventListener('click', (button) => {
   addToCartAjax();
   console.log('Item(s) added');
 });
+
+
+/*
+  Dialog boxes
+ */
+
+const dialogBoxes = document.querySelectorAll('dialog');
+forEach.dialogBoxes((box) => {
+  const button = box.querySelector('button');
+  button.addEventListener('click', () => { dialog.close() });
+});
