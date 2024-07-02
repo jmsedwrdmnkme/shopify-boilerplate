@@ -17,3 +17,10 @@ addToCartAjax = () => {
     console.error('Error:', error);
   });
 };
+
+const addToCartBtn = document.querySelector('form.shopify-product-form input[type="submit"]');
+
+addToCartBtn.addEventListener('click', (button) => {
+  button.preventDefault();
+  addToCartBtn();
+});
