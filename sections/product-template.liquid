@@ -1,5 +1,5 @@
-<h1 class="product--title">{{ product.title }}</h1>
-<p class="product--price">{{ product.price | money }}</p>
+<h1 class="product__title">{{ product.title }}</h1>
+<p class="product__price">{{ product.price | money }}</p>
 
 {% form 'product', product %}
   <input type="number" name="quantity" min="1" value="1">
@@ -27,7 +27,7 @@
     {%- endfor -%}
   {%- endcapture -%}
 
-  <picture class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
+  <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
     <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
     <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
     <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
@@ -51,7 +51,7 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    <picture class="product--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col">
+    <picture class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col">
       <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
       <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
       <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
@@ -107,9 +107,9 @@
 
 
   const addToCartSelect = addToCartForm.querySelector('select');
-  const productTitle = document.querySelector('.product--title');
-  const productPrice = document.querySelector('.product--price');
-  const productPictures = document.querySelectorAll('.product--image');
+  const productTitle = document.querySelector('.product__title');
+  const productPrice = document.querySelector('.product__price');
+  const productPictures = document.querySelectorAll('.product__image');
 
   productImageUpdate = () => {
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
