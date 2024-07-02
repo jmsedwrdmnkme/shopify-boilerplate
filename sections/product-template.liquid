@@ -107,7 +107,7 @@
   const productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
   productImageUpdate = () => {
-    forEach.productPictures((picture) => {
+    productPictures.forEach((picture) => {
       (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.add('active') : picture.classList.remove('active');
     });
   }
