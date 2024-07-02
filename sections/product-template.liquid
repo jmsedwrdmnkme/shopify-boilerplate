@@ -41,25 +41,23 @@
   </picture>
 {%- endfor -%}
 
-<div class="flex">
-  {%- for image in product.images -%}
-    {%- capture variantTitle -%}
-      {%- for variant in image.variants -%}
-        {%- if image.attached_to_variant? -%}
-          {{ variant.title }}
-        {% endif %}
-      {%- endfor -%}
-    {%- endcapture -%}
+{%- for image in product.images -%}
+  {%- capture variantTitle -%}
+    {%- for variant in image.variants -%}
+      {%- if image.attached_to_variant? -%}
+        {{ variant.title }}
+      {% endif %}
+    {%- endfor -%}
+  {%- endcapture -%}
 
-    <img
-        src="{{ image.src | img_url: '150x150' }}"
-        height="150" width="150"
-        alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
-        loading="lazy"
-        class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
-    >
-  {%- endfor -%}
-</div>
+  <img
+      src="{{ image.src | img_url: '150x150' }}"
+      height="150" width="150"
+      alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
+      loading="lazy"
+      class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
+  >
+{%- endfor -%}
 
 <p>{{ product.description }}</p>
 
