@@ -1,7 +1,11 @@
 <h1>{{ product.title }}</h1>
 
 {% if product.available %}
-  <p class="product--price">{{ product.price | money }}</p>
+  {% if product.price_varies and template == 'collection' %}
+    <p class="product--price">From {{ product.price_min | money }} to {{ product.price_max | money }}</p>
+  {% else %}
+    <p class="product--price">{{ product.price | money }}</p>
+  {% endif %}
 {% else %}
   <p>Sold out</p>
 {% endif %}
