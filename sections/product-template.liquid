@@ -56,7 +56,7 @@
       height="150" width="150"
       alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
       loading="lazy"
-      class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
+      class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col"
   >
 {%- endfor -%}
 </div>

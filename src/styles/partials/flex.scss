@@ -15,10 +15,11 @@
     --flex__basis: auto;
 
     flex: var(--flex) 0 var(--flex__basis);
-    padding: var(--base__size);
 
     &[class*=--] {
       --flex__basis: 100%;
+
+      padding: var(--base__size);
     }
 
     @media (min-width: 375px) {
