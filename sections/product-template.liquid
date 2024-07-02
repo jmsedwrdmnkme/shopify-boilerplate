@@ -114,10 +114,9 @@
 
   const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
+  let currentPicture = document.querySelector('.product__image:not(hidden)');
 
   productPictureBrowse = (direction) => {
-    let currentPicture = document.querySelector('.product__image:not(hidden)');
-
     console.log(currentPicture);
 
     if (direction === 'next' && currentPicture.nextElementSibling != null) {
@@ -127,6 +126,9 @@
       currentPicture.classList.add('hidden') && currentPicture.previousElementSibling.classList.remove('hidden');
       console.log('Previous');
     }
+
+    let currentPicture = document.querySelector('.product__image:not(hidden)');
+    console.log(currentPicture);
   }
 
   productPictureBtnPrevious.addEventListener('click', () => productPictureBrowse('previous'));
