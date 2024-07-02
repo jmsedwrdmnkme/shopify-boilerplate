@@ -119,7 +119,10 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => productPriceUpdate());
-  addToCartSelect.addEventListener('change', () => productPriceUpdate());
+  addToCartSelect.addEventListener('change', () => {
+    productImageUpdate();
+    productPriceUpdate();
+  });
 
 
   const addToCartDialog = addToCartForm.querySelector('dialog');
