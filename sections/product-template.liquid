@@ -75,6 +75,7 @@
 
 
   const addToCartSelect = addToCartForm.querySelector('select');
+  const productTitle = {{ product.title }};
   const productPrice = document.querySelector('.product--price');
 
   productPriceUpdate = () => {
@@ -95,7 +96,6 @@
     event.preventDefault();
     addToCartAjax();
 
-    const productTitle = '{{ product.title }}';
     const title = `${productTitle} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
     const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
