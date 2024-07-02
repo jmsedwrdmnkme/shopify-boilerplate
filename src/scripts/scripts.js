@@ -26,6 +26,5 @@ addToCartBtn.addEventListener('click', (event) => {
 
   const dialog = document.querySelector('dialog');
 
-  dialog.showModal();
-  setTimeout(console.log('Closing modal...') && dialog.close(), 3000);
+  dialog.showModal() && setTimeout(dialog.close(), 3000);
 });
