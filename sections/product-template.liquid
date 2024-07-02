@@ -1,20 +1,11 @@
 <h1>{{ product.title }}</h1>
-
-{% if product.available %}
-  {% if product.price_varies and template == 'collection' %}
-    <p class="product--price">From {{ product.price_min | money }} to {{ product.price_max | money }}</p>
-  {% else %}
-    <p class="product--price">{{ product.price | money }}</p>
-  {% endif %}
-{% else %}
-  <p>Sold out</p>
-{% endif %}
+<p class="product--price">{{ product.price | money }}</p>
 
 {% form 'product', product %}
   <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-          <option value="{{variant.id}}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
+          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
         {% else %}
           <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
@@ -23,7 +14,7 @@
   <input type="text" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
   <dialog>
-    <p>Product added to <a href="/cart">cart</a></p>
+    <p><span class="product--quantity"></span> x <span class="product--title"></span> added to <a href="/cart">cart</a></p>
   </dialog>
 {% endform %}
 
@@ -88,6 +79,7 @@
 
   productPriceUpdate = () => {
     const price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
+
     productPrice.innerHTML = price;
   }
 
@@ -96,10 +88,18 @@
 
 
   const addToCartDialog = addToCartForm.querySelector('dialog');
+  const dialogTitle = document.querySelector('.dialog--title');
+  const dialogQuantity = document.querySelector('.dialog--quantity');
 
   addToCartBtn.addEventListener('click', (event) => {
     event.preventDefault();
     addToCartAjax();
+
+    const title = `{{ product.title }} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
+    const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
+
+    dialogTitle.innerHTML = title;
+    dialogQuantity.innerHTML = quantity;
 
     addToCartDialog.showModal();
     setTimeout(() =>  {
