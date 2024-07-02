@@ -117,7 +117,11 @@
 
   productPictureBrowse = (direction) => {
     productPictures.forEach((picture) => {
-      (!picture.classList.contains('hidden')) && console.log(picture);
+      if (picture === 'next') {
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.nextElementSibling.classList.remove('hidden');
+      } else {
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.previousElementSibling.classList.remove('hidden');
+      }
     });
   }
 
