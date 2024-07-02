@@ -106,12 +106,12 @@
   const productPictures = document.querySelectorAll('.product--image');
   const productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
-  console.log(productPictures);
-
   productImageUpdate = () => {
     productPictures.forEach((picture) => {
       (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.add('active') : picture.classList.remove('active');
     });
+
+    console.log(productPictures);
   }
 
   productPriceUpdate = () => {
