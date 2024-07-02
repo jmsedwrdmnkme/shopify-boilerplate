@@ -32,7 +32,7 @@
       height="928" width="928"
       alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle }}{% endif %}"
       class="product--image{% if variantTitle.size > 1 %} {{ variantTitle }}{% endif %}"
-      {% unless image.first %}loading="lazy"{% endunless %}
+      {% unless forloop.first %}loading="lazy"{% endunless %}
   >
 {%- endfor -%}
 
