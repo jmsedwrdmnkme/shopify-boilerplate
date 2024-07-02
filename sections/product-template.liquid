@@ -2,6 +2,7 @@
 <p class="product--price">{{ product.price | money }}</p>
 
 {% form 'product', product %}
+  <input type="text" name="quantity" min="1" value="1">
   <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
@@ -11,7 +12,6 @@
       {% endif %}
     {% endfor %}
   </select>
-  <input type="text" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
   <dialog>
     <p><span class="dialog--quantity"></span> x <span class="dialog--title"></span> added to <a href="/cart">cart</a></p>
