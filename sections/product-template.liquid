@@ -118,9 +118,9 @@
   productPictureBrowse = (direction) => {
     productPictures.forEach((picture) => {
       if (picture === 'next') {
-        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.nextElementSibling.classList.remove('hidden');
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.nextSibling.classList.remove('hidden');
       } else {
-        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.previousElementSibling.classList.remove('hidden');
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden') && picture.previousSibling.classList.remove('hidden');
       }
     });
   }
