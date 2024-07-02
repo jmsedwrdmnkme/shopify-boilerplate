@@ -13,6 +13,12 @@
     flex-wrap: wrap;
   }
 
+  &[class*=gaps] {
+    > [class*=col] {
+      padding: var(--base__size);
+    }
+  }
+
   > [class*=col] {
     --flex: 1;
     --flex__basis: auto;
@@ -21,14 +27,6 @@
 
     &[class*=--] {
       --flex__basis: 100%;
-
-      padding: var(--base__size);
-    }
-
-    &[class*=shrink] {
-      flex-shrink: 1;
-
-      padding: unset;
     }
 
     @media (min-width: 375px) {
