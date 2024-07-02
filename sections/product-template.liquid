@@ -122,8 +122,10 @@
 
     if (direction === 'next' && currentPicture.nextElementSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.nextElementSibling.classList.remove('hidden');
+      console.log('Next');
     } else if (direction === 'previous' && currentPicture.previousElementSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.previousElementSibling.classList.remove('hidden');
+      console.log('Previous');
     }
   }
 
