@@ -25,6 +25,10 @@
   <img src="{{ image.src | img_url: '928x' }}" height="928" width="928" alt="{{ image.alt | escape }}">
 {% endfor %}
 
+{% for variant in product.variants %}
+  <img src="{{ variant.image.src | img_url: '928x' }}" height="928" width="928" alt="{{ variant.image.alt | escape }}">
+{% endfor %}
+
 <p>{{ product.description }}</p>
 
 {% schema %}
