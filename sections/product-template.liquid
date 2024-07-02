@@ -16,6 +16,18 @@
 <img src="{{ featured_image | img_url: '1024x'}}" alt="{{ featured_image.alt | escape }}">
 
 {% form 'product' %}
+
+  <select name="id">
+    {% for variant in product.variants %}
+      {% if variant.available == true %}
+          <option value="{{variant.id}}"> {{ variant.title }} for {{ variant.price | money_with_currency }}</option>
+        {% else %}
+          <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+
   <input type="text" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
   {{ form | payment_button }}
