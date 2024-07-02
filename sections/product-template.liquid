@@ -118,6 +118,8 @@
   productPictureBrowse = (direction) => {
     let currentPicture = document.querySelector('.product__image:not(hidden)');
 
+    console.log(currentPicture);
+
     if (direction === 'next' && currentPicture.nextElementSibling != null) {
       currentPicture.classList.add('hidden') && currentPicture.nextElementSibling.classList.remove('hidden');
     } else if (direction === 'previous' && currentPicture.previousElementSibling != null) {
