@@ -30,8 +30,8 @@
   <img
       src="{{ image.src | img_url: '928x' }}"
       height="928" width="928"
-      alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle }}{% endif %}"
-      class="product--image{% if variantTitle.size > 1 %} {{ variantTitle }}{% endif %}"
+      alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip: ' ' }}{% endif %}"
+      class="product--image{% if variantTitle.size > 1 %} {{ variantTitle | strip: ' ' }}{% endif %}"
       {% unless forloop.first %}loading="lazy"{% endunless %}
   >
 {%- endfor -%}
