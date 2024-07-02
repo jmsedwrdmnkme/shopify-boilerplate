@@ -18,13 +18,6 @@
   </dialog>
 {% endform %}
 
-{%- assign featured_image = product.featured_image -%}
-<img src="{{ featured_image | img_url: '928x' }}" height="928" width="928" alt="{{ featured_image.alt | escape }}">
-
-{% for image in product.images %}
-  <img src="{{ image.src | img_url: '928x' }}" height="928" width="928" alt="{{ image.alt | escape }}">
-{% endfor %}
-
 {% for variant in product.variants %}
   <img src="{{ variant.image.src | img_url: '928x' }}" height="928" width="928" alt="{{ variant.image.alt | escape }}">
 {% endfor %}
