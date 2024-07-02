@@ -19,7 +19,7 @@
   <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-          <option value="{{variant.id}}"> {{ variant.title }} for {{ variant.price | money_with_currency }}</option>
+          <option value="{{variant.id}}"> {{ variant.title }} for {{ variant.price | money }}</option>
         {% else %}
           <option disabled="disabled"> {{ variant.title }} - sold out!</option>
       {% endif %}
@@ -28,7 +28,7 @@
   <input type="text" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
   <dialog>
-    <p>Added to <a href="/cart">cart</a></p>
+    <p>Product added to <a href="/cart">cart</a></p>
   </dialog>
 {% endform %}
 
