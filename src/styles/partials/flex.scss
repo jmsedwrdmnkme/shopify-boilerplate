@@ -4,10 +4,13 @@
 
 [class*=flex] {
   display: flex;
-  flex-wrap: wrap;
 
   &[class*=gap] {
     margin: calc(var(--base__size) * -1);
+  }
+
+  &[class*=wrap] {
+    flex-wrap: wrap;
   }
 
   > [class*=col] {
