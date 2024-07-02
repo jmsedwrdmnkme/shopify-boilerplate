@@ -63,6 +63,12 @@
 {% endschema %}
 
 {% stylesheet %}
+  .product--image {
+    &:not('.active') {
+      display: none;
+    }
+  }
+
   form[action$="/cart/add"] {
     & dialog {
       border: unset;
