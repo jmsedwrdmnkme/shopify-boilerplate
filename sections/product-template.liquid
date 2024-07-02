@@ -1,11 +1,7 @@
 <h1>{{ product.title }}</h1>
 
 {% if product.available %}
-  {% if product.price_varies and template == 'collection' %}
-    <p>From {{ product.price_min | money }} to {{ product.price_max | money }}</p>
-  {% else %}
-    <p>{{ product.price | money }}</p>
-  {% endif %}
+  <p class="product--price">{{ product.price | money }}</p>
 {% else %}
   <p>Sold out</p>
 {% endif %}
@@ -19,9 +15,9 @@
   <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-          <option value="{{variant.id}}"> {{ variant.title }} for {{ variant.price | money }}</option>
+          <option value="{{variant.id}}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
         {% else %}
-          <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+          <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
     {% endfor %}
   </select>
@@ -65,11 +61,9 @@
 
 {% javascript %}
   const addToCartForm = document.querySelector('form[action$="/cart/add"]');
-  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
-  const addToCartDialog = addToCartForm.querySelector('dialog');
 
   addToCartAjax = () => {
-    let formData = new FormData(addToCartForm);
+    const formData = new FormData(addToCartForm);
 
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
@@ -82,6 +76,17 @@
       console.error('Error:', error);
     });
   };
+
+
+  const addToCartSelect = addToCartForm.querySelector('select');
+  const productPrice = document.querySelector('.product--price');
+
+  addToCartSelect.addEventListener('change', (event) => {
+  });
+
+
+  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
+  const addToCartDialog = addToCartForm.querySelector('dialog');
 
   addToCartBtn.addEventListener('click', (event) => {
     event.preventDefault();
