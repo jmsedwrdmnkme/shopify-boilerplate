@@ -95,7 +95,8 @@
     event.preventDefault();
     addToCartAjax();
 
-    const title = `${{{ product.title }}} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
+    const productTitle = '{{ product.title }}';
+    const title = `${productTitle} ${addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML}`;
     const quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
