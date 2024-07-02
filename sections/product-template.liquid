@@ -15,51 +15,68 @@
 {%- assign featured_image = product.featured_image -%}
 <img src="{{ featured_image | img_url: '1024x'}}" alt="{{ featured_image.alt | escape }}">
 
-{%- unless product.has_only_default_variant -%}
-  {%- for option in product.options_with_values -%}
+{% form 'product', product %}
+  <select name="id">
+    {%- for variant in product.variants -%}
+      <option selected="selected" value="{{ variant.id }}"></option>
+    {%- endfor -%}
+  </select>
 
-    {%- if section.settings.product_selector == 'radio' -%}
-      <fieldset id="ProductSelect-option-{{ forloop.index0 }}" name="{{ option.name | handleize }}">
-        <legend>
+  {%- unless product.has_only_default_variant -%}
+    {%- for option in product.options_with_values -%}
+
+      {%- if section.settings.product_selector == 'radio' -%}
+        <fieldset id="ProductSelect-option-{{ forloop.index0 }}" name="{{ option.name | handleize }}">
+          <legend>
+            {{ option.name | escape }}
+          </legend>
+          {%- for value in option.values -%}
+            <!-- Check to see if there's a product size option. If there is a size, check to see if there's any availble for purchase. If not, set the variat control in a "disabled" state. -->
+            {%- assign variant_label_state = true -%}
+
+            {%- if product.options.size == 1 -%}
+              {%- unless product.variants[forloop.index0].available -%}
+                {%- assign variant_label_state = false -%}
+              {%- endunless -%}
+            {%- endif -%}
+
+            <input type="radio"
+              {% if option.selected_value == value %} checked="checked"{% endif %}
+              {% unless variant_label_state %} disabled="disabled"{% endunless %}
+              value="{{ value | escape }}"
+              data-index="option{{ forloop.index }}"
+              name="{{ option.name | handleize }}"
+              id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+            <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+              {{ value | escape }}
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- else -%}
+        <label for="ProductSelect-option-{{ forloop.index0 }}">
           {{ option.name | escape }}
-        </legend>
-        {%- for value in option.values -%}
-          <!-- Check to see if there's a product size option. If there is a size, check to see if there's any availble for purchase. If not, set the variat control in a "disabled" state. -->
-          {%- assign variant_label_state = true -%}
+        </label>
+        <select id="ProductSelect-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+          {%- for value in option.values -%}
+            <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>
+              {{ value | escape }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
 
-          {%- if product.options.size == 1 -%}
-            {%- unless product.variants[forloop.index0].available -%}
-              {%- assign variant_label_state = false -%}
-            {%- endunless -%}
-          {%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
 
-          <input type="radio"
-            {% if option.selected_value == value %} checked="checked"{% endif %}
-            {% unless variant_label_state %} disabled="disabled"{% endunless %}
-            value="{{ value | escape }}"
-            data-index="option{{ forloop.index }}"
-            name="{{ option.name | handleize }}"
-            id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
-          <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
-            {{ value | escape }}
-          </label>
-        {%- endfor -%}
-      </fieldset>
+  <button type="submit" {% unless product.available %} disabled="disabled"{% endunless %}>
+    {%- if product.available -%}
+      Add to Cart
     {%- else -%}
-      <label for="ProductSelect-option-{{ forloop.index0 }}">
-        {{ option.name | escape }}
-      </label>
-      <select id="ProductSelect-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-        {%- for value in option.values -%}
-          <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>
-            {{ value | escape }}
-          </option>
-        {%- endfor -%}
-      </select>
+      Sold Out
     {%- endif -%}
-
-  {%- endfor -%}
-{%- endunless -%}
+  </button>
+  {{ form | payment_button }}
+{% endform %}
 
 {% schema %}
   {
