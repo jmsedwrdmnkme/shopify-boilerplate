@@ -51,18 +51,13 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    <picture class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %} col">
-      <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
-      <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
-      <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
-      <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '150x150' }}" />
-      <img
-          src="{{ image.src | img_url: '150x150' }}"
-          height="150" width="150"
-          alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
-          loading="lazy"
-      >
-    </picture>
+    <img
+        src="{{ image.src | img_url: '150x150' }}"
+        height="150" width="150"
+        alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %} thumbnail"
+        loading="lazy"
+        class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
+    >
   {%- endfor -%}
 </div>
 
