@@ -19,14 +19,16 @@
 
     flex: var(--flex) 0 var(--flex__basis);
 
-    &[class*=shrink] {
-      flex-shrink: 1;
-    }
-
     &[class*=--] {
       --flex__basis: 100%;
 
       padding: var(--base__size);
+    }
+
+    &[class*=shrink] {
+      flex-shrink: 1;
+
+      padding: unset;
     }
 
     @media (min-width: 375px) {
