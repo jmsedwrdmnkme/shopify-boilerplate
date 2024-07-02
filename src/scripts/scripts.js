@@ -20,8 +20,8 @@ addToCartAjax = () => {
 
 const addToCartBtn = document.querySelector('form.shopify-product-form input[type="submit"]');
 
-addToCartBtn.addEventListener('click', (button) => {
-  button.preventDefault();
+addToCartBtn.addEventListener('click', (event) => {
+  event.preventDefault();
   addToCartAjax();
   console.log('Item(s) added');
 });
@@ -34,5 +34,8 @@ addToCartBtn.addEventListener('click', (button) => {
 const dialogBoxes = document.querySelectorAll('dialog');
 forEach.dialogBoxes((box) => {
   const button = box.querySelector('button');
-  button.addEventListener('click', () => { dialog.close() });
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    dialog.close()
+  });
 });
