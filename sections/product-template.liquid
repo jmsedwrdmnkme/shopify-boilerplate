@@ -117,10 +117,13 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      (!picture.classList.contains('hidden')) && picture.classList.add('hidden');
-      (direction === 'next') ?
-        picture.nextElementSibling.classList.remove('hidden') :
-      picture.previousElementSibling.classList.remove('hidden');
+      if (direction === 'next' && picture.nextElementSibling != null) {
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden');
+        picture.nextElementSibling.classList.remove('hidden')
+      } else if (direction === 'previous' && picture.nextPreviousSibling != null) {
+        (!picture.classList.contains('hidden')) && picture.classList.add('hidden');
+        picture.previousElementSibling.classList.remove('hidden');
+      }
     });
   }
 
