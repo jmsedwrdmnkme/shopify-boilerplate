@@ -2,6 +2,6 @@
   Images
 */
 
-img {
+img:not([src*=svg]) {
   height: auto;
 }
