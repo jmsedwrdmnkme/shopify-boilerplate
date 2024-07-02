@@ -20,7 +20,7 @@
 
 {% for image in product.images %}
   {% if image.attached_to_variant? %}
-    {% for variant in image %}
+    {% for variant in image.variants %}
       {{ variant }}
     {% endfor %}
   {% endif %}
