@@ -2,10 +2,13 @@
   Flex
 */
 
-.flex {
+[class*=flex] {
   display: flex;
   flex-wrap: wrap;
-  margin: calc(var(--base__size) * -1);
+
+  &[class*=gap] {
+    margin: calc(var(--base__size) * -1);
+  }
 
   > [class*=col] {
     --flex: 1;

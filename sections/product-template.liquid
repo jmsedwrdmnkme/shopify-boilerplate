@@ -41,6 +41,7 @@
   </picture>
 {%- endfor -%}
 
+<div class="flex">
 {%- for image in product.images -%}
   {%- capture variantTitle -%}
     {%- for variant in image.variants -%}
@@ -58,6 +59,7 @@
       class="product__thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}"
   >
 {%- endfor -%}
+</div>
 
 <p>{{ product.description }}</p>
 
