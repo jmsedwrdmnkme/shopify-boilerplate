@@ -18,7 +18,7 @@
   </dialog>
 {% endform %}
 
-<div class="product__picture">
+<div class="product__gallery">
   {%- for image in product.images -%}
     {%- capture variantTitle -%}
       {%- for variant in image.variants -%}
@@ -121,6 +121,7 @@
   /*
     Allow browsing of product images via button navigation
   */
+  const productPictureGallery = document.querySelector('.picture__gallery');
   const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
@@ -133,7 +134,7 @@
         currentPicture.nextSibling.classList.remove('hidden');
         productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
 
-        (currentPicture.nextSibling.parent().lastChild == currentPicture.nextSibling.lastChild) && productPictureBtnNext.setAttribute('disabled', '');
+        (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '');
       } else {
         productPictureBtnNext.setAttribute('disabled', '');
       }
@@ -143,7 +144,7 @@
         currentPicture.previousSibling.classList.remove('hidden');
         productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
 
-        (currentPicture.previousSibling.parent().lastChild == currentPicture.previousSibling.lastChild) && productPictureBtnPrevious.setAttribute('disabled', '');
+        (productPictureGallery.lastChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
       } else {
         productPictureBtnPrevious.setAttribute('disabled', '');
       }
