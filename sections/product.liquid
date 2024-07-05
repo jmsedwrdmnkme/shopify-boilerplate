@@ -127,12 +127,20 @@
   productPictureBrowse = (direction) => {
     let currentPicture = document.querySelector('.product__image:not(.hidden)');
 
-    if (direction === 'next' && currentPicture.nextSibling != null) {
-      currentPicture.classList.add('hidden')
-      currentPicture.nextSibling.classList.remove('hidden');
-    } else if (direction === 'previous' && currentPicture.previousSibling != null) {
-      currentPicture.classList.add('hidden')
-      currentPicture.previousSibling.classList.remove('hidden');
+    if (direction === 'next') {
+      if (currentPicture.nextSibling != null) {
+        currentPicture.classList.add('hidden')
+        currentPicture.nextSibling.classList.remove('hidden');
+      else {
+        productPictureBtnNext.setAttribute('disabled', '');
+      }
+    } else if (direction === 'previous') {
+      if (currentPicture.previousSibling != null) {
+        currentPicture.classList.add('hidden')
+        currentPicture.previousSibling.classList.remove('hidden');
+      else {
+        productPictureBtnPrevious.setAttribute('disabled', '');
+      }
     }
   }
 
