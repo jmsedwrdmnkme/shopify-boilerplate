@@ -131,6 +131,8 @@
       if (currentPicture.nextSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.nextSibling.classList.remove('hidden');
+        productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
+        (currentPicture.previousSibling != null) && productPictureBtnPrevious.setAttribute('disabled', '')
       } else {
         productPictureBtnNext.setAttribute('disabled', '');
       }
@@ -138,6 +140,8 @@
       if (currentPicture.previousSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.previousSibling.classList.remove('hidden');
+        productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
+        (currentPicture.nextSibling != null) && productPictureBtnNext.setAttribute('disabled', '')
       } else {
         productPictureBtnPrevious.setAttribute('disabled', '');
       }
