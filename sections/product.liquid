@@ -131,14 +131,14 @@
       if (currentPicture.nextSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.nextSibling.classList.remove('hidden');
-      else {
+      } else {
         productPictureBtnNext.setAttribute('disabled', '');
       }
     } else if (direction === 'previous') {
       if (currentPicture.previousSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.previousSibling.classList.remove('hidden');
-      else {
+      } else {
         productPictureBtnPrevious.setAttribute('disabled', '');
       }
     }
