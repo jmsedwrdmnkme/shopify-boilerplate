@@ -115,6 +115,7 @@
   addToCartSelect.addEventListener('change', () => {
     productImageUpdate();
     productPriceUpdate();
+    productPictureBrowse();
   });
 
 
@@ -133,13 +134,13 @@
       currentPicture.nextSibling.classList.remove('hidden');
       productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
       (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '');
-      console.log(currentPicture.nextSibling);
     } else if (direction === 'previous') {
       currentPicture.classList.add('hidden')
       currentPicture.previousSibling.classList.remove('hidden');
       productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
       (productPictureGallery.firstChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
-      console.log(currentPicture.previousSibling);
+    } else if (!direction) {
+      console.log('Running check');
     }
   }
 
