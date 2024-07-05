@@ -133,7 +133,7 @@
         currentPicture.nextSibling.classList.remove('hidden');
         productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
 
-        currentPicture.nextSibling.firstChild && productPictureBtnNext.setAttribute('disabled', '');
+        (currentPicture.nextSibling.parent().lastChild == currentPicture.nextSibling.lastChild) && productPictureBtnNext.setAttribute('disabled', '');
       } else {
         productPictureBtnNext.setAttribute('disabled', '');
       }
@@ -143,7 +143,7 @@
         currentPicture.previousSibling.classList.remove('hidden');
         productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
 
-        currentPicture.previousSibling.lastChild && productPictureBtnPrevious.setAttribute('disabled', '');
+        (currentPicture.previousSibling.parent().lastChild == currentPicture.previousSibling.lastChild) && productPictureBtnPrevious.setAttribute('disabled', '');
       } else {
         productPictureBtnPrevious.setAttribute('disabled', '');
       }
