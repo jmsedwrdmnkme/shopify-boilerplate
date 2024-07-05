@@ -128,18 +128,18 @@
     let currentPicture = document.querySelector('.product__image:not(.hidden)');
 
     if (direction === 'next') {
-      if (currentPicture.nextSibling.nextSibling != null) {
+      if (currentPicture.nextSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.nextSibling.classList.remove('hidden');
-        productPictureBtnPrevious.removeAttribute('disabled');
+        productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
       } else {
         productPictureBtnNext.setAttribute('disabled', '');
       }
     } else if (direction === 'previous') {
-      if (currentPicture.previousSibling.previousSibling != null) {
+      if (currentPicture.previousSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.previousSibling.classList.remove('hidden');
-        productPictureBtnNext.removeAttribute('disabled');
+        productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
       } else {
         productPictureBtnPrevious.setAttribute('disabled', '');
       }
