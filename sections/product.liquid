@@ -140,8 +140,8 @@
       productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
       (productPictureGallery.firstChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
     } else if (!direction) {
-      (productPictureGallery.firstChild == currentPicture.previousSibling) ? productPictureBtnPrevious.setAttribute('disabled', '') : productPictureBtnPrevious.removeAttribute('disabled', '');
-      (productPictureGallery.lastChild == currentPicture.nextSibling) ? productPictureBtnNext.setAttribute('disabled', '') : productPictureBtnNext.removeAttribute('disabled', '');
+      (productPictureGallery.firstChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '') || productPictureBtnPrevious.removeAttribute('disabled', '');
+      (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '') || productPictureBtnNext.removeAttribute('disabled', '');
     }
   }
 
