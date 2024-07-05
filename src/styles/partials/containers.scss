@@ -5,6 +5,6 @@
 [class*=container] {
   margin-left: auto;
   margin-right: auto;
-  max-width: var(--max__width);
+  max-width: clamp(var(--min__width), calc(100vw - calc(2 * var(--base__size))), var(--max__width));
   padding: 0 var(--base__size);
 }
