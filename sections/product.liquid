@@ -128,7 +128,7 @@
     let currentPicture = document.querySelector('.product__image:not(.hidden)');
 
     if (direction === 'next') {
-      if (currentPicture.nextSibling != null) {
+      if (currentPicture.nextSibling.nextSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.nextSibling.classList.remove('hidden');
         productPictureBtnPrevious.removeAttribute('disabled');
@@ -136,7 +136,7 @@
         productPictureBtnNext.setAttribute('disabled', '');
       }
     } else if (direction === 'previous') {
-      if (currentPicture.previousSibling != null) {
+      if (currentPicture.previousSibling.previousSibling != null) {
         currentPicture.classList.add('hidden')
         currentPicture.previousSibling.classList.remove('hidden');
         productPictureBtnNext.removeAttribute('disabled');
