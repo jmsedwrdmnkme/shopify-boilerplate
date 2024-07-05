@@ -5,6 +5,9 @@
 :root {
   --base__size: 1rem;
   --font__size: var(--base__size);
-  --min__width: 960px;
-  --max__width: 960px;
+   --max__width: 960px;
+
+  @media (min-width: 1366px) {
+    --max__width: 1200px;
+  }
 }
