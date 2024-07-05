@@ -129,25 +129,15 @@
     let currentPicture = document.querySelector('.product__image:not(.hidden)');
 
     if (direction === 'next') {
-      if (currentPicture.nextSibling != null) {
-        currentPicture.classList.add('hidden')
-        currentPicture.nextSibling.classList.remove('hidden');
-        productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
-
-        (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '');
-      } else {
-        productPictureBtnNext.setAttribute('disabled', '');
-      }
+      currentPicture.classList.add('hidden')
+      currentPicture.nextSibling.classList.remove('hidden');
+      productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
+      (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '');
     } else if (direction === 'previous') {
-      if (currentPicture.previousSibling != null) {
-        currentPicture.classList.add('hidden')
-        currentPicture.previousSibling.classList.remove('hidden');
-        productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
-
-        (productPictureGallery.lastChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
-      } else {
-        productPictureBtnPrevious.setAttribute('disabled', '');
-      }
+      currentPicture.classList.add('hidden')
+      currentPicture.previousSibling.classList.remove('hidden');
+      productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
+      (productPictureGallery.lastChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
     }
   }
 
