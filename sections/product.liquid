@@ -72,8 +72,8 @@
   /*
     Add to cart Ajax
   */
-  const addToCartForm = document.querySelector('form[action$="/cart/add"]'),
-        addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
+  const addToCartForm = document.querySelector('form[action$="/cart/add"]');
+  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
   addToCartAjax = () => {
     const formData = new FormData(addToCartForm);
@@ -95,9 +95,9 @@
     Update product price and image based on select option
   */
   const addToCartSelect = addToCartForm.querySelector('select'),
-        productTitle = document.querySelector('.product__title'),
-        productPrice = document.querySelector('.product__price'),
-        productImagess = document.querySelectorAll('.product__image');
+  const productTitle = document.querySelector('.product__title');
+  const productPrice = document.querySelector('.product__price');
+  const productImagess = document.querySelectorAll('.product__image');
 
   productImageUpdate = () => {
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
@@ -123,8 +123,8 @@
   /*
     Allow browsing of product images via button navigation
   */
-  const productGalleryBtnPrevious = document.querySelector('[class*=btn-previous]'),
-        productGalleryBtnNext = document.querySelector('[class*=btn-next]');
+  const productGalleryBtnPrevious = document.querySelector('[class*=btn-previous]');
+  const productGalleryBtnNext = document.querySelector('[class*=btn-next]');
 
   productGalleryBrowse = (direction) => {
     let currentImage = document.querySelector('.product__image:not(.hidden)');
@@ -145,17 +145,17 @@
   /*
     Dialog config and show on cart add
   */
-  const addToCartDialog = addToCartForm.querySelector('dialog'),
-        dialogTitle = addToCartDialog.querySelector('.dialog--title'),
-        dialogQuantity = addToCartDialog.querySelector('.dialog--quantity');
+  const addToCartDialog = addToCartForm.querySelector('dialog');
+  const dialogTitle = addToCartDialog.querySelector('.dialog--title');
+  const dialogQuantity = addToCartDialog.querySelector('.dialog--quantity');
 
   addToCartBtn.addEventListener('click', (event) => {
     event.preventDefault();
     addToCartAjax();
 
-    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML,
-        title = `${productTitle.innerHTML} ${productVariantTitle}`,
-        quantity = addToCartForm.querySelector('input[name="quantity"]').value;
+    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
+    let title = `${productTitle.innerHTML} ${productVariantTitle}`;
+    let quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
     dialogQuantity.innerHTML = quantity;
