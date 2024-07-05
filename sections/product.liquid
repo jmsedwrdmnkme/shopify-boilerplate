@@ -1,52 +1,54 @@
-<h1 class="product__title">{{ product.title }}</h1>
-<p class="product__price">{{ product.price | money }}</p>
+<div class-"product">
+  <h1 class="product__title">{{ product.title }}</h1>
+  <p class="product__price">{{ product.price | money }}</p>
 
-{% form 'product', product %}
-  <input type="number" name="quantity" min="1" value="1">
-  <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
-    {% for variant in product.variants %}
-      {% if variant.available == true %}
-          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
-        {% else %}
-          <option disabled="disabled">{{ variant.title }} (sold out)</option>
-      {% endif %}
-    {% endfor %}
-  </select>
-  <input type="submit" value="Add to cart">
-  <dialog>
-    <p><span class="dialog--quantity"></span> x <span class="dialog--title"></span> added to <a href="/cart">cart</a></p>
-  </dialog>
-{% endform %}
-
-<div class="product__picture">
-  {%- for image in product.images -%}
-    {%- capture variantTitle -%}
-      {%- for variant in image.variants -%}
-        {%- if image.attached_to_variant? -%}
-          {{ variant.title }}
+  {% form 'product', product %}
+    <input type="number" name="quantity" min="1" value="1">
+    <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
+      {% for variant in product.variants %}
+        {% if variant.available == true %}
+            <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
+          {% else %}
+            <option disabled="disabled">{{ variant.title }} (sold out)</option>
         {% endif %}
-      {%- endfor -%}
-    {%- endcapture -%}
+      {% endfor %}
+    </select>
+    <input type="submit" value="Add to cart">
+    <dialog>
+      <p><span class="dialog--quantity"></span> x <span class="dialog--title"></span> added to <a href="/cart">cart</a></p>
+    </dialog>
+  {% endform %}
 
-    <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
-      <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
-      <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
-      <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
-      <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '928x928' }}" />
-      <img
-          src="{{ image.src | img_url: '928x928' }}"
-          height="928" width="928"
-          alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
-          {% unless forloop.first %}loading="lazy"{% endunless %}
-      >
-    </picture>
-  {%- endfor -%}
+  <div class="product__gallery">
+    {%- for image in product.images -%}
+      {%- capture variantTitle -%}
+        {%- for variant in image.variants -%}
+          {%- if image.attached_to_variant? -%}
+            {{ variant.title }}
+          {% endif %}
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
+        <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
+        <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
+        <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
+        <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '928x928' }}" />
+        <img
+            src="{{ image.src | img_url: '928x928' }}"
+            height="928" width="928"
+            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
+            {% unless forloop.first %}loading="lazy"{% endunless %}
+        >
+      </picture>
+    {%- endfor -%}
+  </div>
+
+  <button class="product__image--btn-previous" role="button">Previous</button>
+  <button class="product__image--btn-next" role="button">Next</button>
+
+  <p>{{ product.description }}</p>
 </div>
-
-<button class="product__image--btn-previous" role="button">Previous</button>
-<button class="product__image--btn-next" role="button">Next</button>
-
-<p>{{ product.description }}</p>
 
 {% schema %}
   {
@@ -67,8 +69,11 @@
 {% endschema %}
 
 {% javascript %}
-  const addToCartForm = document.querySelector('form[action$="/cart/add"]');
-  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
+  /*
+    Add to cart Ajax
+  */
+  const addToCartForm = document.querySelector('form[action$="/cart/add"]'),
+        addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
   addToCartAjax = () => {
     const formData = new FormData(addToCartForm);
@@ -86,16 +91,19 @@
   };
 
 
-  const addToCartSelect = addToCartForm.querySelector('select');
-  const productTitle = document.querySelector('.product__title');
-  const productPrice = document.querySelector('.product__price');
-  const productPictures = document.querySelectorAll('.product__image');
+  /*
+    Update product price and image based on select option
+  */
+  const addToCartSelect = addToCartForm.querySelector('select'),
+        productTitle = document.querySelector('.product__title'),
+        productPrice = document.querySelector('.product__price'),
+        productImagess = document.querySelectorAll('.product__image');
 
   productImageUpdate = () => {
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
-    productPictures.forEach((picture) => {
-      (picture.classList.contains(productVariantTitle.toLowerCase())) ? picture.classList.remove('hidden') : picture.classList.add('hidden');
+    productImages.forEach((image) => {
+      (image.classList.contains(productVariantTitle.toLowerCase())) ? image.classList.remove('hidden') : image.classList.add('hidden');
     });
   }
 
@@ -112,36 +120,42 @@
   });
 
 
-  const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
-  const productPictureBtnNext = document.querySelector('[class*=btn-next]');
+  /*
+    Allow browsing of product images via button navigation
+  */
+  const productGalleryBtnPrevious = document.querySelector('[class*=btn-previous]'),
+        productGalleryBtnNext = document.querySelector('[class*=btn-next]');
 
-  productPictureBrowse = (direction) => {
-    let currentPicture = document.querySelector('.product__image:not(.hidden)');
+  productGalleryBrowse = (direction) => {
+    let currentImage = document.querySelector('.product__image:not(.hidden)');
 
-    if (direction === 'next' && currentPicture.nextSibling != null) {
-      currentPicture.classList.add('hidden')
-      currentPicture.nextSibling.classList.remove('hidden');
-    } else if (direction === 'previous' && currentPicture.previousSibling != null) {
-      currentPicture.classList.add('hidden')
-      currentPicture.previousSibling.classList.remove('hidden');
+    if (direction === 'next' && currentImage.nextSibling != null) {
+      currentImage.classList.add('hidden')
+      currentImage.nextSibling.classList.remove('hidden');
+    } else if (direction === 'previous' && currentImage.previousSibling != null) {
+      currentImage.classList.add('hidden')
+      currentImage.previousSibling.classList.remove('hidden');
     }
   }
 
-  productPictureBtnPrevious.addEventListener('click', () => productPictureBrowse('previous'));
-  productPictureBtnNext.addEventListener('click', () => productPictureBrowse('next'));
+  productGalleryBtnPrevious.addEventListener('click', () => productGalleryBrowse('previous'));
+  productGalleryBtnNext.addEventListener('click', () => productGalleryBrowse('next'));
 
 
-  const addToCartDialog = addToCartForm.querySelector('dialog');
-  const dialogTitle = document.querySelector('.dialog--title');
-  const dialogQuantity = document.querySelector('.dialog--quantity');
+  /*
+    Dialog config and show on cart add
+  */
+  const addToCartDialog = addToCartForm.querySelector('dialog'),
+        dialogTitle = addToCartDialog.querySelector('.dialog--title'),
+        dialogQuantity = addToCartDialog.querySelector('.dialog--quantity');
 
   addToCartBtn.addEventListener('click', (event) => {
     event.preventDefault();
     addToCartAjax();
 
-    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
-    let title = `${productTitle.innerHTML} ${productVariantTitle}`;
-    let quantity = addToCartForm.querySelector('input[name="quantity"]').value;
+    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML,
+        title = `${productTitle.innerHTML} ${productVariantTitle}`,
+        quantity = addToCartForm.querySelector('input[name="quantity"]').value;
 
     dialogTitle.innerHTML = title;
     dialogQuantity.innerHTML = quantity;
