@@ -101,7 +101,7 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      (picture.classList.contains(productVariantTitle.toLowerCase().replace(/\s+/g, '-').replace(/\&/g, 'and'))) ? picture.classList.remove('hidden') : picture.classList.add('hidden');
+      (picture.classList.contains(productVariantTitle.toLowerCase().replace(/\s+/g, '-').replace(/\&amp\;/g, 'and'))) ? picture.classList.remove('hidden') : picture.classList.add('hidden');
     });
   }
 
