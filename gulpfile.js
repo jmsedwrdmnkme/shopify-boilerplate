@@ -11,7 +11,7 @@ export const clean = () => deleteAsync([ 'assets' ]);
 
 // Styles
 export function styles() {
-  return src('src/styles/main.css', {encoding: false})
+  return src('front-end-boilerplate/src/css/main.css', {encoding: false})
     .pipe(postcss([atImport, cssnano()]))
     .pipe(concat('styles.css.liquid'))
     .pipe(dest('assets/'));

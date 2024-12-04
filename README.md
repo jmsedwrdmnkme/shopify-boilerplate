@@ -6,3 +6,5 @@ Framework-less vanilla, with gulp task runner using pnpm for dependencies/packag
 Opinionated defaults (components, json, snippets, styling etc) incoming...
 
 BE AWARE - this is VERY MUCH still in progress.
+
+- Due to git submodule for CSS, ensure you run `pnpm i` within the submodule dir first

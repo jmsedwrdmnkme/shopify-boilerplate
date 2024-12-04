@@ -1,0 +1,3 @@
+[submodule "front-end-boilerplate"]
+	path = front-end-boilerplate
+	url = git@github.com:jmsedwrdmnkme/front-end-boilerplate.git
