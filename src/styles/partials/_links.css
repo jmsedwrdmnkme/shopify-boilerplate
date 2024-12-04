@@ -1,0 +1,7 @@
+:root {
+  --link-colour: var(--colour-blue);
+}
+
+a:not(.button) {
+  color: var(--link-colour);
+}

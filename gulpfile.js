@@ -1,9 +1,8 @@
 import {src, dest, watch, series, parallel} from 'gulp';
 import {deleteAsync} from 'del';
-import * as dartSass from 'sass'
-import gulpSass from 'gulp-sass';
-const sass = gulpSass( dartSass );
-import cleanCSS from 'gulp-clean-css';
+import postcss from 'gulp-postcss';
+import cssnano from 'cssnano';
+import atImport from 'postcss-import';
 import concat from 'gulp-concat';
 import imagemin, {mozjpeg, optipng, svgo} from 'gulp-imagemin';
 
@@ -12,9 +11,8 @@ export const clean = () => deleteAsync([ 'assets' ]);
 
 // Styles
 export function styles() {
-  return src('src/styles/*', {encoding: false})
-    .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(cleanCSS())
+  return src('src/styles/main.css', {encoding: false})
+    .pipe(postcss([atImport, cssnano()]))
     .pipe(concat('styles.css.liquid'))
     .pipe(dest('assets/'));
 }
