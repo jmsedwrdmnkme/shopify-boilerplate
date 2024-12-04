@@ -13,10 +13,10 @@
     {{ content_for_header }}
   </head>
   <body>
-    <a class="skip" href="#main">Skip to main content</a>
+    <a class="display-none-focusable" href="#main">Skip to main content</a>
     {% section 'announcement-bar' %}
     {% section 'header' %}
-    <main id="main" class="main__container" role="main" tabindex="-1">
+    <main id="main" role="main" tabindex="-1">
       {% render 'breadcrumbs' %}
       {{ content_for_layout }}
     </main>
