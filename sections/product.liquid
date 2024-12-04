@@ -3,7 +3,7 @@
 
 {% form 'product', product %}
   <input type="number" name="quantity" min="1" value="1">
-  <select name="id"{% if product.has_only_default_variant %} class="hidden"{% endif %}>
+  <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
           <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
@@ -28,7 +28,7 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} hidden{% endunless %}">
+    <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
       <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
       <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
       <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
@@ -101,7 +101,7 @@
     let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
 
     productPictures.forEach((picture) => {
-      (picture.classList.contains(productVariantTitle.toLowerCase().replace(/\s+/g, '-').replace(/\&amp\;/g, 'and'))) ? picture.classList.remove('hidden') : picture.classList.add('hidden');
+      (picture.classList.contains(productVariantTitle.toLowerCase().replace(/\s+/g, '-').replace(/\&amp\;/g, 'and'))) ? picture.classList.remove('display-none') : picture.classList.add('display-none');
     });
   }
 
@@ -127,16 +127,16 @@
   const productPictureBtnNext = document.querySelector('[class*=btn-next]');
 
   productPictureBrowse = (direction) => {
-    let currentPicture = document.querySelector('.product__image:not(.hidden)');
+    let currentPicture = document.querySelector('.product__image:not(.display-none)');
 
     if (direction === 'next') {
-      currentPicture.classList.add('hidden')
-      currentPicture.nextSibling.classList.remove('hidden');
+      currentPicture.classList.add('display-none')
+      currentPicture.nextSibling.classList.remove('display-none');
       productPictureBtnPrevious.hasAttribute('disabled') && productPictureBtnPrevious.removeAttribute('disabled');
       (productPictureGallery.lastChild == currentPicture.nextSibling) && productPictureBtnNext.setAttribute('disabled', '');
     } else if (direction === 'previous') {
-      currentPicture.classList.add('hidden')
-      currentPicture.previousSibling.classList.remove('hidden');
+      currentPicture.classList.add('display-none')
+      currentPicture.previousSibling.classList.remove('display-none');
       productPictureBtnNext.hasAttribute('disabled') && productPictureBtnNext.removeAttribute('disabled');
       (productPictureGallery.firstChild == currentPicture.previousSibling) && productPictureBtnPrevious.setAttribute('disabled', '');
     } else if (!direction) {
