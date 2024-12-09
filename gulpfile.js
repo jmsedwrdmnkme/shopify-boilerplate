@@ -33,11 +33,16 @@ export function images() {
     .pipe(dest('assets/'));
 }
 
+export function modules() {
+  return src('node_modules/yett/dist/yett.min.modern.js', {encoding: false})
+    .pipe(dest('assets/'));
+}
+
 function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/images/*', images);
 }
 
-const build = series(clean, parallel(images, styles), watchFiles);
+const build = series(clean, parallel(modules, images, styles), watchFiles);
 
 export default build;

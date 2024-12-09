@@ -10,6 +10,12 @@
     <link rel="icon" href="{{ 'favicon.svg' | asset_url }}">
     {% render 'social-meta-tags' %}
     {{ 'styles.css' | asset_url | stylesheet_tag }}
+    {{ 'yett.min.modern.js' | asset_url | script_tag }}
+    <script>
+      window.YETT_BLACKLIST = [
+        /*/,
+      ]
+    </script>
     {{ content_for_header }}
   </head>
   <body>
@@ -21,5 +27,10 @@
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
+    <script>
+      setTimeout(() => {
+        window.yett.unblock()
+      }, '2000');
+    </script>
   </body>
 </html>
