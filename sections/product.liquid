@@ -43,8 +43,10 @@
   {%- endfor -%}
 </div>
 
-<button class="product__image--btn-previous" disabled role="button">Previous</button>
-<button class="product__image--btn-next" role="button">Next</button>
+{%- if product.images.size > 1 -%}
+  <button class="product__image--btn-previous" disabled role="button">Previous</button>
+  <button class="product__image--btn-next" role="button">Next</button>
+{% endif %}
 
 <p>{{ product.description }}</p>
 
