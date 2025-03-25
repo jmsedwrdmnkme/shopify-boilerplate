@@ -100,21 +100,6 @@
   const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
   /*
-    Update product price update
-  */
-  const addToCartSelect = addToCartForm.querySelector('select');
-  const productPrice = document.querySelector('.product__price');
-
-  productPriceUpdate = () => {
-    let price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
-
-    productPrice.innerHTML = price;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => productPriceUpdate());
-  addToCartSelect.addEventListener('change', () => productPriceUpdate());
-
-  /*
     Add to cart
   */
   addToCartBtn.addEventListener('click', (event) => {
