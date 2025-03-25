@@ -166,11 +166,19 @@
       const currentThumbnail = productGallery.querySelector('.active');
 
       if (button.textContent.includes('Next')) {
-        currentImage.classList.add('display-none');
-        currentImage.nextSibling.classList.remove('display-none');
+        if (!imageThumbnails[0].classList.contains('active')) {
+          currentImage.classList.add('display-none');
+          currentImage.nextSibling.classList.remove('display-none');
+          currentThumbnail.classList.add('display-none');
+          currentThumbnail.nextSibling.classList.remove('display-none');
+        }
       } else {
-        currentImage.classList.add('display-none');
-        currentImage.previousSibling.classList.remove('display-none');
+        if (!imageThumbnails[-1].classList.contains('active')) {
+          currentImage.classList.add('display-none');
+          currentImage.previousSibling.classList.remove('display-none');
+          currentThumbnail.classList.add('display-none');
+          currentThumbnail.previousSibling.classList.remove('display-none');
+        }
       }
     });
   });
