@@ -53,8 +53,8 @@
         {%- endcapture -%}
 
         <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
-           src="{{ image.src | img_url: '128x128' }}"
-           height="128" width="128"
+           src="{{ image.src | img_url: '160x160' }}"
+           height="160" width="160"
            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
         >
       {%- endfor -%}
