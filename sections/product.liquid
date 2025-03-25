@@ -173,7 +173,7 @@
           currentThumbnail.nextSibling.classList.remove('display-none');
         }
       } else {
-        if (!imageThumbnails[-1].classList.contains('active')) {
+        if (!imageThumbnails[`${imageThumbnails.length - 1}`].classList.contains('active')) {
           currentImage.classList.add('display-none');
           currentImage.previousSibling.classList.remove('display-none');
           currentThumbnail.classList.add('display-none');
