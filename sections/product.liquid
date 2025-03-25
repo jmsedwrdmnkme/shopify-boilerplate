@@ -65,7 +65,7 @@
 
 {%- if product.images.size > 1 -%}
   <div class="product__image--btn-container">
-    <button class="product__image--btn-previous" disabled role="button">Previous</button>
+    <button class="product__image--btn-prev" disabled role="button">Previous</button>
     <button class="product__image--btn-next" role="button">Next</button>
   </div>
 {% endif %}
@@ -132,8 +132,9 @@
   const images = productGallery.querySelectorAll('.product__image');
 
   const nextBtn = document.querySelector('.product__image--btn-next');
-  const prevBtn = document.querySelector('.product__image--btn-previous');
+  const prevBtn = document.querySelector('.product__image--btn-prev');
 
+  // Thumbnails
   imageThumbnails.forEach((thumbnail, number, array) => {
     thumbnail.addEventListener('click', () => {
       if (!thumbnail.classList.contains('active')) {
@@ -157,4 +158,16 @@
       }
     });
   });
+
+  // Buttons
+  [nextBtn, prevBtn].forEach((button, number) => {
+    button.addEventListener('click', () => {
+      if (button.classList.contains('next') {
+        console.log('Next');
+      } else {
+        console.log('Prev');
+      }
+    });
+  });
+
 {% endjavascript %}
