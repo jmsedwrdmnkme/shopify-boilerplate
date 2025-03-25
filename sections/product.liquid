@@ -168,16 +168,18 @@
       if (button.textContent.includes('Next')) {
         if (currentImage.nextSibling != null)  {
           currentImage.classList.add('display-none');
+          currentThumbnail.classList.remove('active');
+
           currentImage.nextSibling.classList.remove('display-none');
-          currentThumbnail.classList.add('display-none');
-          currentThumbnail.nextSibling.classList.remove('display-none');
+          currentThumbnail.nextSibling.classList.add('active');
         }
       } else if (button.textContent.includes('Previous')) {
         if (currentImage.previousSibling != null)  {
           currentImage.classList.add('display-none');
+          currentThumbnail.classList.remove('active');
+
           currentImage.previousSibling.classList.remove('display-none');
-          currentThumbnail.classList.add('display-none');
-          currentThumbnail.previousSibling.classList.remove('display-none');
+          currentThumbnail.previousSibling.classList.add('active');
         }
       }
     });
