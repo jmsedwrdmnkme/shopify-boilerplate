@@ -143,13 +143,13 @@
         images.forEach((image) => image.classList.add('display-none'));
         images[number].classList.remove('display-none');
 
-        if (thumbnail[0]) {
+        if (number === 0) {
           nextBtn.disabled = true;
         } else {
           nextBtn.disabled = false;
         }
 
-        if (thumbnail === array.length - 1) {
+        if (number === array.length - 1) {
           prevBtn.disabled = true;
         } else {
           prevBtn.disabled = false;
