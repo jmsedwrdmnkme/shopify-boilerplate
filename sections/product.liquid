@@ -52,7 +52,7 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-        <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} active{% endunless %}"
+        <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
            src="{{ image.src | img_url: '128x128' }}"
            height="128" width="128"
            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
@@ -71,16 +71,6 @@
 
 <p>{{ product.description }}</p>
 
-<style>
-  .product__image--thumbnail {
-    opacity: 0.75;
-  }
-
-  .active {
-    opacity: 1;
-  }
-</style>
-
 {% schema %}
   {
     "name": "Product",
@@ -98,6 +88,16 @@
     }
   }
 {% endschema %}
+
+{% style %}
+  .product__image--thumbnail {
+    opacity: 0.75;
+  }
+
+  .active {
+    opacity: 1;
+  }
+{% endstyle %}
 
 {% javascript %}
   const addToCartForm = document.querySelector('form[action$="/cart/add"]');
