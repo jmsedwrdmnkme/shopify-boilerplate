@@ -104,10 +104,13 @@
   /*
    * Add to cart
   */
-  document.querySelector('form[action$="/cart/add"] input[type="submit"]').addEventListener('click', (event) => {
+  const form = document.querySelector('form[action$="/cart/add"]');
+  const formAddBtn = form.querySelector('input[type="submit"]')
+
+  formAddBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const formData = new FormData('form[action$="/cart/add"]');
+    const formData = new FormData(form);
 
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
@@ -124,14 +127,18 @@
   /*
    * Picture gallery
    */
-  document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail, number) => {
+  const productGallery = document.querySelectorAll('.product__gallery');
+  const imageThumbnails = productGallery.querySelectorAll('.product__image--thumbnail');
+  const images = productGallery.querySelectorAll('.product__image');
+
+  imageThumbnails.forEach((thumbnail, number) => {
     thumbnail.addEventListener('click', () => {
       if (!thumbnail.classList.contains('active')) {
-        document.querySelector('.active').classList.remove('active');
+        productGallery.querySelector('.active').classList.remove('active');
         thumbnail.classList.add('active');
 
-        document.querySelectorAll('.product__image').forEach((image) => image.classList.add('display-none'));
-        document.querySelectorAll('.product__image')[number].classList.remove('display-none');
+        images.forEach((image) => image.classList.add('display-none'));
+        images[number].classList.remove('display-none');
       }
     });
   });
