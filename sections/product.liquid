@@ -93,6 +93,10 @@
   .active {
     opacity: 0.75;
   }
+
+  .active:hover {
+    cursor: default;
+  }
 {% endstyle %}
 
 {% javascript %}
@@ -100,7 +104,7 @@
   const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
   /*
-    Add to cart
+   * Add to cart
   */
   addToCartBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -118,4 +122,8 @@
       console.error('Error:', error);
     });
   });
+
+  /*
+   *
+   */
 {% endjavascript %}
