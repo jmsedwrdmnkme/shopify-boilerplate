@@ -19,28 +19,30 @@
 {% endform %}
 
 <div class="product__gallery">
-  {%- for image in product.images -%}
-    {%- capture variantTitle -%}
-      {%- for variant in image.variants -%}
-        {%- if image.attached_to_variant? -%}
-          {{ variant.title }}
-        {% endif %}
-      {%- endfor -%}
-    {%- endcapture -%}
+  <div class="product__gallery--container">
+    {%- for image in product.images -%}
+      {%- capture variantTitle -%}
+        {%- for variant in image.variants -%}
+          {%- if image.attached_to_variant? -%}
+            {{ variant.title }}
+          {% endif %}
+        {%- endfor -%}
+      {%- endcapture -%}
 
-    <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
-      <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
-      <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
-      <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
-      <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '928x928' }}" />
-      <img
-          src="{{ image.src | img_url: '928x928' }}"
-          height="928" width="928"
-          alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
-          {% unless forloop.first %}loading="lazy"{% endunless %}
-      >
-    </picture>
-  {%- endfor -%}
+      <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
+        <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
+        <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
+        <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
+        <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '928x928' }}" />
+        <img
+            src="{{ image.src | img_url: '928x928' }}"
+            height="928" width="928"
+            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
+            {% unless forloop.first %}loading="lazy"{% endunless %}
+        >
+      </picture>
+    {%- endfor -%}
+  </div>
 
   {%- if product.images.size > 1 -%}
     <div class="product__gallery--thumbnail-container">
@@ -53,7 +55,7 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-        <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}"
+        <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} active{% endunless %}"
            src="{{ image.src | img_url: '128x128' }}"
            height="128" width="128"
            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
@@ -146,21 +148,28 @@
   /*
     Allow browsing of product images via button navigation
   */
-  const productPictureGallery = document.querySelector('.product__gallery');
+  const productPictureGallery = document.querySelector('.product__gallery--container');
 
   productPictureBrowse = (direction) => {
     let currentPicture = document.querySelector('.product__image:not(.display-none)');
+    let currentThumbnail = document.querySelector('.product__image--thumbnail.active');
     let currentPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
     let currentPictureBtnNext = document.querySelector('[class*=btn-next]');
 
     if (direction === 'next') {
-      currentPicture.classList.add('display-none')
+      currentPicture.classList.add('display-none');
       currentPicture.nextSibling.classList.remove('display-none');
+      currentThumbnail.classList.remove('active')
+      currentThumbnail.nextSibling.classList.add('active');
+
       currentPictureBtnPrevious.hasAttribute('disabled') && currentPictureBtnPrevious.removeAttribute('disabled');
       (productPictureGallery.lastChild == currentPicture.nextSibling) && currentPictureBtnNext.setAttribute('disabled', '');
     } else if (direction === 'previous') {
-      currentPicture.classList.add('display-none')
+      currentPicture.classList.add('display-none');
       currentPicture.previousSibling.classList.remove('display-none');
+      currentThumbnail.classList.remove('active')
+      currentThumbnail.previousSibling.classList.add('active');
+
       currentPictureBtnNext.hasAttribute('disabled') && currentPictureBtnNext.removeAttribute('disabled');
       (productPictureGallery.firstChild == currentPicture.previousSibling) && currentPictureBtnPrevious.setAttribute('disabled', '');
     } else if (!direction) {
