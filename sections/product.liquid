@@ -176,7 +176,7 @@
           prevBtn.disabled = false;
         }
 
-        currentImage.nextSibling.nextSibling == null && button.disabled = true;
+        (currentImage.nextSibling.nextSibling == null) && button.disabled = true;
 
       } else if (button.textContent.includes('Previous')) {
         if (currentImage.previousSibling != null)  {
@@ -189,7 +189,7 @@
           nextBtn.disabled = false;
         }
 
-        currentImage.previousSibling.previousSibling == null && button.disabled = true;
+        (currentImage.previousSibling.previousSibling == null) && button.disabled = true;
       }
     });
   });
