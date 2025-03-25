@@ -121,15 +121,15 @@
   });
 
   /*
-   * Picture gallery
+   * Picture gallery - Thumbnails
    */
   document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail) => {
     thumbnail.addEventListener('click', () => {
-      console.log('Click');
       if (!thumbnail.classList.contains('active')) {
         document.querySelector('.active').classList.remove('active');
         thumbnail.classList.add('active');
-        console.log('Change state');
+
+        console.log(thumbnail.classList[1]);
       }
     });
   });
