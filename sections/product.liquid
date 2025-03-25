@@ -125,10 +125,12 @@
    */
   document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail) => {
     thumbnail.addEventListener('click', () => {
-      thumbnail.classList.contains('active') && break;
+      console.log('Click');
+      thumbnail.classList.contains('active') && break && console.log('Break');
 
       document.querySelector('.active').classList.remove('active');
       thumbnail.classList.add('active');
+      console.log('Change state');
     });
   });
 {% endjavascript %}
