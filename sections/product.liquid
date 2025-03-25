@@ -156,6 +156,9 @@
     let currentPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
     let currentPictureBtnNext = document.querySelector('[class*=btn-next]');
 
+    productPictureGallery.firstChild == currentPicture && currentPictureBtnPrevious.setAttribute('disabled', '') || currentPictureBtnPrevious.removeAttribute('disabled', '');
+    productPictureGallery.lastChild == currentPicture && currentPictureBtnNext.setAttribute('disabled', '') || currentPictureBtnNext.removeAttribute('disabled', '');
+
     if (direction === 'next') {
       currentPicture.classList.add('display-none');
       currentPicture.nextSibling.classList.remove('display-none');
@@ -163,7 +166,8 @@
       currentThumbnail.nextSibling.classList.add('active');
 
       currentPictureBtnPrevious.hasAttribute('disabled') && currentPictureBtnPrevious.removeAttribute('disabled');
-      (productPictureGallery.lastChild == currentPicture.nextSibling) && currentPictureBtnNext.setAttribute('disabled', '');
+      productPictureGallery.lastChild == currentPicture.nextSibling && currentPictureBtnNext.setAttribute('disabled', '');
+
     } else if (direction === 'previous') {
       currentPicture.classList.add('display-none');
       currentPicture.previousSibling.classList.remove('display-none');
@@ -171,18 +175,13 @@
       currentThumbnail.previousSibling.classList.add('active');
 
       currentPictureBtnNext.hasAttribute('disabled') && currentPictureBtnNext.removeAttribute('disabled');
-      (productPictureGallery.firstChild == currentPicture.previousSibling) && currentPictureBtnPrevious.setAttribute('disabled', '');
-    } else if (!direction) {
-      (productPictureGallery.firstChild == currentPicture) && currentPictureBtnPrevious.setAttribute('disabled', '') || currentPictureBtnPrevious.removeAttribute('disabled', '');
-      (productPictureGallery.lastChild == currentPicture) && currentPictureBtnNext.setAttribute('disabled', '') || currentPictureBtnNext.removeAttribute('disabled', '');
+      productPictureGallery.firstChild == currentPicture.previousSibling && currentPictureBtnPrevious.setAttribute('disabled', '');
+
     }
   }
 
-  const productPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
-  const productPictureBtnNext = document.querySelector('[class*=btn-next]');
-
-  productPictureBtnPrevious.addEventListener('click', () => productPictureBrowse('previous'));
-  productPictureBtnNext.addEventListener('click', () => productPictureBrowse('next'));
+  document.querySelector('[class*=btn-previous]').addEventListener('click', () => productPictureBrowse('previous'));
+  document.querySelector('[class*=btn-next]').addEventListener('click', () => productPictureBrowse('next'));
 
 
   /*
