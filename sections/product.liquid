@@ -162,7 +162,7 @@
   // Buttons
   [nextBtn, prevBtn].forEach((button, number) => {
     button.addEventListener('click', () => {
-      const currentImage = productGallery.querySelector(':not(.display-none)');
+      const currentImage = productGallery.querySelector('picture:not(.display-none)');
       const currentThumbnail = productGallery.querySelector('.active');
 
       console.log(currentImage);
