@@ -165,13 +165,12 @@
       const currentImage = productGallery.querySelector('picture:not(.display-none)');
       const currentThumbnail = productGallery.querySelector('.active');
 
-      console.log(currentImage);
-      console.log(currentThumbnail);
-
       if (button.textContent.includes('Next')) {
-
+        currentImage.classList.add('display-none');
+        currentImage.nextSibling.classList.remove('display-none');
       } else {
-
+        currentImage.classList.add('display-none');
+        currentImage.previousSibling.classList.remove('display-none');
       }
     });
   });
