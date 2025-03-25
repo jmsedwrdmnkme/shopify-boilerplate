@@ -134,7 +134,7 @@
   const nextBtn = document.querySelector('.product__image--btn-next');
   const prevBtn = document.querySelector('.product__image--btn-previous');
 
-  imageThumbnails.forEach((thumbnail, number) => {
+  imageThumbnails.forEach((thumbnail, number, array) => {
     thumbnail.addEventListener('click', () => {
       if (!thumbnail.classList.contains('active')) {
         productGallery.querySelector('.active').classList.remove('active');
@@ -143,13 +143,13 @@
         images.forEach((image) => image.classList.add('display-none'));
         images[number].classList.remove('display-none');
 
-        if (thumbnail.firstChild) {
+        if (thumbnail[0]) {
           nextBtn.disabled = true;
         } else {
           nextBtn.disabled = false;
         }
 
-        if (thumbnail.lastChild) {
+        if (thumbnail === array.length - 1) {
           prevBtn.disabled = true;
         } else {
           prevBtn.disabled = false;
