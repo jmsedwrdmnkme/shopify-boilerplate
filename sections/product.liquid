@@ -172,6 +172,10 @@
 
           currentImage.nextSibling.classList.remove('display-none');
           currentThumbnail.nextSibling.classList.add('active');
+
+          prevBtn.disabled = false;
+        } else {
+          button.disabled = true;
         }
       } else if (button.textContent.includes('Previous')) {
         if (currentImage.previousSibling != null)  {
@@ -180,6 +184,10 @@
 
           currentImage.previousSibling.classList.remove('display-none');
           currentThumbnail.previousSibling.classList.add('active');
+
+          nextBtn.disabled = false;
+        } else {
+          button.disabled = true;
         }
       }
     });
