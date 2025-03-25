@@ -121,15 +121,16 @@
   });
 
   /*
-   * Picture gallery - Thumbnails
+   * Picture gallery
    */
-  document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail) => {
+  document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail, number) => {
     thumbnail.addEventListener('click', () => {
       if (!thumbnail.classList.contains('active')) {
         document.querySelector('.active').classList.remove('active');
         thumbnail.classList.add('active');
 
-        console.log(thumbnail.classList[1]);
+        document.querySelectorAll('.product__image').forEach((image) => image.classList.add('display-none'));
+        document.querySelectorAll('.product__image')[number].classList.remove('display-none');
       }
     });
   });
