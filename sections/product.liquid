@@ -143,6 +143,8 @@
         images.forEach((image) => image.classList.add('display-none'));
         images[number].classList.remove('display-none');
 
+        console.log(number);
+
         if (number === 0) {
           nextBtn.disabled = true;
         } else {
