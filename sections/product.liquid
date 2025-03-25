@@ -100,16 +100,13 @@
 {% endstyle %}
 
 {% javascript %}
-  const addToCartForm = document.querySelector('form[action$="/cart/add"]');
-  const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
-
   /*
    * Add to cart
   */
-  addToCartBtn.addEventListener('click', (event) => {
+  document.querySelector('form[action$="/cart/add"] input[type="submit"]').addEventListener('click', (event) => {
     event.preventDefault();
 
-    const formData = new FormData(addToCartForm);
+    const formData = new FormData('form[action$="/cart/add"]');
 
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
@@ -124,6 +121,14 @@
   });
 
   /*
-   *
+   * Picture gallery
    */
+  document.querySelectorAll('.product__image--thumbnail').forEach((thumbnail) => {
+    thumbnail.addEventListener('click', () => {
+      thumbnail.classList.contains('active') && break;
+
+      document.querySelector('.active').classList.remove('active');
+      thumbnail.classList.add('active');
+    });
+  });
 {% endjavascript %}
