@@ -162,10 +162,16 @@
   // Buttons
   [nextBtn, prevBtn].forEach((button, number) => {
     button.addEventListener('click', () => {
+      const currentImage = productGallery.querySelector(':not(.display-none)');
+      const currentThumbnail = productGallery.querySelector('.active');
+
+      console.log(currentImage);
+      console.log(currentThumbnail);
+
       if (button.textContent.includes('Next')) {
-        console.log('Next');
+
       } else {
-        console.log('Prev');
+
       }
     });
   });
