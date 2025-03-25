@@ -13,9 +13,6 @@
     {% endfor %}
   </select>
   <input type="submit" value="Add to cart">
-  <dialog>
-    <p><span class="dialog--quantity"></span> x <span class="dialog--title"></span> added to <a href="/cart">cart</a></p>
-  </dialog>
 {% endform %}
 
 <div class="product__gallery">
@@ -103,13 +100,30 @@
 {% endschema %}
 
 {% javascript %}
-  /*
-    Add to cart Ajax
-  */
   const addToCartForm = document.querySelector('form[action$="/cart/add"]');
   const addToCartBtn = addToCartForm.querySelector('input[type="submit"]');
 
-  addToCartAjax = () => {
+  /*
+    Update product price update
+  */
+  const addToCartSelect = addToCartForm.querySelector('select');
+  const productPrice = document.querySelector('.product__price');
+
+  productPriceUpdate = () => {
+    let price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
+
+    productPrice.innerHTML = price;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => productPriceUpdate());
+  addToCartSelect.addEventListener('change', () => productPriceUpdate());
+
+  /*
+    Add to cart
+  */
+  addToCartBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+
     const formData = new FormData(addToCartForm);
 
     fetch(window.Shopify.routes.root + 'cart/add.js', {
@@ -122,99 +136,5 @@
     .catch((error) => {
       console.error('Error:', error);
     });
-  };
-
-
-  /*
-    Update product price and image based on select option
-  */
-  const addToCartSelect = addToCartForm.querySelector('select');
-  const productTitle = document.querySelector('.product__title');
-  const productPrice = document.querySelector('.product__price');
-  const productPictures = document.querySelectorAll('.product__image');
-
-  productImageUpdate = () => {
-    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
-
-    productPictures.forEach((picture) => {
-      (picture.classList.contains(productVariantTitle.toLowerCase().replace(/\s+/g, '-').replace(/\&amp\;/g, 'and'))) ? picture.classList.remove('display-none') : picture.classList.add('display-none');
-    });
-  }
-
-  productPriceUpdate = () => {
-    let price = addToCartSelect.options[addToCartSelect.selectedIndex].getAttribute('data-price');
-
-    productPrice.innerHTML = price;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => productPriceUpdate());
-  addToCartSelect.addEventListener('change', () => {
-    productImageUpdate();
-    productPriceUpdate();
-    productPictureBrowse();
-  });
-
-
-  /*
-    Allow browsing of product images via button navigation
-  */
-  const productPictureGallery = document.querySelector('.product__gallery--container');
-
-  productPictureBrowse = (direction) => {
-    let currentPicture = document.querySelector('.product__image:not(.display-none)');
-    let currentThumbnail = document.querySelector('.product__image--thumbnail.active');
-    let currentPictureBtnPrevious = document.querySelector('[class*=btn-previous]');
-    let currentPictureBtnNext = document.querySelector('[class*=btn-next]');
-
-    productPictureGallery.firstChild == currentPicture && currentPictureBtnPrevious.setAttribute('disabled', '') || currentPictureBtnPrevious.removeAttribute('disabled', '');
-    productPictureGallery.lastChild == currentPicture && currentPictureBtnNext.setAttribute('disabled', '') || currentPictureBtnNext.removeAttribute('disabled', '');
-
-    if (direction === 'next') {
-      currentPicture.classList.add('display-none');
-      currentPicture.nextSibling.classList.remove('display-none');
-      currentThumbnail.classList.remove('active')
-      currentThumbnail.nextSibling.classList.add('active');
-
-      currentPictureBtnPrevious.hasAttribute('disabled') && currentPictureBtnPrevious.removeAttribute('disabled');
-      productPictureGallery.lastChild == currentPicture.nextSibling && currentPictureBtnNext.setAttribute('disabled', '');
-
-    } else if (direction === 'previous') {
-      currentPicture.classList.add('display-none');
-      currentPicture.previousSibling.classList.remove('display-none');
-      currentThumbnail.classList.remove('active')
-      currentThumbnail.previousSibling.classList.add('active');
-
-      currentPictureBtnNext.hasAttribute('disabled') && currentPictureBtnNext.removeAttribute('disabled');
-      productPictureGallery.firstChild == currentPicture.previousSibling && currentPictureBtnPrevious.setAttribute('disabled', '');
-
-    }
-  }
-
-  document.querySelector('[class*=btn-previous]').addEventListener('click', () => productPictureBrowse('previous'));
-  document.querySelector('[class*=btn-next]').addEventListener('click', () => productPictureBrowse('next'));
-
-
-  /*
-    Dialog config and show on cart add
-  */
-  const addToCartDialog = addToCartForm.querySelector('dialog');
-  const dialogTitle = document.querySelector('.dialog--title');
-  const dialogQuantity = document.querySelector('.dialog--quantity');
-
-  addToCartBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    addToCartAjax();
-
-    let productVariantTitle = addToCartSelect.options[addToCartSelect.selectedIndex].innerHTML;
-    let title = `${productTitle.innerHTML} ${productVariantTitle}`;
-    let quantity = addToCartForm.querySelector('input[name="quantity"]').value;
-
-    dialogTitle.innerHTML = title;
-    dialogQuantity.innerHTML = quantity;
-
-    addToCartDialog.showModal();
-    setTimeout(() =>  {
-      addToCartDialog.close()
-    }, 4000);
   });
 {% endjavascript %}
