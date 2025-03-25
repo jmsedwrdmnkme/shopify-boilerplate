@@ -35,9 +35,6 @@ importers:
       postcss-import:
         specifier: ^16.1.0
         version: 16.1.0(postcss@8.4.49)
-      yett:
-        specifier: ^0.2.3
-        version: 0.2.3
 
 packages:
 
@@ -2035,9 +2032,6 @@ packages:
 
   yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
-
-  yett@0.2.3:
-    resolution: {integrity: sha512-fXNxbiMJntGVAml4hcGmQqP9LtJEQXMvplxPZUCqJLqWRhofIpBHAGgG0pULoWqiuAGGrgxNJ841SmSKRgK0Wg==}
 
 snapshots:
 
@@ -4304,5 +4298,3 @@ snapshots:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
     optional: true
-
-  yett@0.2.3: {}

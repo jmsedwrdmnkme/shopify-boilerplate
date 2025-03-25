@@ -4,7 +4,7 @@ import postcss from 'gulp-postcss';
 import cssnano from 'cssnano';
 import atImport from 'postcss-import';
 import concat from 'gulp-concat';
-import imagemin, {mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 
 // Clean
 export const clean = () => deleteAsync([ 'assets' ]);
@@ -21,7 +21,7 @@ export function styles() {
 export function images() {
   return src('src/images/*', {encoding: false})
     .pipe(imagemin([
-      //gifsicle({interlaced: true}),
+      gifsicle({interlaced: true}),
       mozjpeg({quality: 75, progressive: true}),
       optipng({optimizationLevel: 5}),
       svgo({plugins: [
@@ -33,16 +33,11 @@ export function images() {
     .pipe(dest('assets/'));
 }
 
-export function modules() {
-  return src('node_modules/yett/dist/yett.min.modern.js', {encoding: false})
-    .pipe(dest('assets/'));
-}
-
 function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/images/*', images);
 }
 
-const build = series(clean, parallel(modules, images, styles), watchFiles);
+const build = series(clean, parallel(images, styles), watchFiles);
 
 export default build;
