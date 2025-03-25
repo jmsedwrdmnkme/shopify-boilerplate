@@ -131,6 +131,9 @@
   const imageThumbnails = productGallery.querySelectorAll('.product__image--thumbnail');
   const images = productGallery.querySelectorAll('.product__image');
 
+  const nextBtn = document.querySelector('.product__image--btn-next');
+  const prevBtn = document.querySelector('.product__image--btn-previous');
+
   imageThumbnails.forEach((thumbnail, number) => {
     thumbnail.addEventListener('click', () => {
       if (!thumbnail.classList.contains('active')) {
@@ -139,6 +142,18 @@
 
         images.forEach((image) => image.classList.add('display-none'));
         images[number].classList.remove('display-none');
+
+        if (thumbnail.firstElementChild) {
+          nextBtn.disabled = true;
+        } else {
+          nextBtn.disabled = false;
+        }
+
+        if (thumbnail.lastElementChild) {
+          prevBtn.disabled = true;
+        } else {
+          prevBtn.disabled = false;
+        }
       }
     });
   });
