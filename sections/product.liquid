@@ -9,6 +9,7 @@
 {% form 'product', product %}
   {% assign is_bundle = false %}
   {% for collection in product.collections %}
+    {{ collection.title }}
     {% if collection.title contains 'Bundles' %}
       {% assign is_bundle = true %}
       {% break %}
