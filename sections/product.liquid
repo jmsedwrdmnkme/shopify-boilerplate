@@ -161,11 +161,11 @@
     });
   });
 
-  {% unless product.has_only_default_variant %}
-    // Selected option
-    option.addEventListener('change', () => {
-      const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
+  // Selected option
+  option.addEventListener('change', () => {
+    const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
 
+    if (selectedOption != null) {
       imageThumbnails.forEach((thumbnail, number, array) => {
         thumbnail.classList.remove('active')
 
@@ -205,8 +205,8 @@
           }
         }
       });
-    });
-  {% endunless %}
+    }
+  });
 
   // Buttons
   [nextBtn, prevBtn].forEach((button, number) => {
