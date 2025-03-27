@@ -7,6 +7,9 @@
 </p>
 
 {% form 'product', product %}
+  {% assign is_bundle = product.collections | where: 'handle' : '[bundles]' %}
+  {{ is_bundle }}
+
   <input type="number" name="quantity" min="1" value="1">
   <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
