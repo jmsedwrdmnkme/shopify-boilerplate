@@ -6,7 +6,7 @@
   <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
+          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variantTitle.size > 1 %} data-title="{{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}"{% endif %}>{{ variant.title }}</option>
         {% else %}
           <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
