@@ -131,6 +131,8 @@
   const imageThumbnails = productGallery.querySelectorAll('.product__image--thumbnail');
   const images = productGallery.querySelectorAll('.product__image');
 
+  const option = form.querySelector('select[name="id"]');
+
   const nextBtn = document.querySelector('.product__image--btn-next');
   const prevBtn = document.querySelector('.product__image--btn-prev');
 
@@ -160,18 +162,24 @@
   });
 
   // Selected option
-  const option = form.querySelector('select[name="id"]');
-
   option.addEventListener('change', () => {
     const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
-    const selectedThumbnail = productGallery.querySelector(`.product__image--thumbnail.${selectedOption}`);
-    const selectedImage = productGallery.querySelector(`.product__image.${selectedOption}`);
 
-    imageThumbnails.forEach((thumbnail) => thumbnail.classList.remove('active'));
-    images.forEach((image) => image.classList.add('display-none'));
+    imageThumbnails.forEach((thumbnail) => {
+      thumbnail.classList.remove('active')
 
-    selectedThumbnail.classList.add('active');
-    selectedImage.classList.remove('display-none');
+      if (thumbnail.classList.contains(selectedOption)) {
+        thumbnail.classList.add('active');
+      }
+    });
+
+    images.forEach((image) => {
+      image.classList.add('display-none')
+
+      if (image.classList.contains(selectedOption)) {
+        image.classList.remove('display-none');
+      }
+    });
   });
 
   // Buttons
