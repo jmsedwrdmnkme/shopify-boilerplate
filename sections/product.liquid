@@ -8,7 +8,7 @@
 
 {% form 'product', product %}
   <input type="number" name="quantity" min="1" value="1">
-  <select name="id"{% if product.has_only_default_variant or product.collections contains 'Bundles' %} class="display-none"{% endif %}>
+  <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
           <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}"{% endif %}>{{ variant.title }}</option>
@@ -32,12 +32,12 @@
       {%- endcapture -%}
 
       <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
-        <source media="(max-width: 375.98px)" srcset="{{ image.src | img_url: '343x343' }}" />
-        <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | img_url: '543x543' }}" />
-        <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | img_url: '736x736' }}" />
-        <source media="(min-width: 769px)" srcset="{{ image.src | img_url: '750x750' }}" />
+        <source media="(max-width: 375.98px)" srcset="{{ image.src | image_url: width: 343, height: 343 }}" />
+        <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | image_url: width: 543, height: 543 }}" />
+        <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | image_url: width: 736, height: 736 }}" />
+        <source media="(min-width: 769px)" srcset="{{ image.src | image_url: width: 750, height: 750 }}" />
         <img
-            src="{{ image.src | img_url: '750' }}"
+            src="{{ image.src | image_url: width: 750, height: 750 }}"
             height="750" width="750"
             alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
             {% unless forloop.first %}loading="lazy"{% endunless %}
@@ -58,7 +58,7 @@
         {%- endcapture -%}
 
         <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
-           src="{{ image.src | img_url: '160x160' }}"
+           src="{{ image.src | image_url: width: 160, height: 160 }}"
            height="160" width="160"
            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
            loading="lazy"
