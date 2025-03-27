@@ -163,7 +163,7 @@
   const option = form.querySelector('select[name="id"]');
 
   option.addEventListener('change', () => {
-    const selectedOption = this.options[this.selectedIndex].getAttribute('data-title');
+    const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
     console.log(selectedOption);
   });
 
