@@ -8,7 +8,7 @@
 
 {% form 'product', product %}
   <input type="number" name="quantity" min="1" value="1">
-  <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
+  <select name="id"{% if product.has_only_default_variant OR product.collections contains 'Bundles' %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
           <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}"{% endif %}>{{ variant.title }}</option>
