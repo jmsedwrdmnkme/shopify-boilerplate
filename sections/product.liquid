@@ -61,14 +61,14 @@
       {%- endfor -%}
     </div>
   {% endif %}
-</div>
 
-{%- if product.images.size > 1 -%}
-  <div class="product__image--btn-container">
-    <button class="product__image--btn-prev" disabled role="button">Previous</button>
-    <button class="product__image--btn-next" role="button">Next</button>
-  </div>
-{% endif %}
+  {%- if product.images.size > 1 -%}
+    <div class="product__image--btn-container">
+      <button class="product__image--btn-prev" disabled role="button">Previous</button>
+      <button class="product__image--btn-next" role="button">Next</button>
+    </div>
+  {% endif %}
+</div>
 
 <p>{{ product.description }}</p>
 
