@@ -7,7 +7,7 @@
 </p>
 
 {% form 'product', product %}
-  {% capture is_bundle = product.collections | where: 'handle' : '[bundles]' %}
+  {% assign is_bundle = product.collections | where: 'title' : 'Bundles' %}
   {{ is_bundle }}
 
   <input type="number" name="quantity" min="1" value="1">
