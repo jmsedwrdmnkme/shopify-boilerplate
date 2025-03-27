@@ -165,19 +165,43 @@
   option.addEventListener('change', () => {
     const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
 
-    imageThumbnails.forEach((thumbnail) => {
+    imageThumbnails.forEach((thumbnail, number, array) => {
       thumbnail.classList.remove('active')
 
       if (thumbnail.classList.contains(selectedOption)) {
         thumbnail.classList.add('active');
       }
+
+      if (number === 0) {
+        prevBtn.disabled = true;
+      } else {
+        prevBtn.disabled = false;
+      }
+
+      if (number === array.length - 1) {
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.disabled = false;
+      }
     });
 
-    images.forEach((image) => {
+    images.forEach((image, number, array) => {
       image.classList.add('display-none')
 
       if (image.classList.contains(selectedOption)) {
         image.classList.remove('display-none');
+      }
+
+      if (number === 0) {
+        prevBtn.disabled = true;
+      } else {
+        prevBtn.disabled = false;
+      }
+
+      if (number === array.length - 1) {
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.disabled = false;
       }
     });
   });
