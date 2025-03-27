@@ -161,8 +161,11 @@
 
   // Selected option
   const option = form.querySelector('select[name="id"]');
-  const selectedOption = option.getAttribute('data-title');
-  console.log(selectedOption);
+
+  option.addEventListener('change', () => {
+    const selectedOption = option.getAttribute('data-title');
+    console.log(selectedOption);
+  });
 
   // Buttons
   [nextBtn, prevBtn].forEach((button, number) => {
