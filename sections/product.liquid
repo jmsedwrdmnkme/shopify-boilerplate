@@ -23,7 +23,7 @@
 <div class="product__gallery">
   <div class="product__gallery--container">
     {%- for image in product.images -%}
-      {%- capture variantTitle -%}
+      {%- capture variant_title -%}
         {%- for variant in image.variants -%}
           {%- if image.attached_to_variant? -%}
             {{ variant.title }}
@@ -31,7 +31,7 @@
         {%- endfor -%}
       {%- endcapture -%}
 
-      <picture class="product__image{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
+      <picture class="product__image{% if variant_title.size > 1 %} {{ variant_title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
         <source media="(max-width: 375.98px)" srcset="{{ image.src | image_url: width: 343, height: 343 }}" />
         <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | image_url: width: 543, height: 543 }}" />
         <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | image_url: width: 736, height: 736 }}" />
@@ -39,7 +39,7 @@
         <img
             src="{{ image.src | image_url: width: 750, height: 750 }}"
             height="750" width="750"
-            alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
+            alt="{{ image.alt | escape }}{% if variant_title.size > 1 %} {{ variant_title | strip }}{% endif %}"
             {% unless forloop.first %}loading="lazy"{% endunless %}
         >
       </picture>
@@ -49,7 +49,7 @@
   {%- if product.images.size > 1 -%}
     <div class="product__gallery--thumbnail-container">
       {%- for image in product.images -%}
-        {%- capture variantTitle -%}
+        {%- capture variant_title -%}
           {%- for variant in image.variants -%}
             {%- if image.attached_to_variant? -%}
               {{ variant.title }}
@@ -57,10 +57,10 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-        <img class="product__image--thumbnail{% if variantTitle.size > 1 %} {{ variantTitle | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
+        <img class="product__image--thumbnail{% if variant_title.size > 1 %} {{ variant_title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
            src="{{ image.src | image_url: width: 160, height: 160 }}"
            height="160" width="160"
-           alt="{{ image.alt | escape }}{% if variantTitle.size > 1 %} {{ variantTitle | strip }}{% endif %}"
+           alt="{{ image.alt | escape }}{% if variant_title.size > 1 %} {{ variant_title | strip }}{% endif %}"
            loading="lazy"
         >
       {%- endfor -%}
