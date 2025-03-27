@@ -161,7 +161,8 @@
 
   // Selected option
   const option = form.querySelector('select[name="id"]');
-  console.log(option);
+  const selectedOption = option.getAttribute('data-title');
+  console.log(selectedOption);
 
   // Buttons
   [nextBtn, prevBtn].forEach((button, number) => {
