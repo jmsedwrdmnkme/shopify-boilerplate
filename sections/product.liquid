@@ -164,7 +164,14 @@
 
   option.addEventListener('change', () => {
     const selectedOption = option.options[option.selectedIndex].getAttribute('data-title');
-    console.log(selectedOption);
+    const selectedThumbnail = productGallery.querySelector(`.product__image--thumbnail.${selectedOption}`);
+    const selectedImage = productGallery.querySelector(`.product__image.${selectedOption}`);
+
+    imageThumbnails.forEach((thumbnail) => thumbnail.classList.remove('active'));
+    images.forEach((image) => image.classList.add('display-none'));
+
+    selectedThumbnail.classList.add('active');
+    selectedImage.classList.remove('display-none');
   });
 
   // Buttons
