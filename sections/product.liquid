@@ -295,6 +295,7 @@
 
     if (bundleVariantId.includes('false')) {
       bundleVariant.disabled = true;
+      bundleVariant.textContent += ' (out of stock'); 
     }
 
     bundleVariant.addEventListener('change', () => {
