@@ -22,7 +22,7 @@
           {% assign bundle_variants = variant.title | split: '/' %}
         {% endif %}
 
-        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% for bundle_variant in bundle_variants %} data-bundle-variant{{ forloop.index0 }}="{{ bundle_variant | handleize }}"{% endfor %}>{{ variant.title }}</option>
+        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% if is_bundle %} data-bundle-variant="{{ bundle_variants | handleize }}"{% endif %}>{{ variant.title }}</option>
       {% else %}
         <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
@@ -38,7 +38,7 @@
         {% for value in product_option.values %}
           <div>
             <label for="{{ value | handleize }}">
-              <input type="radio" id="{{ value | handleize }}" name="data-bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
+              <input type="radio" id="{{ value | handleize }}" name="bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
               {{ value }}
             </label>
           </div>
@@ -288,11 +288,11 @@
   }
 
   // Bundles
-  const bundleVariants = form.querySelectorAll('[name*=data-bundle]');
+  const bundleVariants = form.querySelectorAll('[name*=bundle-variant]');
 
   bundleVariants.forEach((bundleVariant) => {
     bundleVariant.addEventListener('change', () => {
-      const bundleCheckedVariants = form.querySelectorAll('[name*=data-bundle]:checked');
+      const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
       let variantsObj = [];
       let optionObj = [];
 
