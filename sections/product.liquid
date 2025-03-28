@@ -31,11 +31,11 @@
     {% capture variant_options %}
       {%- for variant in product.variants -%}
         {%- for option in variant.options -%}
-          {{ option }}
+          {{ option }}_,
         {%- endfor -%}
       {%- endfor -%}
     {% endcapture %}
-    {{ variant_options }}
+    {{ variant_options | split: ',' | uniq | join: '_' }}
   {% endif %}
 
   <input type="submit" value="Add to cart">
