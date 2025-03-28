@@ -36,7 +36,7 @@
         <legend>{{ product_option.name }}</legend>
         {% for value in product_option.values %}
           <div>
-            <input type="radio" id="{{ value | handleize }}" name="{{ product_option.name | handleize }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
+            <input type="radio" id="{{ value | handleize }}" name="data-bundle-variant{{ forloop.index0 }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
             <label for="{{ value | handleize }}">{{ value }}</label>
           </div>
         {% endfor %}
