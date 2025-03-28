@@ -32,15 +32,14 @@
       <div>
         {%- if variant.available == true -%}
           {{ variant.title }}
-          {%- for option in variant.options -%}
-            <p>{{ option }}</p>
-          {%- endfor -%}
         {%- else -%}
           {{ variant.title }} - out of stock
-          {%- for option in variant.options -%}
-            <p>{{ option }}</p>
-          {%- endfor -%}
         {%- endif -%}
+        <ul>
+          {%- for option in variant.options -%}
+            <li>{{ option }}</li>
+          {%- endfor -%}
+        </ul>
       </div>
     {%- endfor -%}
   {% endif %}
