@@ -293,7 +293,9 @@
   [...option.options].forEach((option) => {
     const optionValue = option.value;
 
-    console.log(optionValue);
+    if (optionValue.includes('sold out')) {
+      console.log(optionValue);
+    }
   });
 
   bundleVariants.forEach((bundleVariant) => {
