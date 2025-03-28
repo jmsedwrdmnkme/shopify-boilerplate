@@ -28,16 +28,14 @@
 
   {% if is_bundle %}
     <h2>Bundle customisation</h2>
-    <ul>
-      {%- for product_option in product.options_with_values -%}
-        <li>{{ product_option.name }}</li>
-        <ul>
-          {%- for value in product_option.values -%}
-            <li>{{ value }}</li>
-          {%- endfor -%}
-        </ul>
-      {%- endfor -%}
-    </ul>
+    <div>
+      {% for product_option in product.options_with_values %}
+        <h3>{{ product_option.name }}</h3>
+        {% for value in product_option.values %}
+          <button role="button">{{ value }}</button>
+        {% endfor %}
+      {% endfor %}
+    </div>
   {% endif %}
 
   <input type="submit" value="Add to cart">
