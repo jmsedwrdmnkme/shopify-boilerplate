@@ -28,20 +28,14 @@
 
   {% if is_bundle %}
     <h2>Bundle customisation</h2>
-    {%- for variant in product.variants -%}
-      <div>
-        {%- if variant.available == true -%}
-          {{ variant.title }}
-        {%- else -%}
-          {{ variant.title }} - out of stock
-        {%- endif -%}
-        <ul>
-          {%- for option in variant.options -%}
-            <li>{{ option }}</li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    {%- endfor -%}
+    {% capture variant_options %}
+      {%- for variant in product.variants -%}
+        {%- for option in variant.options -%}
+          <li>{{ option }}</li>
+        {%- endfor -%}
+      {%- endfor -%}
+    {% endcapture %}
+    {{ variant_options }}
   {% endif %}
 
   <input type="submit" value="Add to cart">
