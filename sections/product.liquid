@@ -299,7 +299,7 @@
         const variantName = checkedVariant.name;
         const variantValue = checkedVariant.value;
 
-        variantsObj.push({`${variantName}`: variantValue});
+        variantsObj.push({[variantName]: variantValue});
       });
 
       console.log(variantsObj);
