@@ -301,10 +301,10 @@
         variantsValues.push(checkedVariant.value);
       });
 
+      console.log(variantsAttributes);
+      console.log(variantsValues);
+
       [...option.options].forEach((option) => {
-        if (option.hasAttributes([...variantsAttributes])) {
-          console.log(option);
-        }
       });
     });
   });
