@@ -303,13 +303,13 @@
 
       let optionObj = [];
 
-      [...option.options].forEach((option) => {
+      [...option.options].forEach((option, index) => {
         const optionAttributeName = option.getAttributeNames();
         const optionAttributeValue = option
           .getAttributeNames()
           .map(name => option.getAttribute(name));
 
-        optionObj.push({[optionAttributeName]: optionAttributeValue});
+        optionObj.push({[optionAttributeName[index]]: optionAttributeValue[index]});
       });
 
       console.log(optionObj);
