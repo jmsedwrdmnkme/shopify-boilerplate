@@ -304,7 +304,8 @@
       console.log(variantsAttributes);
       console.log(variantsValues);
 
-      [...option.options].forEach((option) => {
+      variantsAttributes.forEach((attribute, index) => {
+        console.log(`${attribute}: ${variantsValues[index]}`);
       });
     });
   });
