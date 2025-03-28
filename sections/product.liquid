@@ -294,14 +294,11 @@
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=data-bundle]:checked');
       let variantsObj = [];
+      let optionObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
         variantsObj.push({[checkedVariant.name]: checkedVariant.value});
       });
-
-      console.log(variantsObj);
-
-      let optionObj = [];
 
       [...option.options].forEach((option) => {
         const optionAttributeNames = option.getAttributeNames();
@@ -316,9 +313,18 @@
         });
       });
 
-      console.log(optionObj);
+      //console.log(optionObj);
+      //console.log(variantsObj);
 
-      console.log(JSON.stringify(optionObj) === JSON.stringify(variantsObj));
+      const filtered = optionObj.filter(function(i){
+          return variantsObj.some(function(j){
+              return !Object.keys(j).some(function(prop){
+                  return i[prop] != j[prop];
+              });
+          });
+      });
+
+      console.log(filtered);
     });
   });
 {% endjavascript %}
