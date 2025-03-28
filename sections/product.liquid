@@ -290,6 +290,12 @@
   // Bundles
   const bundleVariants = form.querySelectorAll('[name*=bundle-variant]');
 
+  [...option.options].forEach((option) => {
+    const optionValue = option.value;
+
+    console.log(optionValue);
+  });
+
   bundleVariants.forEach((bundleVariant) => {
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
@@ -303,9 +309,6 @@
 
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
-        const optionValue = option.value;
-
-        console.log(optionValue);
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
