@@ -290,14 +290,6 @@
   // Bundles
   const bundleVariants = form.querySelectorAll('[name*=bundle-variant]');
 
-  [...option.options].forEach((option) => {
-    const optionValue = option.value;
-
-    if (optionValue.includes('sold out')) {
-      console.log(optionValue);
-    }
-  });
-
   bundleVariants.forEach((bundleVariant) => {
     const bundleVariantId = bundleVariant.id;
 
