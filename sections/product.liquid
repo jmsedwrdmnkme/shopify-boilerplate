@@ -301,6 +301,8 @@
         variantsObj.push({[checkedVariant.name]: checkedVariant.value});
       });
 
+      console.log(variantsAttributes);
+
       [...option.options].forEach((option) => {
         if (option.hasAttributes(variantsAttributes)) {
           console.log(option);
