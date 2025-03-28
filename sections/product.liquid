@@ -299,6 +299,12 @@
   });
 
   bundleVariants.forEach((bundleVariant) => {
+    const bundleVariantId = bundleVariant.id;
+
+    if (bundleVariantId === 'false') {
+      bundleVariant.disabled = true;
+    }
+
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
       let variantsArr = [];
@@ -311,11 +317,6 @@
 
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
-        const optionVariantId = optionVariant.id;
-
-        if (optionVariantId === 'false') {
-          option.disabled = true;
-        }
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
