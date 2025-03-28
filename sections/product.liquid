@@ -288,6 +288,9 @@
   }
 
   // Bundles
-  const bundleVariants = form.querySelectorAll('[name*=data-bundle]:checked');
-  console.log(bundleVariants);
+  const bundleCheckedVariants = form.querySelectorAll('[name*=data-bundle]:checked');
+
+  bundleCheckedVariants.forEach((checkedVariant) => {
+    console.log(checkedVariant); 
+  });
 {% endjavascript %}
