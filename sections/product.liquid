@@ -294,7 +294,6 @@
     const bundleVariantId = bundleVariant.id;
 
     if (bundleVariantId.includes('false')) {
-      bundleVariant.disabled = true;
       bundleVariant.parentNode.textContent += ' (out of stock)'; 
     }
 
