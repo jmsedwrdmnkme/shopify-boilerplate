@@ -296,7 +296,10 @@
       let variantsObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        variantsObj.push({checkedVariant.name: checkedVariant.value});
+        const variantName = checkedVariant.name;
+        const variantValue = checkedVariant.value;
+
+        variantsObj.push({`${variantName}`: variantValue});
       });
 
       console.log(variantsObj);
