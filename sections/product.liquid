@@ -293,7 +293,7 @@
   bundleVariants.forEach((bundleVariant) => {
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=data-bundle]:checked');
-      let variantsObj = {};
+      let variantsObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
         const variantName = checkedVariant.name;
