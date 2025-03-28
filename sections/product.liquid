@@ -304,8 +304,8 @@
       let optionObj = [];
 
       [...option.options].forEach((option) => {
-        const optionAttributeNames = option.getAttributeNames();
-        const optionAttributeValues = option
+        const optionAttributeName = option.getAttributeNames();
+        const optionAttributeValue = option
           .getAttributeNames()
           .map(name => option.getAttribute(name));
 
