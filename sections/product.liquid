@@ -20,10 +20,10 @@
     {% for variant in product.variants %}
       {% if variant.available == true %}
         {% if is_bundle %}
-          {% assign bundle_variants = variant.title | split: '/' | handleize %}
+          {% assign bundle_variants = variant.title | split: '/' %}
         {% endif %}
 
-        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% for bundle_variant in bundle_variants %} data-{{ bundle_variant }}="{{ bundle_variant }}"{% endfor %}>{{ variant.title }}</option>
+        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% for bundle_variant in bundle_variants %} data-{{ bundle_variant | handleize }}="{{ bundle_variant | handleize }}"{% endfor %}>{{ variant.title }}</option>
       {% else %}
         <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
