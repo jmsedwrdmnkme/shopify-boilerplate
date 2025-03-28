@@ -300,6 +300,12 @@
       });
 
       console.log(variantsObj);
+
+      let optionObj = [];
+
+      [...option.options].forEach((option) => {
+        console.log(option.getAttributes());
+      });
     });
   });
 {% endjavascript %}
