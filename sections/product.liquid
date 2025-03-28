@@ -311,6 +311,11 @@
 
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
+        const optionVariantId = optionVariant.id;
+
+        if (optionVariantId === 'false') {
+          option.disabled = true;
+        }
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
