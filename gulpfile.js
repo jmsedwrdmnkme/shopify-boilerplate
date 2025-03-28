@@ -12,7 +12,12 @@ export const clean = () => deleteAsync([ 'assets' ]);
 // Styles
 export function styles() {
   return src('front-end-boilerplate/src/css/main.css', {encoding: false})
-    .pipe(postcss([atImport, cssnano()]))
+    .pipe(postcss([
+      atImport,
+      cssnano({
+        preset: ["default", { discardComments: { removeAll: true } }]
+      })
+    ]))
     .pipe(concat('styles.css.liquid'))
     .pipe(dest('assets/'));
 }
