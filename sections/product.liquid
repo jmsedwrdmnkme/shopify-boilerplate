@@ -299,10 +299,13 @@
         variantsArr.push(checkedVariant.value);
       });
 
-      [...option.options].forEach((option) => {
-      });
+      const bundleVariant = variantsArr.join('-');
 
-      console.log(variantsArr.join('-'));
+      [...option.options].forEach((option) => {
+        const optionVariant = option.getAttribute('data-bundle-variant');
+
+        optionVariant === bundleVariant && option.selected = 'selected'
+      });
     });
   });
 {% endjavascript %}
