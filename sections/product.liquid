@@ -28,14 +28,16 @@
 
   {% if is_bundle %}
     <h2>Bundle customisation</h2>
-    {% capture variant_options %}
-      {%- for variant in product.variants -%}
-        {%- for option in variant.options -%}
-          {{ option }},
-        {%- endfor -%}
+    <ul>
+      {%- for product_option in product.options_with_values -%}
+        <li>{{ product_option.name }}</li>
+        <ul>
+          {%- for value in product_option.values -%}
+            <li>{{ value }}</li>
+          {%- endfor -%}
+        </ul>
       {%- endfor -%}
-    {% endcapture %}
-    {{ variant_options | split: ',' | uniq }}
+    </ul>
   {% endif %}
 
   <input type="submit" value="Add to cart">
