@@ -129,11 +129,13 @@
 {% endschema %}
 
 {% style %}
-  .product__gallery .active {
-    opacity: 0.5;
+  .product__gallery {
+    .active {
+      opacity: 0.5;
 
-    &:hover {
-      cursor: default;
+      &:hover {
+        cursor: default;
+      }
     }
   }
 
@@ -151,6 +153,7 @@
       height: 100%;
       align-items: center;
       justify-content: center;
+      text-align: center;
     }
 
     input {
