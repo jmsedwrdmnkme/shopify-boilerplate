@@ -310,7 +310,7 @@
           .map(name => option.getAttribute(name));
 
         optionAttributeNames.forEach((name, index) => {
-          if (name.contains('bundle'))
+          if (name.includes('bundle'))
             optionObj.push({[name]: optionAttributeValues[index]});
           }
         });
