@@ -296,10 +296,7 @@
       let variantsObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        const variantName = checkedVariant.name;
-        const variantValue = checkedVariant.value;
-
-        variantsObj.push({[variantName]: variantValue});
+        variantsObj.push({[checkedVariant.name]: checkedVariant.value});
       });
 
       [...option.options].forEach((option) => {
@@ -309,7 +306,9 @@
           if (option.hasAttribute(objectKey)) {
             const objectValue = Object.values(object)[0];
 
-            console.log(`${objectKey}: ${objectValue}`);
+            console.log(`${objectKey}: ${option.attribute(objectKey)}`);
+
+            //console.log(`${objectKey}: ${objectValue}`);
           }
         });
       });
