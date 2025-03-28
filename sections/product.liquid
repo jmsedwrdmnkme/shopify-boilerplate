@@ -168,6 +168,7 @@
       display: none;
 
       &:checked {
+        + span {
         position: relative;
 
         &:after {
@@ -179,6 +180,7 @@
           left: 0;
           pointer-events: none;
           background-color: lightred;
+        }
       }
     }
   }
