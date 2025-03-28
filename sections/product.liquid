@@ -299,7 +299,7 @@
         variantsObj.push({[checkedVariant.name]: checkedVariant.value});
       });
 
-      [...option.options].forEach((option, index) => {
+      [...option.options].forEach((option) => {
         variantsObj.forEach((object) => {
           const objectKey = Object.keys(object)[0];
 
@@ -307,10 +307,9 @@
             const optionAttribute = option.getAttribute(objectKey);
             const objectValue = Object.values(object)[0];
 
-            //console.log(`${index} - ${objectKey}: ${optionAttribute}`);
-
             if (optionAttribute == objectValue) {
-              console.log(`${index} - ${objectKey}: ${optionAttribute}`);
+              //console.log(`${index} - ${objectKey}: ${optionAttribute}`);
+              console.log(option);
             }
           }
         });
