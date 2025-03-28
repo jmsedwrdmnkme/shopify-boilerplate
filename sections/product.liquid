@@ -29,8 +29,8 @@
   {% if is_bundle %}
     <div>
       <h2>Bundle customisation</h2>
-      <fieldset>
-        {% for product_option in product.options_with_values %}
+      {% for product_option in product.options_with_values %}
+        <fieldset>
           <legend>{{ product_option.name }}</legend>
           {% for value in product_option.values %}
             <div>
@@ -38,8 +38,8 @@
               <label for="{{ value | handleize }}">{{ value }}</label>
             </div>
           {% endfor %}
-        {% endfor %}
-      </fieldset>
+        </fieldset>
+      {% endfor %}
     </div>
   {% endif %}
 
