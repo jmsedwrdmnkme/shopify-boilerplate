@@ -317,14 +317,16 @@
       //console.log(variantsObj);
 
       const filtered = optionObj.filter(function(i){
-          return variantsObj.some(function(j){
-              return !Object.keys(j).some(function(prop){
-                  return i[prop] != j[prop];
-              });
+        return variantsObj.some(function(j){
+          return !Object.keys(j).some(function(prop){
+            return i[prop] != j[prop];
           });
+        });
       });
 
-      console.log(filtered);
+      uniq = [...new Set(filtered)];
+
+      console.log(uniq);
     });
   });
 {% endjavascript %}
