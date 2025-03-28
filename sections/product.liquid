@@ -39,7 +39,7 @@
           <div>
             <label for="{{ value | handleize }}-{{ value.available | handleize }}">
               <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}" name="bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
-              {{ value }}
+              <span>{{ value }}</span>
             </label>
           </div>
         {% endfor %}
@@ -146,6 +146,7 @@
     div {
       flex: 0 0 25%;
       aspect-ratio: 1 / 1;
+      position: relative;
     }
 
     label {
@@ -169,17 +170,16 @@
 
       &:checked {
         + span {
-        position: relative;
-
-        &:after {
-          content: '';
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          top: 0;
-          left: 0;
-          pointer-events: none;
-          background-color: lightred;
+          &:after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-color: lightred;
+          }
         }
       }
     }
