@@ -160,8 +160,7 @@
         opacity: 0.5;
       }
 
-      &:not([for*=false]),
-      &:not(:has(input:checked)) {
+      &:not([for*=false], :has(input:checked)) {
         cursor: pointer;
       }
     }
