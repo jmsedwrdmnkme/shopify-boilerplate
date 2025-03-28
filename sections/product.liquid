@@ -6,6 +6,51 @@
   {%- endif -%}
 </p>
 
+{% form 'product', product %}
+  {% assign is_bundle = false %}
+  {% for collection in product.collections %}
+    {% if collection.title contains 'Bundles' %}
+      {% assign is_bundle = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display-none"{% endif %}>
+    {% for variant in product.variants %}
+      {% if variant.available == true %}
+        {% if is_bundle %}
+          {% assign bundle_variants = variant.title | split: '/' %}
+        {% endif %}
+
+        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% for bundle_variant in bundle_variants %} data-bundle-variant{{ forloop.index0 }}="{{ bundle_variant | handleize }}"{% endfor %}>{{ variant.title }}</option>
+      {% else %}
+        <option disabled="disabled">{{ variant.title }} (sold out)</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {% if is_bundle %}
+    {% for product_option in product.options_with_values %}
+      {% assign product_option_index = forloop.index0 %}
+
+      <fieldset>
+        <legend>{{ product_option.name }}</legend>
+        {% for value in product_option.values %}
+          <div>
+            <label for="{{ value | handleize }}">
+              <input type="radio" id="{{ value | handleize }}" name="data-bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
+              {{ value }}
+            </label>
+          </div>
+        {% endfor %}
+      </fieldset>
+    {% endfor %}
+  {% endif %}
+
+  <input type="number" name="quantity" min="1" value="1">
+  <input type="submit" value="Add to cart">
+{% endform %}
+
 <div class="product__gallery">
   <div class="product__gallery--container">
     {%- for image in product.images -%}
@@ -60,51 +105,6 @@
     </div>
   {% endif %}
 </div>
-
-{% form 'product', product %}
-  {% assign is_bundle = false %}
-  {% for collection in product.collections %}
-    {% if collection.title contains 'Bundles' %}
-      {% assign is_bundle = true %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-
-  <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display-none"{% endif %}>
-    {% for variant in product.variants %}
-      {% if variant.available == true %}
-        {% if is_bundle %}
-          {% assign bundle_variants = variant.title | split: '/' %}
-        {% endif %}
-
-        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% for bundle_variant in bundle_variants %} data-bundle-variant{{ forloop.index0 }}="{{ bundle_variant | handleize }}"{% endfor %}>{{ variant.title }}</option>
-      {% else %}
-        <option disabled="disabled">{{ variant.title }} (sold out)</option>
-      {% endif %}
-    {% endfor %}
-  </select>
-
-  {% if is_bundle %}
-    {% for product_option in product.options_with_values %}
-      {% assign product_option_index = forloop.index0 %}
-
-      <fieldset>
-        <legend>{{ product_option.name }}</legend>
-        {% for value in product_option.values %}
-          <div>
-            <label for="{{ value | handleize }}">
-              <input type="radio" id="{{ value | handleize }}" name="data-bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
-              {{ value }}
-            </label>
-          </div>
-        {% endfor %}
-      </fieldset>
-    {% endfor %}
-  {% endif %}
-
-  <input type="number" name="quantity" min="1" value="1">
-  <input type="submit" value="Add to cart">
-{% endform %}
 
 <div>
   {{ product.description }}
