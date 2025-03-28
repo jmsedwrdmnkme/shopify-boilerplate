@@ -303,6 +303,9 @@
 
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
+        const optionValue = option.value;
+
+        console.log(optionValue);
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
