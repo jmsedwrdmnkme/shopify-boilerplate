@@ -19,7 +19,7 @@
   <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}"{% endif %}>{{ variant.title }}</option>
+          <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}>{{ variant.title }}</option>
         {% else %}
           <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
@@ -27,9 +27,19 @@
   </select>
 
   {% if is_bundle %}
-    <h2>Bundle customisation</h2>
+    <fieldset>
+      <legend>Bundle customisation</legend>
+      <div>
+        <input type="radio" id="louie" name="drone" value="louie" />
+        <label for="louie">Louie</label>
+      </div>
+    </fieldset>
+
     <div>
       {% for product_option in product.options_with_values %}
+        <input type="radio" id="louie" name="drone" value="louie" />
+        <label for="{{ product_option.name | handleize }}">{{ product_option.name }}</label>
+
         <h3>{{ product_option.name }}</h3>
         {% for value in product_option.values %}
           <button role="button">{{ value }}</button>
@@ -52,7 +62,7 @@
         {%- endfor -%}
       {%- endcapture -%}
 
-      <picture class="product__image{% if variant_title.size > 1 %} {{ variant_title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
+      <picture class="product__image{% if variant_title.size > 1 %} {{ variant_title | handleize }}{% endif %}{% unless forloop.first %} display-none{% endunless %}">
         <source media="(max-width: 375.98px)" srcset="{{ image.src | image_url: width: 343, height: 343 }}" />
         <source media="(min-width: 376px) and (max-width: 575.98px)" srcset="{{ image.src | image_url: width: 543, height: 543 }}" />
         <source media="(min-width: 576px) and (max-width: 768.98px)" srcset="{{ image.src | image_url: width: 736, height: 736 }}" />
@@ -78,7 +88,7 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-        <img class="product__image--thumbnail{% if variant_title.size > 1 %} {{ variant_title | downcase | strip | replace: ' ', '-' | replace: '&', 'and' }}{% endif %}{% if forloop.first %} active{% endif %}"
+        <img class="product__image--thumbnail{% if variant_title.size > 1 %} {{ variant_title | handleize }}{% endif %}{% if forloop.first %} active{% endif %}"
            src="{{ image.src | image_url: width: 160, height: 160 }}"
            height="160" width="160"
            alt="{{ image.alt | escape }}{% if variant_title.size > 1 %} {{ variant_title | strip }}{% endif %}"
