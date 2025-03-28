@@ -154,6 +154,14 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+
+      &[for*=false} {
+        opacity: 0.5;
+      }
+
+      &:not([for*=false}) {
+        cursor: pointer;
+      }
     }
 
     input {
