@@ -294,40 +294,15 @@
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
       let variantsObj = [];
-      let optionObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        variantsObj.push({[checkedVariant.name]: checkedVariant.value});
+        variantsObj.push(checkedVariant.getAttribute('bundle-variant'));
       });
 
       [...option.options].forEach((option) => {
-        const optionAttributeNames = option.getAttributeNames();
-        const optionAttributeValues = option
-          .getAttributeNames()
-          .map(name => option.getAttribute(name));
-
-        optionAttributeNames.forEach((name, index) => {
-          if (name.includes('bundle')) {
-            optionObj.push({[name]: optionAttributeValues[index]});
-          }
-        });
       });
 
-      //console.log(optionObj);
-      //console.log(variantsObj);
-
-      const filtered = optionObj.filter(function(i){
-        return variantsObj.some(function(j){
-          return !Object.keys(j).some(function(prop){
-            return i[prop] != j[prop];
-          });
-        });
-      });
-
-      const uniq = [...new Set(filtered)];
-
-      console.log(filtered);
-      console.log(uniq);
+      console.log(variantsObj);
     });
   });
 {% endjavascript %}
