@@ -302,7 +302,7 @@
         variantsObj.push({[variantName]: variantValue});
       });
 
-      const options = option.option;
+      const options = option.getElementsByTagName('option');
 
       forEach.options((option) => {
         console.log(option);
