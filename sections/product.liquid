@@ -302,8 +302,11 @@
         variantsObj.push({[variantName]: variantValue});
       });
 
-      console.log(option);
-      console.log(variantsObj);
+      const options = option.option;
+
+      forEach.options((option) => {
+        console.log(option);
+      });
     });
   });
 {% endjavascript %}
