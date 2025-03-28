@@ -293,16 +293,16 @@
   bundleVariants.forEach((bundleVariant) => {
     bundleVariant.addEventListener('change', () => {
       const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
-      let variantsObj = [];
+      let variantsArr = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        variantsObj.push(checkedVariant.value);
+        variantsArr.push(checkedVariant.value);
       });
 
       [...option.options].forEach((option) => {
       });
 
-      console.log(variantsObj.join('-');
+      console.log(variantsArr.join('-');
     });
   });
 {% endjavascript %}
