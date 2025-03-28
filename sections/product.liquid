@@ -131,10 +131,10 @@
 {% style %}
   .product__gallery .active {
     opacity: 0.5;
-  }
 
-  .product__gallery .active:hover {
-    cursor: default;
+    &:hover {
+      cursor: default;
+    }
   }
 
   fieldset {
@@ -151,6 +151,10 @@
       height: 100%;
       align-items: center;
       justify-content: center;
+    }
+
+    input {
+      display: none;
     }
   }
 {% endstyle %}
