@@ -29,19 +29,19 @@
   {% if is_bundle %}
     <h2>Bundle customisation</h2>
     {%- for variant in product.variants -%}
-      <p>
+      <div>
         {%- if variant.available == true -%}
           {{ variant.title }}
           {%- for option in variant.options -%}
-            {{ option }}
+            <p>{{ option }}</p>
           {%- endfor -%}
         {%- else -%}
           {{ variant.title }} - out of stock
           {%- for option in variant.options -%}
-            {{ option }}
+            <p>{{ option }}</p>
           {%- endfor -%}
         {%- endif -%}
-      </p>
+      </div>
     {%- endfor -%}
   {% endif %}
 
