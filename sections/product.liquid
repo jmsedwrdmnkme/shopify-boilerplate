@@ -25,6 +25,18 @@
       {% endif %}
     {% endfor %}
   </select>
+
+  {% if is_bundle %}
+    <h2>Bundle customisation</h2>
+    {% for variant in product.variants %}
+      {% if variant.available == true %}
+          {{ variant.name }}
+        {% else %}
+          {{ variant.name }} - out of stock
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
   <input type="submit" value="Add to cart">
 {% endform %}
 
