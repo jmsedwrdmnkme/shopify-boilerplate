@@ -161,7 +161,7 @@
       }
 
       &:not([for*=false]),
-      &:has(input:checked) {
+      &:not(:has(input:checked)) {
         cursor: pointer;
       }
     }
