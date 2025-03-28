@@ -296,7 +296,7 @@
       let variantsObj = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        variantsObj.push(checkedVariant.getAttribute('bundle-variant'));
+        variantsObj.push(checkedVariant.name);
       });
 
       [...option.options].forEach((option) => {
