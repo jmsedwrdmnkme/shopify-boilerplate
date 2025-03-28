@@ -27,17 +27,20 @@
   </select>
 
   {% if is_bundle %}
-    <fieldset>
-      <legend>Bundle customisation</legend>
-      {% for product_option in product.options_with_values %}
-        <div>
+    <div>
+      <h2>Bundle customisation</h2>
+      <fieldset>
+        {% for product_option in product.options_with_values %}
+          <legend>{{ product_option.name }}</legend>
           {% for value in product_option.values %}
-            <input type="radio" id="{{ product_option.name | handleize }}" name="{{ product_option.name | handleize }}" value="{{ value }}" />
-            <label for="{{ product_option.name | handleize }}">{{ product_option.name }}</label>
+            <div>
+              <input type="radio" id="{{ value | handleize }}" name="{{ product_option.name | handleize }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
+              <label for="{{ value | handleize }}">{{ value }}</label>
+            </div>
           {% endfor %}
-        </div>
-      {% endfor %}
-    </fieldset>
+        {% endfor %}
+      </fieldset>
+    </div>
   {% endif %}
 
   <input type="submit" value="Add to cart">
