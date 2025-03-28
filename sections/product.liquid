@@ -295,7 +295,11 @@
       const bundleCheckedVariants = form.querySelectorAll('[name*=data-bundle]:checked');
 
       bundleCheckedVariants.forEach((checkedVariant) => {
-        console.log(checkedVariant); 
+        const variantName = checkedVariant.name;
+        const variantValue = checkedVariant.value;
+
+        console.log(variantName); 
+        console.log(variantValue); 
       });
     });
   });
