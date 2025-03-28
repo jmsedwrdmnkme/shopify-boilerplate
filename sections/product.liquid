@@ -29,23 +29,15 @@
   {% if is_bundle %}
     <fieldset>
       <legend>Bundle customisation</legend>
-      <div>
-        <input type="radio" id="louie" name="drone" value="louie" />
-        <label for="louie">Louie</label>
-      </div>
-    </fieldset>
-
-    <div>
       {% for product_option in product.options_with_values %}
-        <input type="radio" id="louie" name="drone" value="louie" />
-        <label for="{{ product_option.name | handleize }}">{{ product_option.name }}</label>
-
-        <h3>{{ product_option.name }}</h3>
-        {% for value in product_option.values %}
-          <button role="button">{{ value }}</button>
-        {% endfor %}
+        <div>
+          {% for value in product_option.values %}
+            <input type="radio" id="{{ product_option.name | handleize }}" name="{{ product_option.name | handleize }}" value="{{ value }}" />
+            <label for="{{ product_option.name | handleize }}">{{ product_option.name }}</label>
+          {% endfor %}
+        </div>
       {% endfor %}
-    </div>
+    </fieldset>
   {% endif %}
 
   <input type="submit" value="Add to cart">
