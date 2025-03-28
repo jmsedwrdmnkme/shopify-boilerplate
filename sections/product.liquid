@@ -305,9 +305,13 @@
 
           if (option.hasAttribute(objectKey)) {
             const optionAttribute = option.getAttribute(objectKey);
-            console.log(`${index} - ${objectKey}: ${optionAttribute}`);
-
             const objectValue = Object.values(object)[0];
+
+            //console.log(`${index} - ${objectKey}: ${optionAttribute}`);
+
+            if (optionAttribute == objectValue) {
+              console.log(`${index} - ${objectKey}: ${optionAttribute}`);
+            }
           }
         });
       });
