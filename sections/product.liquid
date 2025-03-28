@@ -31,7 +31,7 @@
     {% capture variant_options %}
       {%- for variant in product.variants -%}
         {%- for option in variant.options -%}
-          <li>{{ option }}</li>
+          {{ option }}
         {%- endfor -%}
       {%- endfor -%}
     {% endcapture %}
