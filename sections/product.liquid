@@ -304,8 +304,15 @@
       let optionObj = [];
 
       [...option.options].forEach((option) => {
-        console.log(option.getAttributes());
+        const optionAttributeNames = option.getAttributeNames();
+        const optionAttributeValues = option
+          .getAttributeNames()
+          .map(name => option.getAttribute(name));
+
+        optionObj.push({[optionAttributesName]: optionAttributesValue});
       });
+
+      console.log(optionObj);
     });
   });
 {% endjavascript %}
