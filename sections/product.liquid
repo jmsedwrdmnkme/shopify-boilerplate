@@ -304,8 +304,13 @@
 
       [...option.options].forEach((option) => {
         variantsObj.forEach((object) => {
-          console.log(Object.keys(object)[0]);
-          console.log(Object.values(object)[0]);
+          const objectKey = Object.keys(object)[0];
+
+          if (object.hasAttribute(objectKey)) {
+            const objectValue = Object.values(object)[0];
+
+            console.log(objectValue);
+          }
         });
       });
     });
