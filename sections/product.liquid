@@ -247,43 +247,45 @@
   });
 
   // Buttons
-  [nextBtn, prevBtn].forEach((button, number) => {
-    button.addEventListener('click', () => {
-      const currentImage = productGallery.querySelector('picture:not(.display-none)');
-      const currentThumbnail = productGallery.querySelector('.active');
+  if (nextBtn) {
+    [nextBtn, prevBtn].forEach((button, number) => {
+      button.addEventListener('click', () => {
+        const currentImage = productGallery.querySelector('picture:not(.display-none)');
+        const currentThumbnail = productGallery.querySelector('.active');
 
-      if (button.textContent.includes('Next')) {
-        if (currentImage.nextSibling != null)  {
-          currentImage.classList.add('display-none');
-          currentThumbnail.classList.remove('active');
+        if (button.textContent.includes('Next')) {
+          if (currentImage.nextSibling != null)  {
+            currentImage.classList.add('display-none');
+            currentThumbnail.classList.remove('active');
 
-          currentImage.nextSibling.classList.remove('display-none');
-          currentThumbnail.nextSibling.classList.add('active');
+            currentImage.nextSibling.classList.remove('display-none');
+            currentThumbnail.nextSibling.classList.add('active');
 
-          prevBtn.disabled = false;
+            prevBtn.disabled = false;
+          }
+
+          if (currentImage.nextSibling.nextSibling == null) {
+            button.disabled = true;
+          }
+
+        } else if (button.textContent.includes('Previous')) {
+          if (currentImage.previousSibling != null)  {
+            currentImage.classList.add('display-none');
+            currentThumbnail.classList.remove('active');
+
+            currentImage.previousSibling.classList.remove('display-none');
+            currentThumbnail.previousSibling.classList.add('active');
+
+            nextBtn.disabled = false;
+          }
+
+          if (currentImage.previousSibling.previousSibling == null) {
+            button.disabled = true;
+          }
         }
-
-        if (currentImage.nextSibling.nextSibling == null) {
-          button.disabled = true;
-        }
-
-      } else if (button.textContent.includes('Previous')) {
-        if (currentImage.previousSibling != null)  {
-          currentImage.classList.add('display-none');
-          currentThumbnail.classList.remove('active');
-
-          currentImage.previousSibling.classList.remove('display-none');
-          currentThumbnail.previousSibling.classList.add('active');
-
-          nextBtn.disabled = false;
-        }
-
-        if (currentImage.previousSibling.previousSibling == null) {
-          button.disabled = true;
-        }
-      }
+      });
     });
-  });
+  }
 
   // Bundles
   const bundleVariants = form.querySelectorAll('[name=*=data-bundle]');
