@@ -70,7 +70,6 @@
     {% endif %}
   {% endfor %}
 
-  <input type="number" name="quantity" min="1" value="1">
   <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
@@ -101,6 +100,7 @@
     {% endfor %}
   {% endif %}
 
+  <input type="number" name="quantity" min="1" value="1">
   <input type="submit" value="Add to cart">
 {% endform %}
 
