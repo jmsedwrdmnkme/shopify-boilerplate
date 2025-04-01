@@ -21,6 +21,7 @@
     {% endform %}
   {% endif %}
 </section>
+<div class="overlay"></div>
 
 {% schema %}
   {
@@ -46,7 +47,7 @@
       height: 100vh;
       width: 100vw;
 
-      &::before {
+      .overlay {
         content: '';
         position: absolute;
         top: 0;
