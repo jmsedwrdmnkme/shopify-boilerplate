@@ -122,7 +122,7 @@
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.Stringify({ updates: {[key]: newQuantity} }) 
+          body: JSON.stringify({ updates: {[key]: newQuantity} }) 
         });
 
         const json = await res.json();
