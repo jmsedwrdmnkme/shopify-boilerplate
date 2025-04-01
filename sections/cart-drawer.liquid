@@ -117,7 +117,7 @@
         const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
 
         const res = await fetch('/cart/update.js', {
-          method: POST,
+          method: 'POST',
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
