@@ -113,7 +113,7 @@
         const key = rootItem.getAttribute('data-line-item-key');
 
         const currentQuantity = Number(button.parentElement.querySelector('input').value);
-        const isUp = button.classList.contains('plus');
+        const isUp = button.classList.contains('quantity__plus');
         const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
 
         const res = await fetch('/cart/update.js', {
