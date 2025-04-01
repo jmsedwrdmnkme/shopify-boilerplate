@@ -1,24 +1,26 @@
-<h2>Your cart ({{ cart.item_count }})</h2>
+<section class="cart-drawer__container">
+  <p>Cart</p>
 
-{% if cart.empty? %}
-  <p>Your cart is empty</p>
-{% else %}
-  {% form 'cart', cart %}
-    {% for item in cart.items %}
-      <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
-      <h3>{{ item.product.title }}</h3>
-      <p>{{ item.variant.title }}</p>
-      <a href="{{ item.url_to_remove }}">remove</a>
-      <p>{{ item.final_line_price | money }}</p>
-      <input name="quantity" value="{{ item.quantity }}">
-    {% endfor %}
+  {% if cart.empty? %}
+    <p>Your cart is empty</p>
+  {% else %}
+    {% form 'cart', cart %}
+      {% for item in cart.items %}
+        <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
+        <h3>{{ item.product.title }}</h3>
+        <p>{{ item.variant.title }}</p>
+        <a href="{{ item.url_to_remove }}">remove</a>
+        <p>{{ item.final_line_price | money }}</p>
+        <input name="quantity" value="{{ item.quantity }}">
+      {% endfor %}
 
-    <p>{{ cart.total_discounts | money }}</p>
-    <p>{{ cart.total_price | money }}</p>
+      <p>{{ cart.total_discounts | money }}</p>
+      <p>{{ cart.total_price | money }}</p>
 
-    <button role="button" type="submit" name="checkout">Checkout</button>
-  {% endform %}
-{% endif %}
+      <button role="button" type="submit" name="checkout">Checkout</button>
+    {% endform %}
+  {% endif %}
+</section>
 
 {% schema %}
   {
@@ -35,6 +37,9 @@
     }
 
     &.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: fixed;
       top: 0;
       left: 0;
@@ -42,6 +47,7 @@
       width: 100vw;
 
       &::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -49,6 +55,12 @@
         width: 100vw;
         background-color: rgba(0, 0, 0, 0.25);
       }
+    }
+
+    &__container {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 1rem;
     }
   }
 {% endstylesheet %}
