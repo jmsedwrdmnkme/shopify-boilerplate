@@ -80,7 +80,13 @@
   async function updateCartDrawer() {
     const res = await fetch('/?section_id=cart-drawer');
     const text = await res.text();
-    console.log(text);
+
+    const html = document.createElement('div');
+    html.innerHTML = text;
+
+    const newBox = html.querySelector('.cart-drawer__container').innerHTML;
+
+    document.querySelector('.cart-drawer__container').innerHTML = newBox;
   }
 
   /*
