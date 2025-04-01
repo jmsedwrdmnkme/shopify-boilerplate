@@ -1,5 +1,6 @@
-<section class="container">
-  <p>Cart</p>
+<div class="cart-drawer__container">
+  <p class="h2">Cart</p>
+  <button role="button" class="cart-drawer__close"><span>Close cart</span></button>
 
   {% if cart.empty? %}
     <p>Your cart is empty</p>
@@ -7,7 +8,7 @@
     {% form 'cart', cart %}
       {% for item in cart.items %}
         <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
-        <h3>{{ item.product.title }}</h3>
+        <p class="h3">{{ item.product.title }}</p>
         <p>{{ item.variant.title }}</p>
         <a href="{{ item.url_to_remove }}">remove</a>
         <p>{{ item.final_line_price | money }}</p>
@@ -20,8 +21,8 @@
       <button role="button" type="submit" name="checkout">Checkout</button>
     {% endform %}
   {% endif %}
-</section>
-<div class="overlay"></div>
+</div>
+<div class="cart-drawer__overlay"></div>
 
 {% schema %}
   {
@@ -47,7 +48,7 @@
       height: 100vh;
       width: 100vw;
 
-      .overlay {
+      .cart-drawer__overlay {
         content: '';
         position: absolute;
         top: 0;
@@ -58,7 +59,7 @@
       }
     }
 
-    .container {
+    .cart-drawer__container {
       background-color: #fff;
       padding: 1rem;
       border-radius: 1rem;
@@ -82,5 +83,9 @@
 
       document.querySelector('.cart-drawer').classList.add('active');
     });
+  });
+
+  document.querySelector('.cart-drawer__overlay, .cart-drawer__close').addEventListener('submit', () => {
+    document.querySelector('.cart-drawer').classList.remove('active');
   });
 {% endjavascript %}
