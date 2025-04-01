@@ -90,6 +90,12 @@
     document.querySelector('.cart-drawer').classList.remove('active');
   }
 
+  function updateCartItemCounts(count) {
+    document.querySelectorAll('.cart-count').forEach((el) => {
+      el.textContent = count;
+    });
+  }
+
   async function updateCartDrawer() {
     const res = await fetch('/?section_id=cart-drawer');
     const text = await res.text();
@@ -125,7 +131,9 @@
           body: JSON.stringify({ updates: {[key]: newQuantity} }) 
         });
 
-        const json = await res.json();
+        const cart = await res.json();
+
+        updateCartItemCounts(cart.item_count);
 
         updateCartDrawer();
       });
@@ -145,6 +153,10 @@
         method: 'POST',
         body: new FormData(form),
       });
+
+      const res = await fetch('/cart.js');
+      const cart = await res.json();
+      updateCartItemCounts(cart.item_count);
 
       await updateCartDrawer();
 
