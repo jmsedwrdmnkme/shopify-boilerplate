@@ -2,25 +2,27 @@
   <p class="h2">Cart</p>
   <button role="button" class="cart-drawer__close"><span>Close cart</span></button>
 
-  {% if cart.empty? %}
-    <p>Your cart is empty</p>
-  {% else %}
-    {% form 'cart', cart %}
-      {% for item in cart.items %}
-        <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
-        <p class="h3">{{ item.product.title }}</p>
-        <p>{{ item.variant.title }}</p>
-        <a href="{{ item.url_to_remove }}">remove</a>
-        <p>{{ item.final_line_price | money }}</p>
-        <input name="quantity" value="{{ item.quantity }}">
-      {% endfor %}
+  <div class="cart-drawer__content">
+    {% if cart.empty? %}
+      <p>Your cart is empty</p>
+    {% else %}
+      {% form 'cart', cart %}
+        {% for item in cart.items %}
+          <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
+          <p class="h3">{{ item.product.title }}</p>
+          <p>{{ item.variant.title }}</p>
+          <a href="{{ item.url_to_remove }}">remove</a>
+          <p>{{ item.final_line_price | money }}</p>
+          <input name="quantity" value="{{ item.quantity }}">
+        {% endfor %}
 
-      <p>{{ cart.total_discounts | money }}</p>
-      <p>{{ cart.total_price | money }}</p>
+        <p>{{ cart.total_discounts | money }}</p>
+        <p>{{ cart.total_price | money }}</p>
 
-      <button role="button" type="submit" name="checkout">Checkout</button>
-    {% endform %}
-  {% endif %}
+        <button role="button" type="submit" name="checkout">Checkout</button>
+      {% endform %}
+    {% endif %}
+  </div>
 </div>
 <div class="cart-drawer__overlay"></div>
 
@@ -84,9 +86,9 @@
     const html = document.createElement('div');
     html.innerHTML = text;
 
-    const newBox = html.querySelector('.cart-drawer__container').innerHTML;
+    const newBox = html.querySelector('.cart-drawer__content').innerHTML;
 
-    document.querySelector('.cart-drawer__container').innerHTML = newBox;
+    document.querySelector('.cart-drawer__content').innerHTML = newBox;
   }
 
   /*
