@@ -106,12 +106,28 @@
 
   function addCartDrawerListeners() {
     document.querySelectorAll('.quantity__container button').forEach((button) => {
-      button.addEventListener('click', (e) => {
+      button.addEventListener('click', async (e) => {
         e.preventDefault();
 
         const rootItem = button.parentElement.parentElement;
+        const key = rootItem.getAttribute('data-line-item-key');
 
-        console.log(rootItem);
+        const currentQuantity = Number(button.parentElement.querySelector('input').value);
+        const isUp = button.classList.contains('plus');
+        const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
+
+        const res = await fetch('/cart/update.js', {
+          method: POST,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.Stringify({ updates: {[key]: newQuantity} }) 
+        });
+
+        const json = await res.json();
+
+        updateCartDrawer();
       });
     });
   }
