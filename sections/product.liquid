@@ -194,9 +194,17 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      await fetch('cart/add.js', {
-        method: 'post',
-        body: new FormData(form)
+      const formData = new FormData(form);
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
     });
   });
