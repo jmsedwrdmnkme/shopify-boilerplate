@@ -1,5 +1,5 @@
 <div class="cart-drawer__container">
-  <p class="h2">Cart</p>
+  <p>Cart</p>
   <button role="button" class="cart-drawer__close"><span>Close cart</span></button>
 
   <div class="cart-drawer__content">
@@ -8,12 +8,23 @@
     {% else %}
       {% form 'cart', cart %}
         {% for item in cart.items %}
-          <img src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
-          <p class="h3">{{ item.product.title }}</p>
-          <p>{{ item.variant.title }}</p>
-          <a href="{{ item.url_to_remove }}">remove</a>
-          <p>{{ item.final_line_price | money }}</p>
-          <input name="quantity" value="{{ item.quantity }}">
+          <div class="cart_item">
+            <div class="product-image__container">
+              <img class="product-image__image" src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
+            </div>
+
+            <div class="product__container">
+              <span>{{ item.product.title }}</span>
+              <span>{{ item.variant.title }}</span>
+              <span>{{ item.final_line_price | money }}</span>
+            </div>
+
+            <div class="quantity__container">
+              <button role="button" class="quantity__minus"><span class="visually-hidden">Minus quantity</span></button>
+              <input name="quantity" class="quantity__value" value="{{ item.quantity }}">
+              <button role="button" class="quantity__plus"><span class="visually-hidden">Plus quantity</span></button>
+            </div>
+          </div>
         {% endfor %}
 
         <p>{{ cart.total_discounts | money }}</p>
