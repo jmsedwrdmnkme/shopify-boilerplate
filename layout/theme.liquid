@@ -22,6 +22,8 @@
     </main>
     {% section 'footer' %}
     {% section 'cart-drawer' %}
-    {{ 'scripts.js' | asset_url | script_tag | replace: '<script ', '<script async ' }}
+    {% comment %}
+      {{ 'scripts.js' | asset_url | script_tag | replace: '<script ', '<script async ' }}
+    {% endcomment %}
   </body>
 </html>
