@@ -79,7 +79,7 @@
 
   async function updateCartDrawer() {
     const res = await fetch('/?section_id=cart-drawer');
-    const text = await rest.text();
+    const text = await res.text();
     console.log(text);
   }
 
