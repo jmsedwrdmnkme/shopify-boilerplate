@@ -85,7 +85,9 @@
     });
   });
 
-  document.querySelector('.cart-drawer__overlay, .cart-drawer__close').addEventListener('click', () => {
-    document.querySelector('.cart-drawer').classList.remove('active');
+  document.querySelectorAll('.cart-drawer__overlay, .cart-drawer__close').forEach((el) => {
+    el.addEventListener('click', () => {
+      document.querySelector('.cart-drawer').classList.remove('active');
+    });
   });
 {% endjavascript %}
