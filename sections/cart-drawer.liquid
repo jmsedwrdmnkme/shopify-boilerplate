@@ -69,6 +69,14 @@
 {% endstylesheet %}
 
 {% javascript %}
+  function openCartDrawer() {
+    document.querySelector('.cart-drawer').classList.add('active');
+  }
+
+  function closeCartDrawer() {
+    document.querySelector('.cart-drawer').classList.remove('active');
+  }
+
   /*
    * Add to cart
   */
@@ -81,21 +89,20 @@
         body: new FormData(form),
       });
 
-      document.querySelector('.cart-drawer').classList.add('active');
+      openCartDrawer();
     });
   });
 
   document.querySelectorAll('.cart-drawer__overlay, .cart-drawer__close').forEach((el) => {
     el.addEventListener('click', () => {
-      document.querySelector('.cart-drawer').classList.remove('active');
+      closeCartDrawer();
     });
   });
 
-  document.querySelectorAll('a[href=*"/cart"]').forEach((el) => {
-    el.addEventListener('click', (e) => {
+  document.querySelectorAll('a[href="/cart"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
       e.preventDefault();
-
-      document.querySelector('.cart-drawer').classList.add('active');
+      openCartDrawer();
     });
   });
 {% endjavascript %}
