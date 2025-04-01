@@ -8,7 +8,7 @@
     {% else %}
       {% form 'cart', cart %}
         {% for item in cart.items %}
-          <div class="cart_item">
+          <div class="cart_item" data-line-item-key="{{ item.key }}">
             <div class="product-image__container">
               <img class="product-image__image" src="{{ item.image | image_url: width: 200, height: 200 }}" height="200" width="200" loading="lazy" alt="{{ item.title }}">
             </div>
@@ -100,7 +100,23 @@
     const newBox = html.querySelector('.cart-drawer__content').innerHTML;
 
     document.querySelector('.cart-drawer__content').innerHTML = newBox;
+
+    addCartDrawerListeners();
   }
+
+  function addCartDrawerListeners() {
+    document.querySelectorAll('.quantity__container button').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const rootItem = button.parentElement.parentElement;
+
+        console.log(rootItem);
+      });
+    });
+  }
+
+  addCartDrawerListeners();
 
   /*
    * Add to cart
