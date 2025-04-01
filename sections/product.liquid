@@ -190,25 +190,16 @@
   /*
    * Add to cart
   */
-  const form = document.querySelector('form[action$="/cart/add"]');
-  const formAddBtn = form.querySelector('input[type="submit"]')
+  document.querySelectorAll('form[action$="/cart/add"]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  formAddBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
+      await fetch('cart/add.js', {
+        method: 'post',
+        body: new FormData(form)
+      });
     });
-  });
+  }
 
   /*
    * Picture gallery
@@ -217,7 +208,7 @@
   const imageThumbnails = productGallery.querySelectorAll('.product__image--thumbnail');
   const images = productGallery.querySelectorAll('.product__image');
 
-  const option = form.querySelector('select[name="id"]');
+  const option = document.querySelector('form[action$="/cart/add"] select[name="id"]');
 
   const nextBtn = document.querySelector('.product__image--btn-next');
   const prevBtn = document.querySelector('.product__image--btn-prev');
@@ -336,7 +327,7 @@
   }
 
   // Bundles
-  const bundleVariants = form.querySelectorAll('[name*=bundle-variant]');
+  const bundleVariants = document.querySelectorAll('form[action$="/cart/add"] [name*=bundle-variant]');
 
   bundleVariants.forEach((bundleVariant) => {
     const bundleVariantId = bundleVariant.id;
@@ -346,7 +337,7 @@
     }
 
     bundleVariant.addEventListener('change', () => {
-      const bundleCheckedVariants = form.querySelectorAll('[name*=bundle-variant]:checked');
+      const bundleCheckedVariants = document.querySelectorAll('form[action$="/cart/add"] [name*=bundle-variant]:checked');
       let variantsArr = [];
 
       bundleCheckedVariants.forEach((checkedVariant) => {
