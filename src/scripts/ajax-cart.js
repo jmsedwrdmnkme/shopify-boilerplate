@@ -5,9 +5,9 @@ document.querySelectorAll('form[action$="/cart/add"]').forEach((form) => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    await fetch('/cart/add.js', {
+    await fetch('/cart/add', {
       method: 'POST',
-      body: new FormData(form)
+      body: new FormData(form),
     });
   });
 });
