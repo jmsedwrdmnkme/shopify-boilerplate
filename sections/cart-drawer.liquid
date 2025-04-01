@@ -5,7 +5,7 @@
 {% else %}
   {% form 'cart', cart %}
     {% for item in cart.items %}
-      <img src="{{ item.image | img_url: '200x')" loading="lazy" alt="{{ item.title }}">
+      <img src="{{ item.image | image_url: width: 200, height: 200 }}" loading="lazy" alt="{{ item.title }}">
       <h3>{{ item.product.title }}</h3>
       <p>{{ item.variant.title }}</p>
       <a href="item.url_to_remove">remove</a>
