@@ -90,4 +90,12 @@
       document.querySelector('.cart-drawer').classList.remove('active');
     });
   });
+
+  document.querySelectorAll('a[href="/cart"]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      document.querySelector('.cart-drawer').classList.add('active');
+    });
+  });
 {% endjavascript %}
