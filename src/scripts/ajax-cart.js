@@ -2,12 +2,14 @@
  * Add to cart
 */
 document.querySelectorAll('form[action$="/cart/add"]').forEach((form) => {
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    await fetch(window.Shopify.routes.root + 'cart/add.js', {
+    const formData = new FormData(form);
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
-      body: new FormData(form)
+      body: formData
     })
     .then(response => {
       return response.json();
