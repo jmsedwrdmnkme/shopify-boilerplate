@@ -77,6 +77,12 @@
     document.querySelector('.cart-drawer').classList.remove('active');
   }
 
+  async function updateCartDrawer() {
+    const res = await fetch('/?section_id=cart-drawer');
+    const text = await rest.text();
+    console.log(text);
+  }
+
   /*
    * Add to cart
   */
@@ -88,6 +94,8 @@
         method: 'POST',
         body: new FormData(form),
       });
+
+      await updateCartDrawer();
 
       openCartDrawer();
     });
