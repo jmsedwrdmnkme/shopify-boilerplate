@@ -332,12 +332,8 @@
 
       const bundleVariant = variantsArr.join('-');
 
-      console.log(`Bundle variant: ${bundleVariant}`);
-
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
-
-        console.log(`Option variant: ${optionVariant}`);
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
