@@ -315,11 +315,17 @@
   // Bundles
   const bundleVariants = document.querySelectorAll('form[action$="/cart/add"] [name*=bundle-variant]');
 
+  console.log(`Bundle variants: ${bundleVariants}`);
+
   bundleVariants.forEach((bundleVariant) => {
     const bundleVariantId = bundleVariant.id;
 
+    console.log(`Bundle variant ID: ${bundleVariantId}`);
+
     if (bundleVariantId.includes('false')) {
       bundleVariant.parentNode.textContent += ' (out of stock)'; 
+
+      console.log(`Bundle variant out of stock: ${bundleVariant}`);
     }
 
     bundleVariant.addEventListener('change', () => {
@@ -328,15 +334,23 @@
 
       bundleCheckedVariants.forEach((checkedVariant) => {
         variantsArr.push(checkedVariant.value);
+
+        console.log(`Bundle checked variant: ${checkedVariant}`);
       });
 
       const bundleVariant = variantsArr.join('-');
 
+      console.log(`Bundle checked variants array: ${bundleVariant}`);
+
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
 
+        console.log(`Option variant attribute: ${optionVariant}`);
+
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
+
+          console.log(`Option selected variant: ${option.selected}`);
         }
       });
     });
