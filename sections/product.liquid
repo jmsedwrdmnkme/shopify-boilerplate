@@ -37,8 +37,8 @@
         <legend>{{ product_option.name }}</legend>
         {% for value in product_option.values %}
           <div>
-            <label for="{{ value | handleize }}-{{ value.available | handleize }}">
-              <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}" name="bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
+            <label for="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}">
+              <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}" name="bundle-variant{{ product_option_index }}" value="{{ value | handleize }}"{% if forloop.first %} checked{% endif %} />
               <span>{{ value }}</span>
             </label>
           </div>
@@ -316,7 +316,7 @@
   const bundleVariants = document.querySelectorAll('form[action$="/cart/add"] [name*=bundle-variant]');
 
   bundleVariants.forEach((bundleVariant) => {
-    const bundleVariantId = bundleVariant.id;
+    const bundleVariantId = bundleVariant.id.slice(0, -1);
 
     if (bundleVariantId.includes('false')) {
       bundleVariant.parentNode.textContent += ' (out of stock)'; 
