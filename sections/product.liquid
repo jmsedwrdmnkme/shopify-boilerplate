@@ -29,11 +29,9 @@
     {% endfor %}
   </select>
 
-  {% if is_bundle %}
-    {% for variant in product.variants %}
-      {{ variant.title | split: '/' }}{% if variant.available == false %} (sold out){% endfor %}
-    {% endfor %}
-  {% endif %}
+  {% for variant in product.variants %}
+    {{ variant.title | split: '/' }}{% if variant.available == false %} (sold out){% endfor %}
+  {% endfor %}
 
   {% if is_bundle %}
     {% for product_option in product.options_with_values %}
