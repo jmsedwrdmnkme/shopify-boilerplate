@@ -101,6 +101,12 @@
       z-index: 1;
       width: 33vw;
       min-width: 20rem;
+      transform: translateX(50%);
+      transition: transform 0.3s;
+
+      .active & {
+        transform: translateX(0);
+      }
     }
   }
 {% endstylesheet %}
