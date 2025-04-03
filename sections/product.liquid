@@ -29,15 +29,15 @@
     {% endfor %}
   </select>
 
-  <p>
-    {% for variant in product.variants %}
+  {% for variant in product.variants %}
+    <p>
       {% assign bundle_variants = variant.title | split: '/' %}
 
       {% for bundle_variant in bundle_variants %}
         {{ bundle_variant }}<br />
       {% endfor %}
-    {% endfor %}
-  </p>
+    </p>
+  {% endfor %}
 
   {% if is_bundle %}
     {% for product_option in product.options_with_values %}
