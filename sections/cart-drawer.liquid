@@ -1,5 +1,5 @@
-<div class="cart-drawer__container">
-  <p>Cart</p>
+<aside class="cart-drawer__container">
+  <h2>Cart</h2>
   <button role="button" class="cart-drawer__close"><span class="visually-hidden">Close cart</span></button>
 
   <div class="cart-drawer__content">
@@ -14,9 +14,11 @@
             </div>
 
             <div class="product__container">
-              <span>{{ item.product.title }}</span>
-              <span>{{ item.variant.title }}</span>
-              <span>{{ item.final_line_price | money }}</span>
+              <h3>{{ item.product.title }}</h3>
+              <p>
+                <span>{{ item.variant.title }}</span>
+                <span>{{ item.final_line_price | money }}</span>
+              </p>
             </div>
 
             <div class="quantity__container">
@@ -34,7 +36,7 @@
       {% endform %}
     {% endif %}
   </div>
-</div>
+</aside>
 <div class="cart-drawer__overlay"></div>
 
 {% schema %}
@@ -74,7 +76,6 @@
     .cart-drawer__container {
       background-color: #fff;
       padding: 1rem;
-      border-radius: 1rem;
       z-index: 1;
     }
   }
