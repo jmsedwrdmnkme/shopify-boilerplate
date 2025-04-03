@@ -18,7 +18,11 @@
   <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display- none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
-        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% if is_bundle %} data-bundle-variant="{{ variant.title | remove: '&' | remove: ' ' | split: '/' | handleize }}"{% endif %}>{{ variant.title }}</option>
+        {% if is_bundle %}
+          {% assign bundle_variants = variant.title | split: '/' %}
+        {% endif %}
+
+        <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% if is_bundle %} data-bundle-variant="{{ bundle_variants | handleize }}"{% endif %}>{{ variant.title }}</option>
       {% else %}
         <option disabled="disabled">{{ variant.title }} (sold out)</option>
       {% endif %}
