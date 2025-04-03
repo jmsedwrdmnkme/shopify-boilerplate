@@ -330,8 +330,12 @@
         bundleVariant.push(checkedVariant.value);
       });
 
+      console.log(bundleVariant);
+
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant');
+
+        console.log(optionVariant);
 
         if (optionVariant === bundleVariant) {
           option.selected = 'selected'
