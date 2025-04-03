@@ -333,7 +333,7 @@
       console.log(bundleVariant);
 
       [...option.options].forEach((option) => {
-        const optionVariant = option.getAttribute('data-bundle-variant');
+        const optionVariant = option.getAttribute('data-bundle-variant').split('-');
 
         console.log(optionVariant);
 
