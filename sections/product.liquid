@@ -31,7 +31,7 @@
 
   {% if is_bundle %}
     {% for variant in product.variants %}
-      {{ variant.title | split: '/' }}{% if variant.available == true %} (sold out){% endfor %}
+      {{ variant.title | split: '/' }}{% if variant.available == false %} (sold out){% endfor %}
     {% endfor %}
   {% endif %}
 
