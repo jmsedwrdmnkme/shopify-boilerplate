@@ -29,16 +29,6 @@
     {% endfor %}
   </select>
 
-  {% for variant in product.variants %}
-    <p>
-      {% assign bundle_variants = variant.title | split: '/' | uniq %}
-
-      {% for bundle_variant in bundle_variants %}
-        {{ bundle_variant }}<br />
-      {% endfor %}
-    </p>
-  {% endfor %}
-
   {% if is_bundle %}
     {% for product_option in product.options_with_values %}
       {% assign product_option_index = forloop.index0 %}
