@@ -15,7 +15,7 @@
     {% endif %}
   {% endfor %}
 
-  <select name="id"{% if is_bundle or product.has_only_default_variant %} class="display-none"{% endif %}>
+  <select name="id"{% if product.has_only_default_variant %} class="display-none"{% endif %}>
     {% for variant in product.variants %}
       {% if variant.available == true %}
         {% if is_bundle %}
