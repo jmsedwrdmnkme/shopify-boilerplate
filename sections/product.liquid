@@ -29,9 +29,15 @@
     {% endfor %}
   </select>
 
-  {% for variant in product.variants %}
-    {{ variant.title | split: '/' }}{% if variant.available == false %} (sold out){% endfor %}
-  {% endfor %}
+  <p>
+    {% for variant in product.variants %}
+      {% assign bundle_variants = variant.title | split: '/' %}
+
+      {% for bundle_variant in bundle_variants %}
+        {{ bundle_variant }}<br />
+      {% endfor %}
+    {% endfor %}
+  </p>
 
   {% if is_bundle %}
     {% for product_option in product.options_with_values %}
