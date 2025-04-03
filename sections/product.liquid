@@ -19,7 +19,7 @@
     {% for variant in product.variants %}
       {% if variant.available == true %}
         {% if is_bundle %}
-          {% assign bundle_variants = variant.title | replace: ' ', '' | split: '/' %}
+          {% assign bundle_variants = variant.title | remove: ' ' | split: '/' %}
         {% endif %}
 
         <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% if is_bundle %} data-bundle-variant="{{ bundle_variants | handleize }}"{% endif %}>{{ variant.title }}</option>
