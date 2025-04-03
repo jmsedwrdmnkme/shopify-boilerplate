@@ -33,12 +33,6 @@
     {% for product_option in product.options_with_values %}
       {% assign product_option_index = forloop.index0 %}
 
-      {% for variant in product.variants %}
-        {% if is_bundle %}
-          {{ bundle_variants }}: {{ variant.title }}{% if variant.available == false %} (sold out){% endif %}<br />
-        {% endif %}
-      {% endfor %}
-
       <fieldset>
         <legend>{{ product_option.name }}</legend>
         {% for value in product_option.values %}
