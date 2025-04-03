@@ -25,6 +25,10 @@
     {% endfor %}
   </select>
 
+  {% for variant in product.variants %}
+    {{ variant.title | remove: ' ' | split: '/' | handleize }}
+  {% endfor %}
+
   {% comment %}
     {% if is_bundle %}
       {% for product_option in product.options_with_values %}
