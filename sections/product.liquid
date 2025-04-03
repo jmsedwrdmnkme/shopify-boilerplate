@@ -37,7 +37,8 @@
         {% if is_bundle %}
           {% assign bundle_variants = variant.title | split: '/' %}
         
-          {{ bundle_variants | handleize }}">{{ variant.title }}{% if variant.available == false %} (sold out){% endif %}
+          {{ bundle_variants | handleize }}: {{ variant.title }}{% if variant.available == false %} (sold out){% endif %}
+        {% endif %}
       {% endfor %}
 
       <fieldset>
