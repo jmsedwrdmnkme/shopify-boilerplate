@@ -19,7 +19,7 @@
     {% for variant in product.variants %}
       {% if variant.available == true %}
         {% if is_bundle %}
-          {% assign bundle_variants = variant.title | remove: '&' | remove ' ' | split: '/' %}
+          {% assign bundle_variants = variant.title | remove: '&' | remove: ' ' | split: '/' %}
         {% endif %}
 
         <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"{% if variant.image.src.size > 1 %} data-title="{{ variant.title | handleize }}"{% endif %}{% if is_bundle %} data-bundle-variant="{{ bundle_variants | handleize }}"{% endif %}>{{ variant.title }}</option>
@@ -38,7 +38,7 @@
         {% for value in product_option.values %}
           <div>
             <label for="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}">
-              <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}" name="bundle-variant{{ product_option_index }}" value="{{ value | remove: '&' | remove ' ' | handleize }}"{% if forloop.first %} checked{% endif %} />
+              <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}" name="bundle-variant{{ product_option_index }}" value="{{ value | remove: '&' | remove: ' ' | handleize }}"{% if forloop.first %} checked{% endif %} />
               <span>{{ value }}</span>
             </label>
           </div>
