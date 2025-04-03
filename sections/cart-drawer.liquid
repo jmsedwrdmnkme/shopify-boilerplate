@@ -1,6 +1,6 @@
 <aside class="cart-drawer__container">
   <h2>Cart</h2>
-  <button role="button" class="cart-drawer__close"><span class="visually-hidden">Close cart</span></button>
+  <button role="button" class="cart-drawer__close">⨉<span class="visually-hidden">Close cart</span></button>
 
   <div class="cart-drawer__content">
     {% if cart.empty? %}
@@ -22,9 +22,9 @@
             </div>
 
             <div class="quantity__container">
-              <button role="button" class="quantity__minus"><span class="visually-hidden">Minus quantity</span></button>
+              <button role="button" class="quantity__minus">−<span class="visually-hidden">Minus quantity</span></button>
               <input name="quantity" class="quantity__value" value="{{ item.quantity }}" disabled>
-              <button role="button" class="quantity__plus"><span class="visually-hidden">Plus quantity</span></button>
+              <button role="button" class="quantity__plus">+<span class="visually-hidden">Plus quantity</span></button>
             </div>
           </div>
         {% endfor %}
@@ -60,6 +60,16 @@
     &:not(.active) {
       opacity: 0;
       pointer-events: none;
+    }
+
+    .cart-drawer__close {
+      position: absolute;
+      top: calc(var(--container-spacing) / 2);
+      right: calc(var(--container-spacing) / 2);
+      background-color: transparent;
+      color: currentColor;
+      font-size: calc(var(--container-spacing) / 2);
+      line-height: 1;
     }
 
     .cart-drawer__overlay {
