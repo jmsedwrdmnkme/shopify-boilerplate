@@ -29,7 +29,7 @@
           </div>
         {% endfor %}
 
-        <p>{{ cart.total_price | money }}{% if cart.total_discounts %} <span>{{ cart.total_discounts | money }}</span>{% endif %}</p>
+        <p>{{ cart.total_price | money }}{% if cart.total_discounts %} <span>{{ cart.total_discounts }} - {{ cart.total_discounts | money }}</span>{% endif %}</p>
 
         <button role="button" type="submit" name="checkout">Checkout</button>
       {% endform %}
