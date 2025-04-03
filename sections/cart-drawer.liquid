@@ -29,7 +29,9 @@
           </div>
         {% endfor %}
 
-        <p>{{ cart.total_price | money }}{% if cart.total_discounts > 0 %} <span>{{ cart.total_discounts | money }}</span>{% endif %}</p>
+        <div class="total__container">
+          Total price: {{ cart.total_price | money }}{% if cart.total_discounts > 0 %} <span>({{ cart.total_discounts | money }} discount)</span>{% endif %}
+        </div>
 
         <button role="button" type="submit" name="checkout">Checkout</button>
       {% endform %}
@@ -75,6 +77,10 @@
       button {
         margin: 0;
       }
+    }
+
+    .total__container {
+      margin-top: var(--container-spacing); 
     }
 
     .cart-drawer__overlay {
