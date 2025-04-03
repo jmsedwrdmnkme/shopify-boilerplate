@@ -330,13 +330,10 @@
         bundleVariant.push(checkedVariant.value);
       });
 
-
       [...option.options].forEach((option) => {
         const optionVariant = option.getAttribute('data-bundle-variant').split('-');
 
         if (JSON.stringify(optionVariant.sort()) === JSON.stringify(bundleVariant.sort())) {
-          console.log(`Bundle ${bundleVariant} : Option ${optionVariant}`);
-
           option.selected = 'selected'
         }
       });
