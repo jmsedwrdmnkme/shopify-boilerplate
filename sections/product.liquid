@@ -29,22 +29,24 @@
     {% endfor %}
   </select>
 
-  {% if is_bundle and !product.has_only_default_variant %}
-    {% for product_option in product.options_with_values %}
-      {% assign product_option_index = forloop.index0 %}
+  {% if is_bundle %}
+    {% unless product.has_only_default_variant %}
+      {% for product_option in product.options_with_values %}
+        {% assign product_option_index = forloop.index0 %}
 
-      <fieldset>
-        <legend>{{ product_option.name }}</legend>
-        {% for value in product_option.values %}
-          <div>
-            <label for="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}">
-              <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}" name="bundle-variant{{ product_option_index }}" value="{{ value | remove: '&' | remove: ' ' | handleize }}"{% if forloop.first %} checked{% endif %} />
-              <span>{{ value }}</span>
-            </label>
-          </div>
-        {% endfor %}
-      </fieldset>
-    {% endfor %}
+        <fieldset>
+          <legend>{{ product_option.name }}</legend>
+          {% for value in product_option.values %}
+            <div>
+              <label for="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}">
+                <input type="radio" id="{{ value | handleize }}-{{ value.available | handleize }}{{ product_option_index }}" name="bundle-variant{{ product_option_index }}" value="{{ value | remove: '&' | remove: ' ' | handleize }}"{% if forloop.first %} checked{% endif %} />
+                <span>{{ value }}</span>
+              </label>
+            </div>
+          {% endfor %}
+        </fieldset>
+      {% endfor %}
+    {% endunless %}
   {% endif %}
 
   <input type="number" name="quantity" min="1" value="1">
