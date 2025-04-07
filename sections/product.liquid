@@ -29,7 +29,7 @@
     {% endfor %}
   </select>
 
-  {% if is_bundle %}
+  {% if is_bundle and !product.has_only_default_variant %}
     {% for product_option in product.options_with_values %}
       {% assign product_option_index = forloop.index0 %}
 
