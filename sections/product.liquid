@@ -3,13 +3,12 @@
 {% assign productPrice = product.price %}
 {% assign productPriceMax = product.compare_at_price_max %}
 
-<div class="product__price">
+<div class="">
   {% for variant in product.variants %}
     {% assign variantPrice = variant.price %}
 
-    <div class="variant__price">
-      {{ variantPrice | money }} - {{ variant.title }}
-
+    <div class="{{ variant.title | handleize }}">
+      {{ variantPrice | money }}
       {%- if product.compare_at_price_max > 0 -%}
         <s>{{ productPriceMax | money }}</s>
       {%- endif -%}
