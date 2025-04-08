@@ -1,10 +1,14 @@
 <h1 class="product__title">{{ product.title }}</h1>
-<p>
-  <span class="product__price">{{ product.price | money }}</span>
-  {%- if product.compare_at_price_max > 0 -%}
-    <s>{{ product.compare_at_price_max | money }}</s>
-  {%- endif -%}
-</p>
+<div>
+  {% for variant in product.variants %}
+    <p class="product__price">
+      {{ variant.price | money }}
+      {%- if product.compare_at_price_max > 0 -%}
+        <s>{{ product.compare_at_price_max | money }}</s>
+      {%- endif -%}
+    </p>
+  {% endfor %}
+</div>
 
 {% form 'product', product %}
   {% assign is_bundle = false %}
@@ -314,7 +318,9 @@
     });
   }
 
-  // Bundles
+  /*
+   * Bundle visual picker
+   */
   const bundleVariants = document.querySelectorAll('form[action$="/cart/add"] [name*=bundle-variant]');
 
   bundleVariants.forEach((bundleVariant) => {
