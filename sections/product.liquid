@@ -9,8 +9,8 @@
 <div>
   {% if product.discount_amount %}
     {% if product.discount_type == 'percentage' %}
-      {% set product_price = product_price | float %}
-      {% set calculate_discounted = product_price * (1 - product.discount_amount / 100) %}
+      {% assign product_price = product_price | float %}
+      {% assign calculate_discounted = product_price * (1 - product.discount_amount / 100) %}
       {{ calculate_discounted | money }}
     {% else %}
       {{ product_price - product.discount_amount | money }}
