@@ -10,7 +10,7 @@
   {% if product.discount_amount %}
     {% if product.discount_type == 'percentage' %}
       {% assign product_price = product_price | float %}
-      {% assign calculate_discounted = product_price * (1 - product.discount_amount / 100) %}
+      {% capture calculate_discounted %}{{ product_price * (1 - product.discount_amount / 100) }}{% endcapture %}
       {{ calculate_discounted | money }}
     {% else %}
       {{ product_price - product.discount_amount | money }}
