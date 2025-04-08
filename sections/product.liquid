@@ -6,11 +6,12 @@
 <div class="">
   {% for variant in product.variants %}
     {% assign variantPrice = variant.price %}
+    {% assign variantPriceMax = variant.compare_at_price_max %}
 
     <div class="{{ variant.title | handleize }}">
       {{ variantPrice | money }}
-      {%- if product.compare_at_price_max > 0 -%}
-        <s>{{ productPriceMax | money }}</s>
+      {%- if variant.compare_at_price_max != null -%}
+        <s>{{ variantPriceMax | money }}</s>
       {%- endif -%}
     </div>
   {% endfor %}
