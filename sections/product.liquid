@@ -1,14 +1,13 @@
+{% assign productPrice = product.price %}
+{% assign productMaxPrice = product.compare_at_price_max %}
+
 <h1 class="product__title">{{ product.title }}</h1>
-<div>
-  {% for variant in product.variants %}
-    <p class="product__price">
-      {{ variant.price | money }}
-      {%- if product.compare_at_price_max > 0 -%}
-        <s>{{ product.compare_at_price_max | money }}</s>
-      {%- endif -%}
-    </p>
-  {% endfor %}
-</div>
+<p>
+  <span class="product__price">{{ productPrice | money }}</span>
+  {%- if product.compare_at_price_max > 0 -%}
+    <s>{{ productMaxPrice | money }}</s>
+  {%- endif -%}
+</p>
 
 {% form 'product', product %}
   {% assign is_bundle = false %}
