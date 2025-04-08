@@ -1,9 +1,9 @@
 <h1 class="product__title">{{ product.title }}</h1>
 
-<div class="product__price">
-  {% assign productPrice = product.price %}
-  {% assign productPriceMax = product.compare_at_price_max %}
+{% assign productPrice = product.price %}
+{% assign productPriceMax = product.compare_at_price_max %}
 
+<div class="product__price">
   {% for variant in product.variants %}
     {% assign variantPrice = variant.price %}
 
@@ -16,13 +16,6 @@
     </div>
   {% endfor %}
 </div>
-
-<p>
-  <span class="product__price">{{ product.price | money }}</span>
-  {%- if product.compare_at_price_max > 0 -%}
-    <s>{{ product.compare_at_price_max | money }}</s>
-  {%- endif -%}
-</p>
 
 {% form 'product', product %}
   {% assign is_bundle = false %}
