@@ -63,3 +63,31 @@
   </ol>
 </nav>
 {%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Breadcrumbs",
+    "class": "breadcrumbs"
+  }
+{% endschema %}
+
+{% stylesheet %}
+  .breadcrumbs {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+
+      &:first-child::before {
+        content: unset;
+      }
+
+      & + & {
+        margin-left: calc(var(--container-spacing) / 4);
+
+        &::before {
+          content: '>';
+        }
+      }
+    }
+  }
+{% endstylesheet %}
