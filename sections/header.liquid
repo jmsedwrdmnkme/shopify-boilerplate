@@ -8,7 +8,7 @@
           <div itemscope itemtype="http://schema.org/Organization">
         {%- endif -%}
           <a href="/" itemprop="url">
-            <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" height="38" width="150" itemprop="logo">
+            <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" height="38" width="150" itemprop="logo" preload="eager">
           </a>
         {%- if template.name == 'index' -%}
           </h1>
