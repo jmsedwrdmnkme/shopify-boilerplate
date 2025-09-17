@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page_title }}</title>
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="icon" href="{{ 'favicon.svg' | asset_url }}">
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+    <a class="visually-hidden-focusable" href="#main">Skip to main content</a>
+    {{ section 'header' }}
+    <main id="main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {{ section 'footer' }}
+    <script async src="<{{ 'main.js' | asset_url }}"></style>
+  </body>
+</html>
