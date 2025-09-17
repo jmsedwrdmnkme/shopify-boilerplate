@@ -16,7 +16,10 @@ export const clean = () => deleteAsync('assets');
 // Styles
 export function styles() {
   return src('src/styles/main.scss', {encoding: false})
-    .pipe(sass({style: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({
+      silenceDeprecations: ['legacy-js-api', 'color-functions', 'global-builtin', 'import'],
+      style: 'compressed'
+    }).on('error', sass.logError))
     .pipe(concat('main.css.liquid'))
     .pipe(dest('assets/'));
 }
