@@ -8,12 +8,14 @@ import cssnano from 'cssnano';
 import uglify from 'gulp-uglify';
 import compiler from 'webpack';
 import strip from 'gulp-strip-comments';
-import webpack from 'webpack-stream';
-
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import webpack from 'webpack-stream';
+import mergeStream from 'merge-stream';
+import hb from 'gulp-hb';
+import ext from 'gulp-ext-replace';
 
 // Clean
-export const clean = () => deleteAsync('assets');
+export const clean = () => deleteAsync(['assets', 'sections']);
 
 // Styles
 export function styles() {
@@ -52,6 +54,13 @@ export function images() {
     .pipe(dest('assets/'));
 }
 
+export function sections() {
+  return src('src/sections/*.hbs', {encoding: false})
+    .pipe(hb())
+    .pipe(ext('.liquid'))
+    .pipe(dest('sections/'));
+}
+
 export function fonts() {
   return src('src/fonts/*', {encoding: false})
     .pipe(dest('assets/'));
@@ -61,9 +70,10 @@ function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/scripts/**/*', scripts);
   watch('src/images/*', images);
+  watch('src/sections/**/*', sections);
   watch('src/fonts/*', fonts);
 }
 
-const build = series(clean, parallel(styles, scripts, images, fonts), watchFiles);
+const build = series(clean, parallel(styles, scripts, images, sections, fonts), watchFiles);
 
 export default build;
