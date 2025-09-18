@@ -2,13 +2,13 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 
 // Custom vars here
-// --
+@import "../../styles/variables/variables";
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
 
 // Custom maps here
-// --
+@import "../../styles/maps/maps";
 
 @import "../../../node_modules/bootstrap/scss/maps";
 @import "../../../node_modules/bootstrap/scss/mixins";
