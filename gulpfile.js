@@ -83,12 +83,14 @@ export function sections() {
           .pipe(dest(`src/sections/${section}/`));
       },
 
-      async function sectionLiquid () {
-        src(`src/sections/${section}/${section}.hbs`, {allowEmpty: true, encoding: false})
+      function sectionLiquid () {
+        return src(`src/sections/${section}/${section}.liquid.hbs`, {allowEmpty: true, encoding: false})
           .pipe(hb().partials(`src/sections/${section}/partials/*.hbs`))
-          .pipe(ext('.liquid'))
+          .pipe(ext(''))
           .pipe(dest('sections/'));
+      },
 
+      async function sectionDeletePartials () {
         return deleteAsync(`src/sections/${section}/partials`);
       },
 
@@ -110,11 +112,12 @@ function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/scripts/**/*', scripts);
   watch('src/images/*', images);
-  watch('src/sections/**/*', sections);
+  watch(['src/sections/**/*.liquid.hbs', 'src/sections/**/*.js', 'src/sections/**/*.scss'], sectionsBuild);
   watch('src/fonts/*', fonts);
 }
 
 // Tasks
-const build = series(clean, parallel(styles, scripts, images, fonts), parallel.apply(parallel, sections()), watchFiles);
+const sectionsBuild = parallel.apply(parallel, sections());
+const build = series(clean, parallel(styles, scripts, images, fonts), sectionsBuild, watchFiles);
 
 export default build;
