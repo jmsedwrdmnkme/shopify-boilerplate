@@ -10,7 +10,6 @@ import compiler from 'webpack';
 import strip from 'gulp-strip-comments';
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import webpack from 'webpack-stream';
-import mergeStream from 'merge-stream';
 import hb from 'gulp-hb';
 import ext from 'gulp-ext-replace';
 
