@@ -5,6 +5,7 @@ import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
 import cssnano from 'cssnano';
+import uglify from 'gulp-uglify';
 import compiler from 'webpack';
 import webpack from 'webpack-stream';
 
@@ -27,6 +28,7 @@ export function styles() {
 // Scripts
 export function scripts() {
   return src('src/scripts/main.js', {encoding: false})
+    .pipe(uglify())
     .pipe(webpack({}, compiler, function(err, stats) {}))
     .pipe(concat('main.js'))
     .pipe(dest('assets/'));
