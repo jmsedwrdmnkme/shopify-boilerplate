@@ -12,6 +12,8 @@ import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import webpack from 'webpack-stream';
 import hb from 'gulp-hb';
 import ext from 'gulp-ext-replace';
+import fs from 'file-system';
+import path from 'path';
 
 // Clean
 export const clean = () => deleteAsync(['assets', 'sections']);
@@ -53,18 +55,57 @@ export function images() {
     .pipe(dest('assets/'));
 }
 
+// Sections
 export function sections() {
-  return src('src/sections/*.hbs', {encoding: false})
-    .pipe(hb())
-    .pipe(ext('.liquid'))
-    .pipe(dest('sections/'));
+  const sectionsArray = fs.readdirSync('src/sections/')
+    .filter(function(file) {
+      return fs.statSync(path.join('src/sections/', file)).isDirectory();
+  });
+
+  return sectionsArray.map(function (section) {
+    return series(
+      function sectionStyles () {
+        return src(`src/sections/${section}/styles.scss`, {allowEmpty: true, encoding: false})
+          .pipe(sass({
+            silenceDeprecations: ['legacy-js-api', 'color-functions', 'global-builtin', 'import'],
+            style: 'compressed'
+          }).on('error', sass.logError))
+          .pipe(concat('partials/styles.hbs'))
+          .pipe(dest(`src/sections/${section}/`));
+      },
+
+      function sectionScripts () {
+        return src(`src/sections/${section}/scripts.js`, {allowEmpty: true, encoding: false})
+          .pipe(webpack({}, compiler, function(err, stats) {}))
+          .pipe(uglify())
+          .pipe(strip())
+          .pipe(concat('partials/scripts.hbs'))
+          .pipe(dest(`src/sections/${section}/`));
+      },
+
+      async function sectionLiquid () {
+        src(`src/sections/${section}/${section}.hbs`, {allowEmpty: true, encoding: false})
+          .pipe(hb().partials(`src/sections/${section}/partials/*.hbs`))
+          .pipe(ext('.liquid'))
+          .pipe(dest('sections/'));
+
+        return deleteAsync(`src/sections/${section}/partials`);
+      },
+
+      function sectionsDone (done) {
+        done();
+      }
+    );
+  });
 }
 
+// Fonts
 export function fonts() {
   return src('src/fonts/*', {encoding: false})
     .pipe(dest('assets/'));
 }
 
+// Watch
 function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/scripts/**/*', scripts);
@@ -73,6 +114,7 @@ function watchFiles() {
   watch('src/fonts/*', fonts);
 }
 
-const build = series(clean, parallel(styles, scripts, images, sections, fonts), watchFiles);
+// Tasks
+const build = series(clean, parallel(styles, scripts, images, fonts), parallel.apply(parallel, sections()), watchFiles);
 
 export default build;
