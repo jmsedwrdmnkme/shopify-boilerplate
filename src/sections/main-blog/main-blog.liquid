@@ -1,13 +1,13 @@
 {% schema %}
 {
-  "name": "t:sections.main-register.name"
+  "name": "t:sections.main-blog.name"
 }
 {% endschema %}
 
 {% stylesheet %}
-  {{> styles }}
+  @@include('styles.min.css')
 {% endstylesheet %}
 
 {% javascript %}
-  {{> scripts }}
+  @@include('scripts.min.js')
 {% endjavascript %}

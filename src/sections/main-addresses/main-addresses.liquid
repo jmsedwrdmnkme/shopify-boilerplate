@@ -1,13 +1,13 @@
 {% schema %}
 {
-  "name": "t:sections.footer.name"
+  "name": "t:sections.main-addresses.name"
 }
 {% endschema %}
 
 {% stylesheet %}
-  {{> styles }}
+  @@include('styles.min.css')
 {% endstylesheet %}
 
 {% javascript %}
-  {{> scripts }}
+  @@include('scripts.min.js')
 {% endjavascript %}

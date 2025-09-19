@@ -9,10 +9,11 @@ import compiler from 'webpack';
 import strip from 'gulp-strip-comments';
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import webpack from 'webpack-stream';
-import hb from 'gulp-hb';
 import ext from 'gulp-ext-replace';
 import fs from 'file-system';
 import path from 'path';
+import fileinclude from 'gulp-file-include';
+
 
 // Clean
 export const clean = () => deleteAsync(['assets', 'sections']);
@@ -64,28 +65,30 @@ export function sections() {
   return sectionsArray.map(function (section) {
     return series(
       function sectionStyles () {
-        return src(`src/sections/${section}/styles.scss`, {allowEmpty: true, encoding: false})
+        return src(`src/sections/${section}/styles.scss`, {encoding: false})
           .pipe(sass({
             silenceDeprecations: ['legacy-js-api', 'color-functions', 'global-builtin', 'import'],
             style: 'compressed'
           }).on('error', sass.logError))
-          .pipe(concat('partials/styles.hbs'))
+          .pipe(concat('partials/styles.min.css'))
           .pipe(dest(`src/sections/${section}/`));
       },
 
       function sectionScripts () {
-        return src(`src/sections/${section}/scripts.js`, {allowEmpty: true, encoding: false})
+        return src(`src/sections/${section}/scripts.js`, {encoding: false})
           .pipe(webpack({}, compiler, function(err, stats) {}))
           .pipe(uglify())
           .pipe(strip())
-          .pipe(concat('partials/scripts.hbs'))
+          .pipe(concat('partials/scripts.min.js'))
           .pipe(dest(`src/sections/${section}/`));
       },
 
       function sectionLiquid () {
-        return src(`src/sections/${section}/${section}.liquid.hbs`, {allowEmpty: true, encoding: false})
-          .pipe(hb().partials(`src/sections/${section}/partials/*.hbs`))
-          .pipe(ext(''))
+        return src(`src/sections/${section}/${section}.liquid`, {encoding: false})
+          .pipe(fileinclude({
+            prefix: '@@',
+            basepath: `src/sections/${section}/partials`
+          }))
           .pipe(dest('sections/'));
       },
 
