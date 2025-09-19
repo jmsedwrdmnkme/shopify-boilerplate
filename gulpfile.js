@@ -4,7 +4,6 @@ import concat from 'gulp-concat';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
-import cssnano from 'cssnano';
 import uglify from 'gulp-uglify';
 import compiler from 'webpack';
 import strip from 'gulp-strip-comments';
