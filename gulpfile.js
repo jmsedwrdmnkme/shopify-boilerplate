@@ -9,7 +9,6 @@ import compiler from 'webpack';
 import strip from 'gulp-strip-comments';
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import webpack from 'webpack-stream';
-import ext from 'gulp-ext-replace';
 import fs from 'file-system';
 import path from 'path';
 import fileinclude from 'gulp-file-include';
@@ -64,6 +63,10 @@ export function sections() {
 
   return sectionsArray.map(function (section) {
     return series(
+      async function sectionDeletePartials () {
+        return deleteAsync(`sections/${section}`);
+      },
+
       function sectionStyles () {
         return src(`src/sections/${section}/styles.scss`, {encoding: false})
           .pipe(sass({
@@ -114,7 +117,7 @@ function watchFiles() {
   watch('src/styles/**/*', styles);
   watch('src/scripts/**/*', scripts);
   watch('src/images/*', images);
-  watch(['src/sections/**/*.liquid.hbs', 'src/sections/**/*.js', 'src/sections/**/*.scss'], sectionsBuild);
+  watch(['src/sections/**/*.liquid', 'src/sections/**/*.js', 'src/sections/**/*.scss'], sectionsBuild);
   watch('src/fonts/*', fonts);
 }
 
