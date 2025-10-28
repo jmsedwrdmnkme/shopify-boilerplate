@@ -1,5 +1,3 @@
 {% render 'layout' | split: '{ content_for_header }' | first %}
-
 {{ content_for_header }}
-
 {% render 'layout' | split: '{ content_for_header }' | last %}

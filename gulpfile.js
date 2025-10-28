@@ -28,16 +28,6 @@ export function styles() {
     .pipe(dest('assets/'));
 }
 
-// Scripts
-export function scripts() {
-  return src('src/scripts/main.js', {encoding: false})
-    .pipe(webpack({}, compiler, function(err, stats) {}))
-    .pipe(uglify())
-    .pipe(strip())
-    .pipe(concat('main.js'))
-    .pipe(dest('assets/'));
-}
-
 // Assets
 export function images() {
   return src('src/images/*', {encoding: false})
@@ -115,7 +105,6 @@ export function fonts() {
 // Watch
 function watchFiles() {
   watch('src/styles/**/*', styles);
-  watch('src/scripts/**/*', scripts);
   watch('src/images/*', images);
   watch(['src/sections/**/*.liquid', 'src/sections/**/*.js', 'src/sections/**/*.scss'], sectionsBuild);
   watch('src/fonts/*', fonts);
@@ -123,6 +112,6 @@ function watchFiles() {
 
 // Tasks
 const sectionsBuild = parallel.apply(parallel, sections());
-const build = series(clean, parallel(styles, scripts, images, fonts), sectionsBuild, watchFiles);
+const build = series(clean, parallel(styles, images, fonts), sectionsBuild, watchFiles);
 
 export default build;
