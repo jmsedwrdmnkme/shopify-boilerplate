@@ -1,13 +1,5 @@
-{% capture layout %}
-  {% render 'layout' | split: 'CONTENT_FOR_HEADER' %}
-{% endcapture %}
-
-{% capture body %}
-  {{ layout | last }}
-{% endcapture %}
-
-{{ layout | first }}
+{% render 'layout' | split: 'CONTENT_FOR_HEADER' | first %}
   {{ content_for_header }}
-{{ body | split: 'CONTENT_FOR_LAYOUT' | first }}
+{% render 'layout' | split: 'CONTENT_FOR_HEADER' | last | split: 'CONTENT_FOR_LAYOUT' | first %}
   {{ content_for_layout }}
-{{ body | split: 'CONTENT_FOR_LAYOUT' | last }}
+{% render 'layout' | split: 'CONTENT_FOR_HEADER' | last | split: 'CONTENT_FOR_LAYOUT' | last %}
