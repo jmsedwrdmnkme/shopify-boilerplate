@@ -16,7 +16,7 @@
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
 
-    { content_for_header }
+    CONTENT_FOR_HEADER
   </head>
 
   <body>
@@ -25,7 +25,7 @@
     {% section 'header' %}
 
     <main id="main">
-      { content_for_layout }
+      CONTENT_FOR_LAYOUT
     </main>
 
     {% section 'footer' %}

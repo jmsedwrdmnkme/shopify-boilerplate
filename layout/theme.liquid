@@ -1,5 +1,5 @@
 {% capture layout %}
-  {% render 'layout' | split: '{ content_for_header }' %}
+  {% render 'layout' | split: 'CONTENT_FOR_HEADER' %}
 {% endcapture %}
 
 {% capture body %}
@@ -8,6 +8,6 @@
 
 {{ layout | first }}
   {{ content_for_header }}
-{{ body | split: '{ content_for_layout }' | first }}
+{{ body | split: 'CONTENT_FOR_LAYOUT' | first }}
   {{ content_for_layout }}
-{{ body | split: '{ content_for_layout }' | last }}
+{{ body | split: 'CONTENT_FOR_LAYOUT' | last }}
