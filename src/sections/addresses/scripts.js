@@ -16,3 +16,4 @@
 
 // For dropdowns, popovers, and tooltips
 // import * as Popper from '@popperjs/core';
+const addressesInit = true;
